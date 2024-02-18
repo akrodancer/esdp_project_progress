@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "progress"
+version = "0.1.0"
+description = ""
+authors = ["SagidullinEmil <se12373@auca.kg>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
