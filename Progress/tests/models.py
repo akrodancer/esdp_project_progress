@@ -3,8 +3,13 @@ from accounts.models import User
 
 
 class Test(models.Model):
+    TEST_TYPES = (
+        ('free', 'Free'),
+        ('paid', 'Paid'),
+    )
     test_name = models.CharField(max_length=255)
     difficulty = models.CharField(max_length=40)
+    test_type = models.CharField(max_length=4, choices=TEST_TYPES, default='free')
 
     def __str__(self):
         return self.test_name
