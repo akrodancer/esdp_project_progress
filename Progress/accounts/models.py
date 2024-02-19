@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from tests.models import Test
 
 
 class User(AbstractUser):
@@ -10,7 +11,7 @@ class User(AbstractUser):
         ('user', 'User'),
     )
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)
-    paid_tests = models.ManyToManyField('tests.Test', blank=True)
+    paid_tests = models.ManyToManyField(Test, blank=True)
 
     def __str__(self):
         return self.username
