@@ -1,5 +1,6 @@
-from django.db import models
 from accounts.models import User
+from django.db import models
+
 
 class Course(models.Model):
     course_name = models.CharField(max_length=255)
@@ -9,7 +10,7 @@ class Course(models.Model):
     students = models.ManyToManyField(User, related_name='enrolled_courses')
 
     def __str__(self):
-        return self.name
+        return self.course_name
 
 
 class Lesson(models.Model):
@@ -18,6 +19,7 @@ class Lesson(models.Model):
     description = models.TextField(max_length=5000)
     video = models.URLField(max_length=200, null=True)
     datetime = models.DateTimeField()
+    course = models.ForeignKey(Course, related_name='lessons', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.lesson_name
