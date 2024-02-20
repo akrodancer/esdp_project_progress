@@ -45,7 +45,7 @@ class Lesson(models.Model):
 
 
 class Visit(models.Model):
-    is_active = models.BooleanField()
+    is_currently_viewing = models.BooleanField()
     visit_date = models.DateTimeField(auto_now_add=True)
     students = models.ForeignKey(User, limit_choices_to={'role', 'user'}, related_name='visits',
                                  on_delete=models.CASCADE, null=True, blank=True)
