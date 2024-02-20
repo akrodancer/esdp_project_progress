@@ -10,7 +10,7 @@ class Course(models.Model):
     teacher = models.ManyToManyField(User, limit_choices_to={'role': 'teacher'}, related_name='courses_taught')
     students = models.ManyToManyField(User, limit_choices_to={'role': 'user'}, related_name='enrolled_courses',
                                       null=True, blank=True)
-    paid_by = models.ManyToManyField(User, related_name='paid_courses', blank=True)
+    paid_by = models.ManyToManyField(User, limit_choices_to={'role': 'user'}, related_name='paid_courses', blank=True)
 
     def __str__(self):
         return self.course_name
