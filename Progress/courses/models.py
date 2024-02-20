@@ -9,7 +9,7 @@ class Course(models.Model):
     date_finish = models.DateField()
     teacher = models.ManyToManyField(User, limit_choices_to={'role': 'teacher'}, related_name='courses_taught')
     students = models.ManyToManyField(User, limit_choices_to={'role': 'user'}, related_name='enrolled_courses',
-                                      null=True, blank=True)
+                                      blank=True)
     paid_by = models.ManyToManyField(User, limit_choices_to={'role': 'user'}, related_name='paid_courses', blank=True)
 
     def __str__(self):
