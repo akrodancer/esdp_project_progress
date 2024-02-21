@@ -10,28 +10,95 @@
     <title>Document</title>
 </head>
 <body>
+
     <header>
-        <div class="conteiner">
-            <div class="upper-panel">
-                <ul class="row justify-content-around ">
-                    <li class="col-4"><a href="#"><i class="bi bi-geo-alt-fill"></i> 9-й Микрорайон, Суеркулова 10Б</a></li>
-                    <li class="col-4"><a href="#"><i class="bi bi-phone"></i> +996 (505) 242 552</a></li>
-                    <li class="col-4"><a href="#"><i class="bi bi-envelope-fill"></i> progress.kg@gmail.com</a></li>
+    <nav>
+        <div class="upper-panel container-fluid">
+            <ul class="navbar-nav ms-auto flex-row justify-content-between flex-wrap">
+                <li class="nav-item"><a href="#"><i class="bi bi-geo-alt-fill"></i> 9-й Микрорайон, Суеркулова 10Б</a></li>
+                <li class="nav-item"><a href="#"><i class="bi bi-phone"></i> +996 (505) 242 552</a></li>
+                <li class="nav-item"><a href="#"><i class="bi bi-envelope-fill"></i> progress.kg@gmail.com</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="lower-panel container-fluid">
+            <ul class="navbar-nav ms-auto flex-row justify-content-between flex-wrap">
+                <li class="nav-item logo">
+                    <a href="">
+                        <img class="image-fluid" src="{% static 'images/logo.png' %}" alt="" width="100%">
+                    </a>
+                </li>
+                <li class="nav-item"><a href="">О нас</a></li>
+                <li class="nav-item"><a href="">Наши курсы</a></li>
+                <li class="nav-item"><a href="">Онлайн тестирование</a></li>
+                <li class="nav-item"><a href="">Видеоуроки</a></li>
+                <li class="nav-item"><a href="">Поиск учеников</a></li>
+                <li class="nav-item sign_in_button">
+                    <button id="sign_in_button" type="submit">Войти</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer container-fluid row justify-content-between">
+            <div class="footer-block f-menu col-2">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item logo">
+                        <a href="">
+                            <h5>Главная</h5>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="">О нас</a></li>
+                    <li class="nav-item"><a href="">Наши курсы</a></li>
+                    <li class="nav-item"><a href="">Онлайн тестирование</a></li>
+                    <li class="nav-item"><a href="">Поиск учеников</a></li>
                 </ul>
             </div>
-            <div class="lower-panel">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+            <div class="footer-block f-map col-8 row">
+                <div class="nav-item f-logo">
+                    <a href="">
+                        <img class="image-fluid" src="{% static 'images/logo.png' %}" alt="" width="100%">
+                    </a>
+                </div>
+                <div class="f-maps">
+                    <iframe id="gmap_canvas" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13419.032130422971!2d-79.94077173022463!3d32.772154400000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fe7a1ae84ff639%3A0xe5c782f71924a526!2s24%20King%20St%2C%20Charleston%2C%20SC%2029401%2C%20Amerika%20Birle%C5%9Fik%20Devletleri!5e0!3m2!1str!2str!4v1665070628853!5m2!1str!2str" 
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="f-social fs-5"> 
+                    <a href=""><i class="bi bi-instagram"></i></a> 
+                    <a href=""><i class="bi bi-telegram"></i></a> 
+                    <a href=""><i class="bi bi-whatsapp"></i></a> 
+                </div>
+            </div>
+            <div class="footer-block f-contacts col-2">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item logo">
+                        <a href="">
+                            <h5>Контакты</h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <h6>Номер телефона:</h6>
+                        <a href="">+996 (505) 242 552</a>
+                    </li>
+                    <li class="nav-item">
+                        <h6>E-mail:</h6> 
+                        <a href="">progress.kg@gmail.com</a>
+                    </li>
+                    <li class="nav-item">
+                        <h6>Адрес:</h6>
+                        <a href="">9-й Микрорайон, Суеркулова 10Б</a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </header>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

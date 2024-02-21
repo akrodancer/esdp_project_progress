@@ -10,7 +10,6 @@ class NewUserForm(UserCreationForm):
             'email',
             'phone',
             'role',
-            'paid_tests'
         ]
     
     widgets = {
