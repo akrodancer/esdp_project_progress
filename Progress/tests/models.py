@@ -1,6 +1,5 @@
 from django.db import models
-from accounts.models import User
-
+from accounts.models import User, Test
 
 class Test(models.Model):
     TEST_TYPES = (
@@ -13,7 +12,6 @@ class Test(models.Model):
 
     def __str__(self):
         return self.test_name
-
 
 class Question(models.Model):
     question_name = models.CharField(max_length=255)
