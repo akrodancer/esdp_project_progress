@@ -23,12 +23,12 @@ class UserRegisterView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect(reverse('home_page'))
+        return redirect(reverse('tests:test_page'))
     
     def get_success_url(self):
         next_url = self.request.GET.get('next')
         if not next_url:
             next_url = self.request.POST.get('next')
         if not next_url:
-            next_url = reverse('feed')
+            next_url = reverse('tests:test_page')
         return next_url

@@ -7,12 +7,14 @@ class NewUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = [
+            'username', 
+            'password1', 'password2',
             'email',
             'phone',
-            'role',
         ]
     
     widgets = {
+        'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
         'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
         'phone': forms.TextInput(attrs={'placeholder': '+996 (XXX)-XX-XX'}),
     }
