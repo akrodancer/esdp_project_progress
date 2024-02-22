@@ -5,29 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     <title>Document</title>
 </head>
 <body>
-    <div class="row flex-column">
-        <div class="col-6 m-auto">
+    <div class="row flex-column m-auto" id="reg_form">
+        <div class="form-title text-center m-auto">
             <img src="{% static 'images/logo.png' %}" alt="">
             <h4>Образовательный центр прогресс</h4>
             <h4>Платформа организации учебного процесса</h4>
         </div>
-        <div class="col-4 m-auto">
+        <div class="form-inputs text-center m-auto mt-5">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}   
                 <h5>Зарегистрируйте свой аккаунт</h5>
-                <span>Введите новый логин</span>
+                <span>Введите новый логин и пароль</span>
                 <div>{{form.username}}</div>
-                <h6>Придумайте пароль</h6>
-                <div class="form-control mb-3 mt-3">{{form.password1}}</div>
-                <h6>Подтвердите пароль</h6>
-                <div class="form-control mb-3 mt-3">{{form.password2}}</div>
+                <div class="">{{form.password1}}</div>
+                <div class="">{{form.password2}}</div>
                 <div>{{form.email}}</div>
                 <div>{{form.phone}}</div>
-                <button type="submit" class="btn btn-primary">Подтвердить</button>
+                <a href=""><span>Введите новый логин и пароль</span></a>
+                <button type="submit" class="btn btn-warning">Подтвердить</button>
             </form>
         </div>
     </div>
@@ -36,7 +35,54 @@
 
 
 
+    <style>
+        body {
+            background-color: #4484CF;
+        }
+        img {
+            width: 400px;
+        }
+        h4 {
+            color: white;
+        }
+        h5 {
+            padding: 1% 10% 1% 10%;
+        }
+        a, span {
+            color: gray;
+        }
+        button, input {
+            width: 80%;
+            border-radius: 15px;
+            margin: 5% auto 10% auto;
+        }
+        input {
+            text-align: center;
+            height: 40px;
+            border: 0;
+            border-radius: 15px;
+            background-color: rgba(255, 196, 0, 0.5);
+            margin: 2% auto 2% auto;
+        }
+        .form-inputs {
+            background-color: white;
+            border-radius: 15px;
+            max-width: 400px;
+            
+        }
+        @media screen and (max-width: 772px) {
 
+            .form-inputs {
+                width: 90%;
+            }
+        }
+        @media screen and (max-width: 401px) {
+            img {
+                width: 100%;
+            }
+
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

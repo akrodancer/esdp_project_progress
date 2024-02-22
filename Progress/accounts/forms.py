@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class NewUserForm(UserCreationForm):
+    password1 = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
+    password2 = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}))
     class Meta:
         model = User
         fields = [
@@ -13,8 +15,8 @@ class NewUserForm(UserCreationForm):
             'phone',
         ]
     
-    widgets = {
-        'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
-        'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
-        'phone': forms.TextInput(attrs={'placeholder': '+996 (XXX)-XX-XX'}),
-    }
+        widgets = {
+            'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
+            'phone': forms.TextInput(attrs={'placeholder': '+996 (XXX)-XX-XX'}),
+        }
