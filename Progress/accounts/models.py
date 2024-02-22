@@ -3,6 +3,9 @@ from django.db import models
 
 
 class User(AbstractUser):
+    class Meta:
+        verbose_name_plural = 'Пользователи'
+        
     avatar = models.ImageField(upload_to='...', null=True, blank=True)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
