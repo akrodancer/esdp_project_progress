@@ -34,9 +34,18 @@
                 <li class="nav-item"><a href="">Онлайн тестирование</a></li>
                 <li class="nav-item"><a href="">Видеоуроки</a></li>
                 <li class="nav-item"><a href="">Поиск учеников</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item sign_in_button">
+                    <span class="user">{{request.user}}</span>
+                </li>
+                <li class="nav-item sign_in_button">
+                    <a href="{% url 'accounts:log_out' %}" id="log_out_button" class="btn btn-danger">Выход</a>
+                </li>
+                {% else %}
                 <li class="nav-item sign_in_button">
                     <button id="sign_in_button" type="button">Войти</button>
                 </li>
+                {% endif %}
             </ul>
         </div>
         </div>

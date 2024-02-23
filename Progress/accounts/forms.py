@@ -20,3 +20,17 @@ class NewUserForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
             'phone': forms.TextInput(attrs={'placeholder': '+996 (XXX)-XX-XX'}),
         }
+
+
+class LoginUserForm(forms.ModelForm):
+    password = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
+    class Meta:
+        model = User
+        fields = [
+            'username', 
+            'password',
+        ]
+    
+        widgets = {
+            'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
+        }
