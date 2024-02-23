@@ -1,7 +1,8 @@
+from django.conf import settings
 from django.db import models
 
-from accounts.models import User
 from courses.models import Course
+
 
 
 class Test(models.Model):
@@ -47,7 +48,7 @@ class Answer(models.Model):
 
 
 class UserTest(models.Model):
-    user = models.ForeignKey(User, related_name='user_tests', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_tests', on_delete=models.CASCADE)
     test = models.ForeignKey(Test, related_name='user_tests', on_delete=models.CASCADE)
     date_taken = models.DateTimeField(auto_now_add=True)
 
