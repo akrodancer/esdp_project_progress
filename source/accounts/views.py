@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 def logout_view(request):
     logout(request)
-    return redirect('tests:test_page')
+    return redirect('courses:index')
 
 
 class UserLogin(View):
@@ -26,14 +26,14 @@ class UserLogin(View):
         if current_user:
             login(request, current_user)
     
-        return redirect(reverse('tests:test_page'))
+        return redirect(reverse('courses:index'))
     
     def get_success_url(self):
         next_url = self.request.GET.get('next')
         if not next_url:
             next_url = self.request.POST.get('next')
         if not next_url:
-            next_url = reverse('tests:test_page')
+            next_url = reverse('courses:index')
         return next_url
 
 class UserRegisterView(CreateView):
@@ -44,7 +44,7 @@ class UserRegisterView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect(reverse('tests:test_page'))
+        return redirect(reverse('courses:index'))
     
     # def get_success_url(self):
     #     next_url = self.request.GET.get('next')

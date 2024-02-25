@@ -1,13 +1,21 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from accounts.models import User
 from courses.models import Course
+from accounts.forms import NewUserForm, LoginUserForm
 
 
-class IndexPageView(TemplateView):
-    template_name = 'courses/index.html'
+class IndexPageView(View):
+    def get(self, request, *args, **kwargs):
+        template_name = 'courses/index.html'
+        login_form = LoginUserForm
+        context = {
+            'login_form': login_form
+            }
 
+        return render(request, template_name, context)
+    
 
 class AboutUsView(ListView):
     model = User
