@@ -55,6 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'main_config.urls'
+ROOT_URLCONF = 'main_config.urls'
 
 TEMPLATES = [
     {
