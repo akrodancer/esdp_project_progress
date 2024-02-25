@@ -90,7 +90,8 @@ a, a:hover, a:visited, a:active {
 .auth {
     position: fixed;
     z-index: 6;
-    width: 100%;
+    width: 50%;
+    height: 50% !important;
     top: 15%;
     right: 0;
     left: 0;

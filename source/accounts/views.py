@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
 from accounts.models import User
 from accounts.forms import NewUserForm, LoginUserForm
 from typing import Any
@@ -17,8 +17,8 @@ def logout_view(request):
     return redirect('tests:test_page')
 
 
-def UserLogin(request):
-    if request.method == 'POST':
+class UserLogin(View):
+    def post(self, request, *args, **kwargs):
         form = LoginUserForm(request.POST)
         current_user = authenticate(request, 
                                     username=form['username'].value(),
@@ -28,6 +28,13 @@ def UserLogin(request):
     
         return redirect(reverse('tests:test_page'))
     
+    def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        if not next_url:
+            next_url = self.request.POST.get('next')
+        if not next_url:
+            next_url = reverse('tests:test_page')
+        return next_url
 
 class UserRegisterView(CreateView):
     model = User
