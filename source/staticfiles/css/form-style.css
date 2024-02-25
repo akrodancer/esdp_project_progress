@@ -1,0 +1,49 @@
+.auth {
+    position: fixed;
+    z-index: 6;
+    width: 100%;
+    top: 15%;
+    right: 0;
+    left: 0;
+    height: calc(var(--vh, 1vh) * 70);
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.auth h5 {
+    padding: 1% 10% 1% 10%;
+}
+.auth a, span {
+    color: gray;
+}
+.auth .btn, input {
+    width: 80%;
+    border-radius: 15px;
+    margin: 5% auto 10% auto;
+}
+.auth input {
+    text-align: center;
+    height: 40px;
+    border: 0;
+    border-radius: 15px;
+    background-color: rgba(255, 196, 0, 0.5);
+    margin: 2% auto 2% auto;
+}
+.form-inputs {
+    background-color: white;
+    border-radius: 15px;
+    max-width: 400px;
+    
+}
+@media screen and (max-width: 772px) {
+    .form-inputs {
+        width: 90%;
+    }
+}
+.back {
+    background: rgb(14, 14, 14, 0.8);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 5;
+  }

@@ -35,6 +35,24 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-ckeditor-5"
+version = "0.2.11"
+description = "CKEditor 5 for Django."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "django-ckeditor-5-0.2.11.tar.gz", hash = "sha256:dc1700f5ad023e3328d5194d08c29870f114468c8c8348b2cd7c608dec264342"},
+    {file = "django_ckeditor_5-0.2.11-py3-none-any.whl", hash = "sha256:85946b8a94cd7a203e65bdc7dd781304293cd608b2246f32ac96509afb569e86"},
+]
+
+[package.dependencies]
+Django = ">=2.2"
+Pillow = "*"
+
+[package.extras]
+dev = ["bandit[toml] (==1.7.6)", "black (==22.12.0)", "codespell (==2.2.2)", "coverage (==7.4.0)", "mypy (==1.8.0)", "mypy-extensions (==1.0.0)", "pytest (==7.4.4)", "pytest-cov (==4.0.0)", "pytest-django (==4.5.2)", "pytest-mock (==3.10.0)", "safety (==2.3.5)", "types-setuptools (==65.6.0.2)", "typing-extensions (==4.9.0)"]
+
+[[package]]
 name = "django-jet-reboot"
 version = "1.3.7"
 description = "Modern template for Django admin interface with improved functionality"
@@ -286,4 +304,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "56a1f3f2b31b45b3e7088ca4686e51b978557105746cd73eb1fc948d34013073"
+content-hash = "e73cb05184c272cfea0ed694038c960dfd5be94432718dfb444fec1d919fe8bb"
