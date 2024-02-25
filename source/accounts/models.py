@@ -17,3 +17,10 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class Comment(models.Model):
+    content = models.TextField(max_length=500)
+    teacher = models.ForeignKey(User, limit_choices_to={'role': 'teacher'}, related_name='comments_given', on_delete=models.CASCADE)
+    student = models.ForeignKey(User, limit_choices_to={'role': 'user'}, related_name='comments_received', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)

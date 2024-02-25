@@ -34,3 +34,8 @@ class LoginUserForm(forms.ModelForm):
         widgets = {
             'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
         }
+
+
+
+class CommentForm(forms.Form):
+    comment = forms.CharField(widget=forms.Textarea)
