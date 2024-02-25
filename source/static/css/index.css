@@ -1,0 +1,180 @@
+.bloc_carousel {
+    background: #4484CF;
+    padding-bottom: 105px;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid white;
+}
+
+.carousel-indicators .active {
+    width: 10px;
+    height: 10px;
+    background: white;
+    margin-top: 1px;
+}
+
+.bloc_carousel {
+    padding-top: 55px;
+}
+
+.bloc_carousel h1 {
+    font-family: cursive;
+    font-size: 75px;
+    text-align: center;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.bloc_carousel p {
+    font-family: cursive;
+    font-size: 25px;
+    text-align: center;
+    color: white;
+}
+
+.sign_up_button {
+    margin: 0 auto;
+    width: 300px;
+}
+
+#sign_up_button {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #F3CB3D;
+    color: black;
+    width: 100%;
+    height: 44px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.button_prev {
+    height: 40px;
+    width: 40px;
+    background-color: #F3CB3D;
+}
+
+/*блок кто мы*/
+.who_are_we {
+    padding-top: 70px;
+    width: 1115px;
+    margin: 0 auto;
+}
+
+.who_are_we h2{
+    color: #4484CF;
+    text-align: center;
+    font-size: 74px;
+    font-family: sans-serif, "Times New Roman";
+}
+
+.who_are_we p{
+    color: #4484CF;
+    text-align: center;
+    font-size: 40px;
+    font-family: sans-serif;
+    line-height: 1;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* блок about us */
+.about-us {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.card_about_as {
+    padding: 20px;
+    background-color: #0a68a3;
+}
+
+.card_about_as h4 {
+    color: white;
+}
+
+.card_about_as p {
+    color: white;
+}
+
+.card_sign_up {
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    background-color: #F3CB3D;
+    transform: skew(-5deg, 5deg);
+}
+
+#card_sign_up_button {
+    margin-top: 120px;
+    margin-bottom: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    width: 100%;
+    height: 44px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/*блок отзывов*/
+.reviews {
+    background: #4484CF;
+    margin-top: 90px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.reviews h3 {
+    text-align: center;
+    color: white;
+    font-size: 70px;
+}
+
+.p_rev {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+.div_review {
+    height: 500px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.reviews_p {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.div_review h5 {
+    margin-top: 12%;
+    margin-left: 10px;
+    font-size: 50px;
+}
+
+/*блок наши партнеры*/
+.partners {
+    padding-top: 60px;
+    background: #EEEEEE;
+    padding-bottom: 60px;
+
+}
+
+.partners h3 {
+    text-align: center;
+    color: #4484CF;
+    font-size: 60px;
+    padding-bottom: 50px;
+}
+
