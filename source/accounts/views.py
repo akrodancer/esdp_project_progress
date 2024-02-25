@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.contrib.auth import login, logout, authenticate
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
 from accounts.models import User
 from accounts.forms import NewUserForm, LoginUserForm
@@ -9,6 +9,11 @@ from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from accounts.forms import CommentForm
+from accounts.models import Comment
+from courses.models import Visit
+
 
 # Create your views here.
 
