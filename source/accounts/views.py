@@ -46,10 +46,4 @@ class UserRegisterView(CreateView):
         login(self.request, user)
         return redirect(reverse('courses:index'))
     
-    # def get_success_url(self):
-    #     next_url = self.request.GET.get('next')
-    #     if not next_url:
-    #         next_url = self.request.POST.get('next')
-    #     if not next_url:
-    #         next_url = reverse('tests:test_page')
-    #     return next_url
+  

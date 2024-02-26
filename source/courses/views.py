@@ -6,16 +6,9 @@ from courses.models import Course
 from accounts.forms import NewUserForm, LoginUserForm
 
 
-class IndexPageView(View):
-    def get(self, request, *args, **kwargs):
-        template_name = 'courses/index.html'
-        login_form = LoginUserForm
-        context = {
-            'login_form': login_form
-            }
+class IndexPageView(TemplateView):
+    template_name = 'courses/index.html'
 
-        return render(request, template_name, context)
-    
 
 class AboutUsView(ListView):
     model = User
