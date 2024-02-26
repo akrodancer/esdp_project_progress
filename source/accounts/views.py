@@ -10,7 +10,6 @@ from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from accounts.forms import CommentForm
 from accounts.models import Comment
 from courses.models import Visit
@@ -51,15 +50,7 @@ class UserRegisterView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect(reverse('courses:index'))
-    
 
-    # def get_success_url(self):
-    #     next_url = self.request.GET.get('next')
-    #     if not next_url:
-    #         next_url = self.request.POST.get('next')
-    #     if not next_url:
-    #         next_url = reverse('tests:test_page')
-    #     return next_url
 
 
 
