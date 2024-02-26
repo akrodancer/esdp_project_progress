@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from accounts.models import User
 from courses.models import Course
+from accounts.forms import NewUserForm, LoginUserForm
 
 
 class IndexPageView(TemplateView):

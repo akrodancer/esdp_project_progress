@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
@@ -19,7 +20,7 @@ from courses.models import Visit
 
 def logout_view(request):
     logout(request)
-    return redirect('tests:test_page')
+    return redirect('courses:index')
 
 
 class UserLogin(View):
@@ -31,14 +32,14 @@ class UserLogin(View):
         if current_user:
             login(request, current_user)
     
-        return redirect(reverse('tests:test_page'))
+        return redirect(reverse('courses:index'))
     
     def get_success_url(self):
         next_url = self.request.GET.get('next')
         if not next_url:
             next_url = self.request.POST.get('next')
         if not next_url:
-            next_url = reverse('tests:test_page')
+            next_url = reverse('courses:index')
         return next_url
 
 class UserRegisterView(CreateView):
@@ -49,8 +50,9 @@ class UserRegisterView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect(reverse('tests:test_page'))
+        return redirect(reverse('courses:index'))
     
+
     # def get_success_url(self):
     #     next_url = self.request.GET.get('next')
     #     if not next_url:
@@ -116,4 +118,5 @@ class StudentDetailView(DetailView):
             Comment.objects.create(content=content, teacher=teacher, student=student)
         url = reverse('accounts:student_detail', kwargs={'pk': student_id})
         return HttpResponseRedirect(url)
+
 

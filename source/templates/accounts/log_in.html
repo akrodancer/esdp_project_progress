@@ -5,8 +5,8 @@
                 {% csrf_token %}   
                 <h5>Войдите в свой аккаунт</h5>
                 <span>Введите новый логин и пароль</span>
-                <div>{{login_form.username}}</div>
-                <div>{{login_form.password}}</div>
+                <div>{{form_log.username}}</div>
+                <div>{{form_log.password}}</div>
                 <!-- <div><input name="username" placeholder="Логин" type="text"></div>
                 <div><input name="password" placeholder="Пароль" type="password"></div>  -->
                 <a href="{% url 'accounts:user_reg' %}"><span>Создать учетную запись</span></a>
