@@ -11,5 +11,4 @@ def log_in_processor(request):
                 'form_log': form_log,
             }
             return data
-    if request.method == 'POST':
-        return {}
+    return {}
