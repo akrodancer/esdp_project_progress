@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.forms import CommentForm
 from accounts.models import Comment
-from courses.models import Visit
+from courses.models import Visit, Course
 
 
 # Create your views here.

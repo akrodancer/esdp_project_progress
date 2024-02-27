@@ -53,3 +53,5 @@ class Visit(models.Model):
 
     def __str__(self):
         return f'Visit by {self.students} on {self.visit_date}'
+
+
