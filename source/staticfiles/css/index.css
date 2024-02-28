@@ -1,5 +1,6 @@
 .bloc_carousel {
-    background: #4484CF;
+    /*background: #4484CF;*/
+    background-image: url(static/images/globus.png);;
     padding-bottom: 105px;
 }
 

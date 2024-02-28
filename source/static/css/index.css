@@ -1,6 +1,24 @@
 .bloc_carousel {
-    background: #4484CF;
+    background: #044691;
     padding-bottom: 105px;
+}
+
+.bg-img1 {
+    background-image: url("../images/globe asia.png");
+    background-size: 800px;
+    background-repeat: no-repeat;
+}
+
+.bg-img2 {
+    background-image: url("../images/Stationery and physics book for education.png");
+    background-size: 800px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.carousel_slide {
+    width: 80%;
+    margin: 0 auto;
 }
 
 .carousel-indicators [data-bs-target] {
@@ -23,18 +41,25 @@
 }
 
 .bloc_carousel h1 {
-    font-family: cursive;
-    font-size: 75px;
+    font-family: 'Noteworthy', sans-serif;
     text-align: center;
     margin-bottom: 25px;
     color: white;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0.15em;
+
 }
 
 .bloc_carousel p {
-    font-family: cursive;
-    font-size: 25px;
+    font-size: 24px;
     text-align: center;
     color: white;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0.1em;
+
 }
 
 .sign_up_button {
@@ -69,14 +94,14 @@
 }
 
 .who_are_we h2{
-    color: #4484CF;
+    color: #044691;
     text-align: center;
     font-size: 74px;
     font-family: sans-serif, "Times New Roman";
 }
 
 .who_are_we p{
-    color: #4484CF;
+    color: #044691;
     text-align: center;
     font-size: 40px;
     font-family: sans-serif;
@@ -93,7 +118,7 @@
 
 .card_about_as {
     padding: 20px;
-    background-color: #0a68a3;
+    background-color: #044691;
 }
 
 .card_about_as h4 {
@@ -102,6 +127,15 @@
 
 .card_about_as p {
     color: white;
+}
+
+.card_sign_up p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.card_sign_up_img {
+    transform: skew(4deg, -4deg);
 }
 
 .card_sign_up {
@@ -113,7 +147,7 @@
 }
 
 #card_sign_up_button {
-    margin-top: 120px;
+    margin-top: 100px;
     margin-bottom: 50px;
     border: 0;
     border-radius: 10px;
@@ -127,10 +161,37 @@
 
 /*блок отзывов*/
 .reviews {
-    background: #4484CF;
+    background: #044691;
     margin-top: 90px;
+}
+
+.review {
+    padding: 60px 40px 100px 20px;
+}
+
+.bg-img3 {
+    background-image: url("../images/blue star outline.png");
+    background-repeat: no-repeat;
+    padding-left: 60px;
     padding-top: 60px;
-    padding-bottom: 80px;
+}
+
+.bg-img4 {
+    background-image: url("../images/blue star outline.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+
+.bg-img5 {
+    background-image: url("../images/blue star outline.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+.bg-img6 {
+    background-image: url("../images/Group 3718.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
 }
 
 .reviews h3 {
@@ -173,7 +234,7 @@
 
 .partners h3 {
     text-align: center;
-    color: #4484CF;
+    color: #044691;
     font-size: 60px;
     padding-bottom: 50px;
 }
