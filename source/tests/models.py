@@ -43,7 +43,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.pk
+        return str(self.pk)
 
 
 class UserTest(models.Model):
