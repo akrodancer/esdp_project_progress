@@ -4,13 +4,15 @@ from accounts.models import User
 
 
 class Course(models.Model):
-    course_name = models.CharField(max_length=255)
-    date_start = models.DateField()
-    date_finish = models.DateField()
-    teacher = models.ManyToManyField(User, limit_choices_to={'role': 'teacher'}, related_name='courses_taught')
-    students = models.ManyToManyField(User, limit_choices_to={'role': 'user'}, related_name='enrolled_courses',
+    course_name = models.CharField(verbose_name='Название курса', max_length=255)
+    description = models.TextField(verbose_name='Описание', max_length=5000, null=True, blank=True)
+    date_start = models.DateField(verbose_name='Дата начала')
+    date_finish = models.DateField(verbose_name='Дата окончания')
+    course_image = models.ImageField('Изображение', upload_to='...', null=True, blank=True)
+    teacher = models.ManyToManyField(User, verbose_name='Учители', limit_choices_to={'role': 'teacher'}, related_name='courses_taught')
+    students = models.ManyToManyField(User, verbose_name='Ученики', limit_choices_to={'role': 'user'}, related_name='enrolled_courses',
                                       blank=True)
-    paid_by = models.ManyToManyField(User, limit_choices_to={'role': 'user'}, related_name='paid_courses', blank=True)
+    paid_by = models.ManyToManyField(User, verbose_name='Те, кто оплатил', limit_choices_to={'role': 'user'}, related_name='paid_courses', blank=True)
 
     def __str__(self):
         return self.course_name
@@ -20,17 +22,20 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
+    class Meta:
+        verbose_name_plural = 'Урок'
+
     LESSON_TYPES = (
         ('free', 'Free'),
         ('paid', 'Paid'),
     )
-    lesson_name = models.CharField(max_length=255)
-    grade = models.PositiveIntegerField()
-    description = models.TextField(max_length=5000)
-    video = models.URLField(max_length=200, null=True)
-    datetime = models.DateTimeField()
-    course = models.ForeignKey(Course, related_name='lessons', on_delete=models.CASCADE, null=True)
-    lesson_type = models.CharField(max_length=4, choices=LESSON_TYPES, default='free')
+    lesson_name = models.CharField(verbose_name='Название урока', max_length=255, null=True, blank=True)
+    grade = models.PositiveIntegerField(verbose_name='Уровень', )
+    description = models.TextField(verbose_name='Информация', max_length=5000, null=True, blank=True)
+    video = models.URLField(verbose_name='Ссылка на запись урока', max_length=200, null=True, blank=True)
+    datetime = models.DateTimeField(verbose_name='Дата и время', )
+    course = models.ForeignKey(Course, verbose_name='Курс', related_name='lessons', on_delete=models.CASCADE, null=True)
+    lesson_type = models.CharField(verbose_name='Бесплатный/платный', max_length=4, choices=LESSON_TYPES, default='free')
 
     def __str__(self):
         return self.lesson_name

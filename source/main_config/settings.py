@@ -50,6 +50,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+#НАСТРОйки ПАНЕЛИ АДМИНИСТРАТОРА
+JET_SIDE_MENU_ITEMS = [  
+    {'label': ('Тексты на страницах'), 'app_label': 'site_pages', 'items': [
+        {'name': 'pageflattext', 'label': ('Страницы')},
+    ]},
+    {'label': ('Аккаунты'), 'app_label': 'accounts', 'items': [
+        {'name': 'user', 'label': ('Учителя'), 'kwargs':{'role': 'teacher'}},
+    ]},
+    {'label': ('Курсы'), 'app_label': 'courses', 'items': [
+        {'name': 'course', 'label': ('Курсы')},
+    ]},
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -117,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Asia/Bishkek'
 
@@ -132,9 +146,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    join(BASE_DIR, 'static')
-]
+
 
 MEDIA_URL = '/media/'
 MEDIA_DIR = join(BASE_DIR, 'media')
@@ -177,6 +189,7 @@ customColorPalette = [
 
 CKEDITOR_5_CONFIGS = {
     'default': {
+        "format_tags": "h1;h2;h3;h4;p",
         'toolbar': ['heading', '|', 'bold', 'italic', 'link',
                     'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
 
