@@ -1,6 +1,7 @@
 from django.db import models
 from courses.lesson_types import LESSON_TYPES
 from accounts.models import User
+from . import CourseUpload
 
 
 class Course(models.Model):
@@ -19,7 +20,7 @@ class Course(models.Model):
     date_start = models.DateField(verbose_name='Дата начала')
     date_finish = models.DateField(verbose_name='Дата окончания')
     course_image = models.ImageField('Изображение', 
-                                     upload_to='...', 
+                                     upload_to=CourseUpload._upload, 
                                      null=True, 
                                      blank=True
                                      )

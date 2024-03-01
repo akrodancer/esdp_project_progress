@@ -51,19 +51,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-#НАСТРОйки ПАНЕЛИ АДМИНИСТРАТОРА
-# JET_SIDE_MENU_ITEMS = [  
-#     {'label': ('Тексты на страницах'), 'app_label': 'site_pages', 'items': [
-#         {'name': 'pageflattext', 'label': ('Страницы')},
-#     ]},
-#     {'label': ('Аккаунты'), 'app_label': 'accounts', 'items': [
-#         {'name': 'user', 'label': ('Учителя'), 'kwargs':{'role': 'teacher'}},
-#     ]},
-#     {'label': ('Курсы'), 'app_label': 'courses', 'items': [
-#         {'name': 'course', 'label': ('Курсы')},
-#     ]},
-# ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
