@@ -1,10 +1,8 @@
-from enum import Enum
+from django.db import models
 
-class ACCOUNT_TYPES(Enum):
-    teacher = ('teacher', 'Teacher')
-    user = ('user', 'User')
+class ACCOUNT_TYPES(models.TextChoices):
+    TEACHER = 'teacher'
+    USER = 'user'
 
-    @classmethod
-    def get_value(cls, type):
-        return cls[type].value[0]
+
     

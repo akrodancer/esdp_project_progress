@@ -1,13 +1,8 @@
-from enum import Enum
+from django.db import models
 
-class LESSON_TYPES(Enum):
-    free = ('free', 'Free')
-    paid = ('paid', 'Paid')
-
-    @classmethod
-    def get_value(cls, type):
-        return cls[type].value[0]
-    
+class LESSON_TYPES(models.TextChoices):
+    FREE = 'free'
+    PAID = 'paid'
 
 
 

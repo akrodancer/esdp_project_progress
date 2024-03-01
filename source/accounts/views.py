@@ -78,7 +78,7 @@ class StudentListView(ListView, LoginRequiredMixin):
 
 class StudentDetailView(DetailView):
     model = get_user_model()
-    template_name = 'student_detail.html'
+    template_name = 'accounts/student_detail.html'
     context_object_name = 'student'
 
     def get_context_data(self, **kwargs):

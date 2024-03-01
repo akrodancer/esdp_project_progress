@@ -11,16 +11,19 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from os.path import join
+import os
+import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATE_DIRR = join(BASE_DIR, 'templates')
+TEMPLATE_DIRR = os.path.join(BASE_DIR, 'templates')
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&)4s^s@9m^-b-xl5bja*01_^g7zi)s(#t7&tr=o#_3sasx5_ck'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -142,14 +145,14 @@ USE_TZ = True
 
 STATIC_URL = 'staticfiles/static/'
 
-STATIC_ROOT = join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    join(BASE_DIR, 'staticfiles/static')
+    os.path.join(BASE_DIR, 'staticfiles/static')
 ]
 
 
 MEDIA_URL = '/media/'
-MEDIA_DIR = join(BASE_DIR, 'media')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 
 # Default primary key field type
