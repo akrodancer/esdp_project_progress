@@ -36,9 +36,6 @@ INSTALLED_APPS = [
     'accounts',
     'courses',
     'tests',
-
-    #СТОРОННИЕ МОДУЛИ
-    'jet.dashboard',
     'jet',
     'django_ckeditor_5',
 
