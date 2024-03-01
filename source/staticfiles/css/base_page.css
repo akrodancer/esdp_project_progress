@@ -10,22 +10,22 @@ html {
 
 .upper-panel, .lower-panel {
     margin: auto;
-    background-color: #4484CF;
+    background-color: #044691;
     color: white;
     border-bottom: 1px solid #3877BF;
 }
 .upper-panel {
-    height: 50px;
+    /*height: 50px;*/
     padding: 1% 20% 1% 20%;
 }
 
-.upper-panel a {
+.upper-panel p {
     font-size: 19px;
 }
 
 .lower-panel {
     padding: 1% 5% 1% 5%;
-    height: 90px;
+    /*height: 90px;*/
     border-bottom: 2px solid #3877BF;
 }
 
@@ -35,7 +35,7 @@ html {
 }
 
 .sign_in_button {
-    width: 10%;
+    width: 128px;
 }
 #sign_in_button {
     margin-top: 10px;
@@ -57,7 +57,7 @@ a, a:hover, a:visited, a:active {
 .footer {
     padding: 1% 5% 1% 5%;
     margin: auto;
-    background-color: #4484CF;
+    background-color: #044691;
     color: white;
 }
 .footer-block {

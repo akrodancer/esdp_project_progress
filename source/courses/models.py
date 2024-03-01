@@ -29,7 +29,7 @@ class Lesson(models.Model):
     description = models.TextField(max_length=5000)
     video = models.URLField(max_length=200, null=True)
     datetime = models.DateTimeField()
-    course = models.ForeignKey(Course, related_name='lessons', on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, related_name='lessons', on_delete=models.SET_NULL, null=True)
     lesson_type = models.CharField(max_length=4, choices=LESSON_TYPES, default='free')
 
     def __str__(self):
@@ -48,7 +48,7 @@ class Visit(models.Model):
     is_currently_viewing = models.BooleanField()
     visit_date = models.DateTimeField(auto_now_add=True)
     students = models.ForeignKey(User, limit_choices_to={'role', 'user'}, related_name='visits',
-                                 on_delete=models.CASCADE, null=True, blank=True)
+                                 on_delete=models.SET_NULL, null=True, blank=True)
     lesson = models.ForeignKey(Lesson, related_name='visits', on_delete=models.CASCADE)
 
     def __str__(self):
