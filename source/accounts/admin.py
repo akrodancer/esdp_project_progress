@@ -20,5 +20,5 @@ class CustomUserAdmin(admin.ModelAdmin):
     ]
     fields = ('username', 'first_name', 'last_name', 
               'avatar', 'email', 'phone', 'role')
-    readonly_fields = ['username', 'first_name', 'last_name', 
-              'avatar', 'email', 'phone', ]
+    readonly_fields = ['username', 'first_name', 
+                       'last_name', 'email', 'phone', ]

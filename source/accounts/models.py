@@ -1,13 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from accounts.account_types import ACCOUNT_TYPES
+from courses import AvatarUpload
 
 
 class User(AbstractUser):
     class Meta:
         verbose_name_plural = 'Пользователи'
         
-    avatar = models.ImageField(verbose_name='Аватар', upload_to='...', null=True, blank=True)
+    avatar = models.ImageField(verbose_name='Аватар', upload_to=AvatarUpload._upload, null=True, blank=True)
     email = models.EmailField(verbose_name='Электронная почта', unique=True)
     phone = models.CharField(verbose_name='Номер телефона', max_length=20)
     role = models.CharField(verbose_name='Должность', 
