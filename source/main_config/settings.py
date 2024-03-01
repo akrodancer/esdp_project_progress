@@ -143,9 +143,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'staticfiles/'
+STATIC_URL = 'static/'
 
 STATIC_ROOT = join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    join(BASE_DIR, 'static')
+]
 
 
 MEDIA_URL = '/media/'
@@ -158,7 +161,6 @@ MEDIA_ROOT = MEDIA_DIR
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = '/'
 
 customColorPalette = [
         {

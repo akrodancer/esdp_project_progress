@@ -1,6 +1,4 @@
-from accounts.forms import NewUserForm, LoginUserForm
-from django.contrib.auth import login, authenticate
-
+from accounts.forms import LoginUserForm
 
 
 def log_in_processor(request):

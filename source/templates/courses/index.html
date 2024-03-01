@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/noteworthy');
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 {% endblock %}
 {% block content %}
     <div class="bloc_carousel">
@@ -105,7 +111,7 @@
                     <div class="card rounded-4 h-100 card_about_as">
                         <div class="card-body">
                             <h4>Все виды и формы<br>занятий</h4>
-                            <p>Есть перерывыб время для<br>знакомства и общения с другими<br>учениками. Время занятий
+                            <p>Есть перерывы, время для<br>знакомства и общения с другими<br>учениками. Время занятий
                                 можно<br>согласовать заранее, чтобы<br>ребенку было удобно.
                         </div>
                         <img src="{% static 'images/photo-8.jpg' %}" class="card-img-top rounded-4" alt="...">
@@ -116,7 +122,7 @@
                         <div class="card-body">
                             <h4>Бесплатный<br>урок!</h4>
                             <p>Запишись на пробное<br>занятие прямо сейчас<br>и получи это</p>
-                            <img src="{% static 'images/8.png' %}" class="my-3 card-img-top" alt="...">
+                            <img src="{% static 'images/8.png' %}" class="my-3 card-img-top card_sign_up_img" alt="...">
                             <div class="sign_up_button">
                                 <button class="nav-item" id="card_sign_up_button" type="button">Записаться на курс
                                 </button>
@@ -128,62 +134,98 @@
         </div>
     </div>
 
+
     <div class="reviews">
-        <h3>отзывы</h3>
-        <p class="p_rev">Узнайте, почему детям очень нравится заниматься у нас</p>
-        <div class="container  w-50">
-            <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="rounded-4 div_review">
-                            <div class="d-flex">
-                                <img src="{% static 'images/profile.png' %}" class="mx-4" alt="">
-                                <h5 style="margin-top: 10%">Мама Карины</h5>
+        <div class="bg-img6">
+            <div class="review">
+                <div class="bg-img3">
+                    <div class="bg-img4">
+                        <div class="bg-img5">
+                            <h3>отзывы</h3>
+                            <p class="p_rev">Узнайте, почему детям очень нравится заниматься у нас</p>
+                            <div class="container  w-50">
+                                <div id="carouselExample" class="carousel slide">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="rounded-4 div_review">
+                                                <div class="d-flex">
+                                                    <img src="{% static 'images/profile.png' %}" class="mx-4" alt="">
+                                                    <h5 style="margin-top: 10%">Мама Карины</h5>
+                                                </div>
+                                                <p class="reviews_p">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                                    elit.
+                                                    Ab aliquid,
+                                                    architecto id illo
+                                                    in incidunt reiciendis tenetur unde. Accusantium ad aliquid
+                                                    architecto
+                                                    commodi cum
+                                                    dignissimos dolorem doloribus ea enim excepturi impedit, natus nemo
+                                                    qui
+                                                    rem
+                                                    saepe sequi
+                                                    sunt temporibus unde!</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="rounded-4 div_review">
+                                                <div class="d-flex">
+                                                    <img src="{% static 'images/profile.png' %}" class="mx-4" alt="">
+                                                    <h5 style="margin-top: 10%">Мама Карины</h5>
+                                                </div>
+                                                <p class="reviews_p">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                                    elit.
+                                                    Ab aliquid,
+                                                    architecto id illo
+                                                    in incidunt reiciendis tenetur unde. Accusantium ad aliquid
+                                                    architecto
+                                                    commodi cum
+                                                    dignissimos dolorem doloribus ea enim excepturi impedit, natus nemo
+                                                    qui
+                                                    rem
+                                                    saepe sequi
+                                                    sunt temporibus unde!</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="rounded-4 div_review">
+                                                <div class="d-flex">
+                                                    <img src="{% static 'images/profile.png' %}" class="mx-4" alt="">
+                                                    <h5 style="margin-top: 10%">Мама Карины</h5>
+                                                </div>
+                                                <p class="reviews_p">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                                    elit.
+                                                    Ab aliquid,
+                                                    architecto id illo
+                                                    in incidunt reiciendis tenetur unde. Accusantium ad aliquid
+                                                    architecto
+                                                    commodi cum
+                                                    dignissimos dolorem doloribus ea enim excepturi impedit, natus nemo
+                                                    qui
+                                                    rem
+                                                    saepe sequi
+                                                    sunt temporibus unde!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExample"
+                                            data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon btn btn-warning rounded-4"
+                                      aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExample"
+                                            data-bs-slide="next">
+                                <span class="carousel-control-next-icon rounded-4 btn btn-warning"
+                                      aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
                             </div>
-                            <p class="reviews_p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid,
-                                architecto id illo
-                                in incidunt reiciendis tenetur unde. Accusantium ad aliquid architecto commodi cum
-                                dignissimos dolorem doloribus ea enim excepturi impedit, natus nemo qui rem saepe sequi
-                                sunt temporibus unde!</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="rounded-4 div_review">
-                            <div class="d-flex">
-                                <img src="{% static 'images/profile.png' %}" class="mx-4" alt="">
-                                <h5 style="margin-top: 10%">Мама Карины</h5>
-                            </div>
-                            <p class="reviews_p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid,
-                                architecto id illo
-                                in incidunt reiciendis tenetur unde. Accusantium ad aliquid architecto commodi cum
-                                dignissimos dolorem doloribus ea enim excepturi impedit, natus nemo qui rem saepe sequi
-                                sunt temporibus unde!</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="rounded-4 div_review">
-                            <div class="d-flex">
-                                <img src="{% static 'images/profile.png' %}" class="mx-4" alt="">
-                                <h5 style="margin-top: 10%">Мама Карины</h5>
-                            </div>
-                            <p class="reviews_p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid,
-                                architecto id illo
-                                in incidunt reiciendis tenetur unde. Accusantium ad aliquid architecto commodi cum
-                                dignissimos dolorem doloribus ea enim excepturi impedit, natus nemo qui rem saepe sequi
-                                sunt temporibus unde!</p>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon btn btn-warning rounded-4" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                        data-bs-slide="next">
-                    <span class="carousel-control-next-icon rounded-4 btn btn-warning" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
     </div>

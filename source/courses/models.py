@@ -98,7 +98,7 @@ class Visit(models.Model):
     is_currently_viewing = models.BooleanField()
     visit_date = models.DateTimeField(auto_now_add=True)
     students = models.ForeignKey(User, limit_choices_to={'role', 'user'}, related_name='visits',
-                                 on_delete=models.CASCADE, null=True, blank=True)
+                                 on_delete=models.SET_NULL, null=True, blank=True)
     lesson = models.ForeignKey(Lesson, related_name='visits', on_delete=models.CASCADE)
 
     def __str__(self):
