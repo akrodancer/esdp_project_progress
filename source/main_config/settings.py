@@ -52,17 +52,17 @@ INSTALLED_APPS = [
 ]
 
 #НАСТРОйки ПАНЕЛИ АДМИНИСТРАТОРА
-JET_SIDE_MENU_ITEMS = [  
-    {'label': ('Тексты на страницах'), 'app_label': 'site_pages', 'items': [
-        {'name': 'pageflattext', 'label': ('Страницы')},
-    ]},
-    {'label': ('Аккаунты'), 'app_label': 'accounts', 'items': [
-        {'name': 'user', 'label': ('Учителя'), 'kwargs':{'role': 'teacher'}},
-    ]},
-    {'label': ('Курсы'), 'app_label': 'courses', 'items': [
-        {'name': 'course', 'label': ('Курсы')},
-    ]},
-]
+# JET_SIDE_MENU_ITEMS = [  
+#     {'label': ('Тексты на страницах'), 'app_label': 'site_pages', 'items': [
+#         {'name': 'pageflattext', 'label': ('Страницы')},
+#     ]},
+#     {'label': ('Аккаунты'), 'app_label': 'accounts', 'items': [
+#         {'name': 'user', 'label': ('Учителя'), 'kwargs':{'role': 'teacher'}},
+#     ]},
+#     {'label': ('Курсы'), 'app_label': 'courses', 'items': [
+#         {'name': 'course', 'label': ('Курсы')},
+#     ]},
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,19 +112,19 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
+AUTH_PASSWORD_VALIDATORS = [] if DEBUG else [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 
@@ -143,7 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'staticfiles/'
 
 STATIC_ROOT = join(BASE_DIR, 'staticfiles')
 
