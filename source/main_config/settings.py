@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'accounts',
     'courses',
     'tests',
-    'jet.dashboard',
     'jet',
     'django_ckeditor_5',
     'django.contrib.admin',
