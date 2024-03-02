@@ -403,13 +403,12 @@ a, a:hover, a:visited, a:active {
 .courses {
     background: #044691;
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 90px;
 }
 
 .courses_content h2 {
     font-size: 48px;
     font-weight: 700;
-    /*line-height: 73px;*/
     letter-spacing: 0.18em;
     text-align: center;
     color: white;
@@ -425,9 +424,99 @@ a, a:hover, a:visited, a:active {
     color: white;
 }
 
-.bg_courses {
-    background-image: url("../images/img.png");
-    background-repeat: no-repeat;
-    height: 600px;
+.courses_card {
+    margin-top: 30px;
+}
 
+.courses_card h5 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.courses_card p {
+    text-align: center;
+}
+
+.btn_see_more {
+    font-weight: bold;
+    color: black;
+    background: #F3CB3D;
+    margin: 0 auto;
+    border: none;
+    width: 100%;
+    height: 35px;
+}
+
+.modal_content p {
+    text-align: center;
+}
+
+.bg_courses {
+    background-image: url("../images/img1.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 680px;
+    padding-top: 20px;
+    padding-bottom: 90px;
+}
+
+.why_progress {
+    width: 658px;
+    padding-top: 50px;
+    margin-left: 40px;
+}
+
+.why_progress h3 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.span_progress {
+    color: #044691;
+}
+
+.why_progress_1 {
+    background: #044691;
+    width: 48%;
+    color: white;
+    margin-bottom: 20px;
+    height: 200px;
+}
+
+.why_progress_1 h4 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 25px;
+}
+
+.why_progress_1 p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 20px;
+    margin-top: 25px;
+}
+
+.why_progress_2 {
+    background: #F3CB3D;
+    width: 48%;
+    margin-bottom: 20px;
+    height: 200px;
+}
+
+.why_progress_2 h4 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 25px;
+}
+
+.why_progress_2 p {
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 25px;
 }
