@@ -22,10 +22,11 @@ class User(AbstractUser):
 
 
 class Comment(models.Model):
-    class Meta:
-        verbose_name_plural = 'Комментарии'
-
     content = models.TextField(verbose_name='Содержание', max_length=500)
     teacher = models.ForeignKey(to=User, verbose_name='Учитель', limit_choices_to={'role': 'teacher'}, related_name='comments_given', on_delete=models.CASCADE)
     student = models.ForeignKey(to=User, verbose_name='Ученик', limit_choices_to={'role': 'user'}, related_name='comments_received', on_delete=models.CASCADE)
     created_at = models.DateTimeField(verbose_name='Время публикации', auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = 'Комментарии'
+

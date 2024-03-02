@@ -5,6 +5,7 @@ from courses.models import Course
 from .online_test_types import ONLINE_TEST_TYPES
 
 
+
 class Test(models.Model):
     class Meta:
         verbose_name = 'Онлайн тест'
@@ -15,6 +16,7 @@ class Test(models.Model):
     test_type = models.CharField(max_length=4, choices=ONLINE_TEST_TYPES, 
                                  default=ONLINE_TEST_TYPES.FREE)
     course = models.ManyToManyField(Course, related_name='online_tests')
+
 
     def __str__(self):
         return self.test_name
@@ -50,7 +52,7 @@ class Answer(models.Model):
 
 class UserTest(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_tests', on_delete=models.CASCADE)
-    test = models.ForeignKey(Test, related_name='user_tests', on_delete=models.CASCADE)
+    test = models.ForeignKey(to=Test, related_name='user_tests', on_delete=models.CASCADE)
     date_taken = models.DateTimeField(auto_now_add=True)
     correct_answers = models.IntegerField(default=0)
     incorrect_answers = models.IntegerField(default=0)
@@ -74,9 +76,9 @@ class UserTest(models.Model):
 
 
 class UserAnswer(models.Model):
-    user_test = models.ForeignKey(UserTest, related_name='user_answers', on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, related_name='user_answers', on_delete=models.CASCADE)
-    answer = models.ForeignKey(Answer, related_name='user_answers', on_delete=models.CASCADE)
+    user_test = models.ForeignKey(to=UserTest, related_name='user_answers', on_delete=models.CASCADE)
+    question = models.ForeignKey(to=Question, related_name='user_answers', on_delete=models.CASCADE)
+    answer = models.ForeignKey(to=Answer, related_name='user_answers', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Answer by {self.user_test.user} to {self.question}'

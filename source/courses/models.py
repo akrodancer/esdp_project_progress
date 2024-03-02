@@ -1,14 +1,12 @@
 from django.db import models
 from courses.lesson_types import LESSON_TYPES
+from courses.lesson_types import LESSON_TYPES
 from accounts.models import User
+from . import CourseUpload
 from . import CourseUpload
 
 
 class Course(models.Model):
-    class Meta:
-        verbose_name = "Курсы"
-        verbose_name_plural = "Курсы"
-
     course_name = models.CharField(verbose_name='Название курса', 
                                    max_length=255
                                    )
@@ -38,6 +36,10 @@ class Course(models.Model):
                                      related_name='paid_courses', 
                                      blank=True
                                      )
+    class Meta:
+        verbose_name = "Курсы"
+        verbose_name_plural = "Курсы"
+
 
     def __str__(self):
         return self.course_name
@@ -104,5 +106,7 @@ class Visit(models.Model):
 
     def __str__(self):
         return f'Visit by {self.students} on {self.visit_date}'
+
+
 
 
