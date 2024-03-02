@@ -1,19 +1,17 @@
 from django.conf import settings
 from django.db import models
-from courses import QuestionUpload, AnswerUpload
+from courses import AnswerUpload, QuestionUpload
 from courses.models import Course
-from .online_test_types import ONLINE_TEST_TYPES
 
 
 class Test(models.Model):
-    class Meta:
-        verbose_name = 'Онлайн тест'
-        verbose_name_plural = 'Онлайн тесты'
-
+    TEST_TYPES = (
+        ('free', 'Free'),
+        ('paid', 'Paid'),
+    )
     test_name = models.CharField(max_length=255)
     difficulty = models.CharField(max_length=40)
-    test_type = models.CharField(max_length=4, choices=ONLINE_TEST_TYPES, 
-                                 default=ONLINE_TEST_TYPES.FREE)
+    test_type = models.CharField(max_length=4, choices=TEST_TYPES, default='free')
     course = models.ManyToManyField(Course, related_name='online_tests')
 
 
@@ -35,7 +33,6 @@ class Question(models.Model):
     question_image = models.ImageField(upload_to=QuestionUpload._upload, blank=True, null=True)
     test = models.ForeignKey(to=Test, related_name='questions', on_delete=models.CASCADE)
 
-
     def __str__(self):
         return self.question_name
 
@@ -45,7 +42,6 @@ class Answer(models.Model):
     answer_text = models.TextField(max_length=2500, blank=True, null=True)
     answer_image = models.ImageField(upload_to=AnswerUpload._upload, blank=True, null=True)
     question = models.ForeignKey(to=Question, related_name='answers', on_delete=models.CASCADE)
-
 
     def __str__(self):
         return str(self.pk)
