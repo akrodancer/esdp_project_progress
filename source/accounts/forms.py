@@ -9,7 +9,7 @@ class NewUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = [
-            'username', 
+            'username', 'first_name', 'last_name',
             'password1', 'password2',
             'email',
             'phone',
@@ -17,6 +17,8 @@ class NewUserForm(UserCreationForm):
     
         widgets = {
             'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
+            'first_name' : forms.TextInput(attrs={'placeholder': 'Имя'}),
+            'last_name' : forms.TextInput(attrs={'placeholder': 'Фамилия'}),
             'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
             'phone': forms.TextInput(attrs={'placeholder': '+996 (XXX)-XX-XX'}),
         }
