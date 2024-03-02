@@ -20,11 +20,7 @@ django-filter = "^23.5"
 >>>>>>> 481b372 ( On branch page_editor)
 =======
 django-environ = "^0.11.2"
-<<<<<<< HEAD
 >>>>>>> 975b037 ( #6 Добавлен .env; Изменены choice классы)
-=======
-psycopg2 = "^2.9.9"
->>>>>>> d72bd75 ( #9 Подключена база PostgreSQL)
 
 
 [build-system]
