@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView, View
 from accounts.models import User
-from courses.models import Course
+from courses.models import Course, Lesson
 from accounts.forms import NewUserForm, LoginUserForm
 
 
@@ -32,7 +32,7 @@ class LessonsView(ListView):
     context_object_name = 'lessons'
     paginate_by = 16
     paginate_orphans = 3
-    ordering = ('-created_at',)
+    ordering = ('-datetime',)
 
     def get_queryset(self):
         queryset = super().get_queryset()
