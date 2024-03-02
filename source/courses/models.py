@@ -23,16 +23,16 @@ class Course(models.Model):
                                      null=True, 
                                      blank=True
                                      )
-    teacher = models.ManyToManyField(User, verbose_name='Учители', 
+    teacher = models.ManyToManyField(to=User, verbose_name='Учители', 
                                      limit_choices_to={'role': 'teacher'}, 
                                      related_name='courses_taught'
                                      )
-    students = models.ManyToManyField(User, verbose_name='Ученики', 
+    students = models.ManyToManyField(to=User, verbose_name='Ученики', 
                                       limit_choices_to={'role': 'user'}, 
                                       related_name='enrolled_courses',
                                       blank=True
                                       )
-    paid_by = models.ManyToManyField(User, verbose_name='Те, кто оплатил', 
+    paid_by = models.ManyToManyField(to=User, verbose_name='Те, кто оплатил', 
                                      limit_choices_to={'role': 'user'}, 
                                      related_name='paid_courses', 
                                      blank=True
@@ -89,7 +89,7 @@ class Lesson(models.Model):
                             blank=True
                             )
     datetime = models.DateTimeField(verbose_name='Дата и время', )
-    course = models.ForeignKey(Course, verbose_name='Курс', 
+    course = models.ForeignKey(to=Course, verbose_name='Курс', 
                                related_name='lessons', 
                                on_delete=models.SET_NULL, 
                                null=True, 
@@ -97,8 +97,8 @@ class Lesson(models.Model):
                                )
     lesson_type = models.CharField(verbose_name='Бесплатный/платный',
                                     max_length=4, 
-                                   choices=[x.value for x in LESSON_TYPES], 
-                                   default=LESSON_TYPES.free.value
+                                   choices=LESSON_TYPES, 
+                                   default=LESSON_TYPES.FREE
                                    )
 >>>>>>> ec0f734 ( #3 Добавлены классы наследующие Enum для выборов)
 
@@ -121,9 +121,9 @@ class Visit(models.Model):
 
     is_currently_viewing = models.BooleanField()
     visit_date = models.DateTimeField(auto_now_add=True)
-    students = models.ForeignKey(User, limit_choices_to={'role', 'user'}, related_name='visits',
+    students = models.ForeignKey(to=User, limit_choices_to={'role', 'user'}, related_name='visits',
                                  on_delete=models.SET_NULL, null=True, blank=True)
-    lesson = models.ForeignKey(Lesson, related_name='visits', on_delete=models.CASCADE)
+    lesson = models.ForeignKey(to=Lesson, related_name='visits', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Visit by {self.students} on {self.visit_date}'

@@ -31,7 +31,7 @@
             <a class="nav-item" href="{% url 'courses:courses' %}">Наши курсы</a>
             <a class="nav-item" href="">Онлайн тестирование</a>
             <a class="nav-item" href="">Видеоуроки</a>
-            <a class="nav-item" href="">Поиск учеников</a>
+            <a class="nav-item" href="{% url 'accounts:search_student' %}">Поиск учеников</a>
             {% if user.is_authenticated %}
                 <li class="nav-item sign_in_button">
                     <span class="user">{{ request.user }}</span>

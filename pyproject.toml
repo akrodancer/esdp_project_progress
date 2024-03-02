@@ -14,9 +14,13 @@ google-api-python-client = "1.4.1"
 django-ckeditor-5 = "^0.2.11"
 <<<<<<< HEAD
 djangorestframework = "^3.14.0"
+<<<<<<< HEAD
 =======
 django-filter = "^23.5"
 >>>>>>> 481b372 ( On branch page_editor)
+=======
+django-environ = "^0.11.2"
+>>>>>>> 975b037 ( #6 Добавлен .env; Изменены choice классы)
 
 
 [build-system]
