@@ -948,7 +948,7 @@ function runTokens(pattern, flags, pos, scope, context) {
         matchLength: match[0].length,
         output: t.handler.call(context, match, scope, flags),
         reparse: t.reparse
-      }; // Finished with token tests
+      }; // Finished with token online_tests
 
       break;
     }
@@ -1122,7 +1122,7 @@ XRegExp.prototype = /(?:)/; // ==--------------------------==
 XRegExp.version = '5.1.1'; // ==--------------------------==
 // Public methods
 // ==--------------------------==
-// Intentionally undocumented; used in tests and addons
+// Intentionally undocumented; used in online_tests and addons
 
 XRegExp._clipDuplicates = clipDuplicates;
 XRegExp._hasNativeFlag = hasNativeFlag;
@@ -1246,7 +1246,7 @@ XRegExp.cache = function (pattern, flags) {
   }
 
   return regexCache[pattern][flags] || (regexCache[pattern][flags] = XRegExp(pattern, flags));
-}; // Intentionally undocumented; used in tests
+}; // Intentionally undocumented; used in online_tests
 
 
 XRegExp.cache.flush = function (cacheName) {

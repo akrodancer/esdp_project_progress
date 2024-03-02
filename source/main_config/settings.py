@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'site_pages',
     'accounts',
     'courses',
-    'tests',
+    'online_tests',
     'jet',
     'django_ckeditor_5',
 

@@ -13,7 +13,7 @@ from .serializers import TestSerializer, UserTestSerializer, UserAnswerSerialize
 def take_test(request, test_id):
     test = Test.objects.get(id=test_id)
     questions = Question.objects.filter(test=test)
-    return render(request, 'tests/take_test.html', {'test': test, 'questions': questions})
+    return render(request, 'online_tests/take_test.html', {'test': test, 'questions': questions})
 
 
 class TestListView(ListView):
