@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('courses', '0001_initial'),
-        ('tests', '0001_initial'),
+        ('online_tests', '0001_initial'),
     ]
 
     operations = [
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='test',
             name='course',
-            field=models.ManyToManyField(related_name='tests', to='courses.course'),
+            field=models.ManyToManyField(related_name='online_tests', to='courses.course'),
         ),
         migrations.AddField(
             model_name='usertest',

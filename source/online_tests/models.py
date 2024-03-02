@@ -12,7 +12,7 @@ class Test(models.Model):
     test_name = models.CharField(max_length=255)
     difficulty = models.CharField(max_length=40)
     test_type = models.CharField(max_length=4, choices=TEST_TYPES, default='free')
-    course = models.ManyToManyField(Course, related_name='tests')
+    course = models.ManyToManyField(Course, related_name='online_tests')
 
     def __str__(self):
         return self.test_name

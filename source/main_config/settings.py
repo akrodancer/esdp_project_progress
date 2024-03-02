@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'courses',
-    'tests',
+    'online_tests',
     'jet',
     'django_ckeditor_5',
     'django.contrib.admin',

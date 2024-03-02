@@ -36,20 +36,20 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('is_correct', models.BooleanField()),
                 ('answer_text', models.TextField(max_length=2500)),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='answers', to='tests.question')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='answers', to='online_tests.question')),
             ],
         ),
         migrations.AddField(
             model_name='question',
             name='test',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='questions', to='tests.test'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='questions', to='online_tests.test'),
         ),
         migrations.CreateModel(
             name='UserTest',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_taken', models.DateTimeField(auto_now_add=True)),
-                ('test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_tests', to='tests.test')),
+                ('test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_tests', to='online_tests.test')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_tests', to=settings.AUTH_USER_MODEL)),
             ],
         ),
@@ -57,9 +57,9 @@ class Migration(migrations.Migration):
             name='UserAnswer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='tests.answer')),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='tests.question')),
-                ('user_test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='tests.usertest')),
+                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='online_tests.answer')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='online_tests.question')),
+                ('user_test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='online_tests.usertest')),
             ],
         ),
     ]
