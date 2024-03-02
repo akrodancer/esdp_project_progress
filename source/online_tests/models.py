@@ -1,17 +1,19 @@
 from django.conf import settings
 from django.db import models
-
+from courses import QuestionUpload, AnswerUpload
 from courses.models import Course
+from .online_test_types import ONLINE_TEST_TYPES
 
 
 class Test(models.Model):
-    TEST_TYPES = (
-        ('free', 'Free'),
-        ('paid', 'Paid'),
-    )
+    class Meta:
+        verbose_name = 'Онлайн тест'
+        verbose_name_plural = 'Онлайн тесты'
+
     test_name = models.CharField(max_length=255)
     difficulty = models.CharField(max_length=40)
-    test_type = models.CharField(max_length=4, choices=TEST_TYPES, default='free')
+    test_type = models.CharField(max_length=4, choices=ONLINE_TEST_TYPES, 
+                                 default=ONLINE_TEST_TYPES.FREE)
     course = models.ManyToManyField(Course, related_name='online_tests')
 
     def __str__(self):
@@ -29,7 +31,7 @@ class Test(models.Model):
 class Question(models.Model):
     question_name = models.CharField(max_length=255)
     question_text = models.TextField(max_length=2500, blank=True, null=True)
-    question_image = models.ImageField(upload_to='courses_tests/question_images/', blank=True, null=True)
+    question_image = models.ImageField(upload_to=QuestionUpload._upload, blank=True, null=True)
     test = models.ForeignKey(Test, related_name='questions', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -39,7 +41,7 @@ class Question(models.Model):
 class Answer(models.Model):
     is_correct = models.BooleanField()
     answer_text = models.TextField(max_length=2500, blank=True, null=True)
-    answer_image = models.ImageField(upload_to='courses_tests/answer_images/', blank=True, null=True)
+    answer_image = models.ImageField(upload_to=AnswerUpload._upload, blank=True, null=True)
     question = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
 
     def __str__(self):

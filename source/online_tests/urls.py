@@ -1,6 +1,6 @@
 from django.urls import path
 
-from tests.views import take_test
+from online_tests.views import take_test
 
 app_name = 'online_tests'
 
