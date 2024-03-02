@@ -51,29 +51,7 @@ class Lesson(models.Model):
         verbose_name = 'Урок'
         verbose_name_plural = 'Урок'
 
-<<<<<<< HEAD
-    LESSON_TYPES = (
-        ('free', 'Free'),
-        ('paid', 'Paid'),
-    )
-<<<<<<< HEAD
-    lesson_name = models.CharField(max_length=255)
-    grade = models.PositiveIntegerField()
-    description = models.TextField(max_length=5000)
-    video = models.URLField(max_length=200, null=True)
-    datetime = models.DateTimeField()
-    course = models.ForeignKey(Course, related_name='lessons', on_delete=models.SET_NULL, null=True)
-    lesson_type = models.CharField(max_length=4, choices=LESSON_TYPES, default='free')
-=======
-    lesson_name = models.CharField(verbose_name='Название урока', max_length=255, null=True, blank=True)
-    grade = models.PositiveIntegerField(verbose_name='Уровень', )
-    description = models.TextField(verbose_name='Информация', max_length=5000, null=True, blank=True)
-    video = models.URLField(verbose_name='Ссылка на запись урока', max_length=200, null=True, blank=True)
-    datetime = models.DateTimeField(verbose_name='Дата и время', )
-    course = models.ForeignKey(Course, verbose_name='Курс', related_name='lessons', on_delete=models.CASCADE, null=True)
-    lesson_type = models.CharField(verbose_name='Бесплатный/платный', max_length=4, choices=LESSON_TYPES, default='free')
->>>>>>> 2cbba32 ( #2 Добавлены конфиги для django-jet)
-=======
+
     lesson_name = models.CharField(verbose_name='Название урока',
                                     max_length=255, 
                                     null=True, 
@@ -101,7 +79,6 @@ class Lesson(models.Model):
                                    choices=LESSON_TYPES, 
                                    default=LESSON_TYPES.FREE
                                    )
->>>>>>> ec0f734 ( #3 Добавлены классы наследующие Enum для выборов)
 
     def __str__(self):
         return self.lesson_name

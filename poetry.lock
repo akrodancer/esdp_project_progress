@@ -382,16 +382,5 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-content-hash = "22f719c613c2c8ec23d8bbefbca2404ae6c5a5c9239eda5c8904161ddaeef3af"
-=======
-content-hash = "a7782e57ee2c7761c8c594985354cdb911e6d6ace05cebcfd68ee4fc35766acb"
->>>>>>> 481b372 ( On branch page_editor)
-=======
-content-hash = "6744edd8f60d80ea5d64eabcfa9035ce69a51d9c551390e22d2f58f5dd416f5a"
->>>>>>> 975b037 ( #6 Добавлен .env; Изменены choice классы)
-=======
 content-hash = "e3a07256a89f5238e56ec373956589a257de8bb52ce5a495923a0cf830fe2d74"
->>>>>>> d72bd75 ( #9 Подключена база PostgreSQL)
+

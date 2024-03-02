@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/lessons.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            <div class="row row-cols-2 mt-5 mb-5">
+                <div class="col">
+                          <form method="GET" action="">
+                              <select class="select-color-class w-75  p-2 rounded" name="courses" onchange="this.form.submit()">
+                              <option selected value="all">Все уроки</option>
+                            {% for course in courses %}
+                                <option value="{{ course.course_name }}" class="option-color-class dropdown-item">{{ course.course_name }}</option>
+                            {% endfor %}
+                          </select>
+                          </form>
+                </div>
+
+                <div class="col">
+                    <div class="pagination">
+                        <span class="step-links">
+                            <a href="?{% if query %}{{ query }}&{% endif %}page=1">&laquo; В начало</a>
+                            {% if page_obj.has_previous %}
+                                <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">Назад</a>
+                            {% else %}
+                                <span class="page-disabled">Назад</span>
+                            {% endif %}
+
+                            <form class="current-page" method="get">
+                                <label for="page" class="label-color">
+                                    <input type="hidden" name="search" value="{{ search_value }}">
+                                    Страница <input type="text" name="page" id="page" value="{{ page_obj.number }}">
+                                    из {{ page_obj.paginator.num_pages }}.
+                                </label>
+                            </form>
+
+                            {% if page_obj.has_next %}
+                                <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.next_page_number }}">Далее</a>
+                            {% else %}
+                                <span class="page-disabled">Далее</span>
+                            {% endif %}
+                            <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.paginator.num_pages }}" >В конец &raquo;</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row row-cols-4 mt-5 mb-5">
+            {% for lesson in lessons %}
+                <div class="col">
+                {%  if request.user in lesson.course.paid_by.all or lesson.lesson_type == 'free'%}
+                    <a href="{{ lesson.video }}">
+                        <div class="card h-100 card-color-class available-class" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ lesson.lesson_name }}</h5>
+                            <h6 class="mb-2">{{ lesson.course.course_name }}</h6>
+                              <p class="card-text">{{ lesson.datetime }}</p>
+                          </div>
+                        </div>
+                    </a>
+                {% else %}
+                    <div class="card h-100 card-color-class" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ lesson.lesson_name}}</h5>
+                            <h6 class=" mb-2 ">{{ lesson.course.course_name  }}</h6>
+                              <p class="card-text">{{ lesson.datetime }} </p>
+                              <p class="card-text text-end"><span class="material-symbols-outlined text-end icon-color-class">lock</span></p>
+                          </div>
+                    </div>
+                {% endif %}
+                </div>
+            {%  endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
