@@ -1,67 +1,38 @@
-from django.db import transaction
+from django.contrib.auth.decorators import login_required
+from django.middleware.csrf import get_token
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.views.generic import ListView
-from rest_framework import generics
-from rest_framework import status
+from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Test, Question, UserTest, UserAnswer
-from .serializers import TestSerializer, UserTestSerializer, UserAnswerSerializer
+from .models import Test, UserTest, UserAnswer
+from .serializers import TestSerializer
 
 
+@login_required
 def take_test(request, test_id):
     test = Test.objects.get(id=test_id)
-    questions = Question.objects.filter(test=test)
-    return render(request, 'online_tests/take_test.html', {'test': test, 'questions': questions})
+    csrf_token = get_token(request)
+    return render(request, 'course_test/test_passing.html',
+                  {'test': test, 'test_id': test_id, 'csrf_token': csrf_token})
 
 
-class TestListView(ListView):
-    model = Test
-    template_name = '...'
-
-
-class TestDetailView(generics.RetrieveAPIView):
-    queryset = Test.objects.all()
+class TestDetailView(APIView):
     serializer_class = TestSerializer
 
+    def get(self, request, test_id):
+        test = get_object_or_404(Test.objects.prefetch_related('questions__answers'), id=test_id)
 
-class AnswerCreateView(APIView):
-    def post(self, request):
-        serializer = UserAnswerSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serialized_test = self.serializer_class(test).data
 
+        print(serialized_test)
 
-class UserTestResultsView(generics.ListAPIView):
-    serializer_class = UserTestSerializer
+        return Response(serialized_test, status=status.HTTP_200_OK)
 
-    def get_queryset(self):
-        user = self.request.user
-        return UserTest.objects.filter(user=user)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return Response({'error': 'Пользователь не аутентифицирован'}, status=status.HTTP_401_UNAUTHORIZED)
+        return super().dispatch(request, *args, **kwargs)
 
 
-class TestSubmitView(APIView):
-    @transaction.atomic
-    def post(self, request):
-        user_test_data = request.data.get('userTest')
-        user_answers_data = request.data.get('userAnswers')
-
-        user_test_serializer = UserTestSerializer(data=user_test_data)
-        user_test_serializer.is_valid(raise_exception=True)
-        user_test = user_test_serializer.save()
-
-        UserAnswer.objects.filter(user_test__user=user_test.user, user_test__test=user_test.test).delete()
-
-        user_answers = []
-        for user_answer_data in user_answers_data:
-            user_answer_serializer = UserAnswerSerializer(data=user_answer_data)
-            user_answer_serializer.is_valid(raise_exception=True)
-            user_answer = user_answer_serializer.save(user_test=user_test)
-            user_answers.append(user_answer)
-
-        user_test.update_answer_counts()
-
-        return Response(UserTestSerializer(user_test).data, status=status.HTTP_201_CREATED)

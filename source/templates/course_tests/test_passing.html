@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/test_passing.css' %}">
+{% endblock %}
+{% block title %}Test Passing{% endblock %}
+
+{% block content %}
+    <div class="container text-center mt-5 mb-5">
+        <h1>{{ test.test_name }}</h1>
+        <div id="test-container" data-test-id="{{ test_id }}"></div>
+
+        <div class="mt-3 mb-3">
+            <button type="button" class="btn btn-primary btn1" id="prevButton">Предыдущий</button>
+            <button type="button" class="btn btn-primary btn1" id="nextButton">Следующий</button>
+        </div>
+
+        <script src="{% static 'js/courseTest.js' %}"></script>
+    </div>
+{% endblock %}
