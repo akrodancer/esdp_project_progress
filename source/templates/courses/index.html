@@ -11,28 +11,30 @@
 {% endblock %}
 {% block content %}
     <div class="bloc_carousel">
-        <div class="bg-img1">
-            <div class="bg-img2">
-                <div class="container">
-                    <div>
-                        <h1>изучай новые навыки сейчас</h1>
-                    </div>
-                    <p style="font-family: 'Montserrat';">Мы предлагаем курсы для всех уровней,<br>От начинающих до
-                        продвинутых. Групповые и индивидуальные занятия
-                        с<br>опытными преподавателями помогут вам достичь желаемого результата
-                    </p>
-                    <div class="sign_up_button">
-                        <button class="nav-item" id="sign_up_button" type="button">Записаться на курс</button>
-                    </div>
-                    <div id="carouselExampleCaptions" class="carousel slide carousel_slide">
-                        <div class="carousel-indicators mb-5">
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                                    class="active"
-                                    aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
+        <div class="container">
+            <div>
+                {{page.text_primary|safe}}
+                <h1>изучай новые навыки сейчас</h1>
+            </div>
+            <p>Мы предлагаем курсы для всех уровней,<br>От начинающих до продвинутых. Групповые и индивидуальные занятия
+                с<br>опытными преподавателями помогут вам достичь желаемого результата
+            </p>
+            <div class="sign_up_button">
+                <button class="nav-item" id="sign_up_button" type="button">Записаться на курс</button>
+            </div>
+            <div id="carouselExampleCaptions" class="carousel slide">
+                <div class="carousel-indicators mb-5">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'images/1084440.jpg' %}" class="d-block w-100" alt="pic-1">
+                        <div class="carousel-caption d-none d-lg-block">
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -63,6 +65,7 @@
 
     <div class="container">
         <div class="who_are_we">
+            
             <h2>кто мы и почему выбирают нас?</h2>
             <p>Мы научим Вашего ребенка любить и<br>получать удовольствие от учебы!</p>
         </div>

@@ -10,20 +10,9 @@ def log_in_processor(request):
             pass
     else:
         form_log = None
-
-    data = {
-        'form_log': form_log,
-    }
-    return data
-
-#Прежний вариант
-
-# def log_in_processor(request):
-#     if request.method == 'GET':
-#             form_log = LoginUserForm(request.POST or None)
-#
-#             data = {
-#                 'form_log': form_log,
-#             }
-#             return data
-#
+        data = {
+            'form_log': form_log,
+        }
+        return data
+    if request.method == 'POST':
+        return {}
