@@ -25,3 +25,4 @@ class CoursesView(ListView):
     model = Course
     template_name = 'courses/courses_view.html'
     context_object_name = 'courses'
+

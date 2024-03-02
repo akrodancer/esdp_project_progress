@@ -1,11 +1,4 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import Course
-
-@admin.register(Course)
-class CourseAdmin(admin.ModelAdmin):
-    list_display = ['id', 'course_name', 'date_start', 'date_finish']
-=======
 from courses.models import Course, Lesson
 # Register your models here.
 class LessonInline(admin.StackedInline):
@@ -28,4 +21,4 @@ class CustomCourseAdmin(admin.ModelAdmin):
     fields = ('course_name', 'description', 'date_start', 
               'course_image', 'date_finish', 'teacher', 
               'students', 'paid_by')
->>>>>>> 2cbba32 ( #2 Добавлены конфиги для django-jet)
+
