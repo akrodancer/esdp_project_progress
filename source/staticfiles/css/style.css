@@ -2,50 +2,51 @@ html {
     height: 100vh;
 }
 /*------------------ШАПКА САЙТА-------------------*/
-nav li {
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-}
-hr {
-    color: white;
-    padding: 0;
-    margin: 0;
-}
-.user {
-    border: 2px solid white;
-    border-radius:15px;
-    color: white;
-    width: 100%;
-    height: 30px;
-    text-align: center;
-}
+
+
 .logo {
-    max-width: 200px;
+    max-width: 250px;
 }
 
 .upper-panel, .lower-panel {
     margin: auto;
-    background-color: #4484CF;
+    background-color: #044691;
     color: white;
+    border-bottom: 1px solid #3877BF;
 }
 .upper-panel {
+    /*height: 50px;*/
     padding: 1% 20% 1% 20%;
 }
+
+.upper-panel p {
+    font-size: 19px;
+}
+
 .lower-panel {
     padding: 1% 5% 1% 5%;
+    /*height: 90px;*/
+    border-bottom: 2px solid #3877BF;
+}
+
+.lower-panel a {
+    margin-top: 10px;
+    font-size: 19px;
 }
 
 .sign_in_button {
-    width: 10%;
+    width: 128px;
 }
-#sign_in_button, #log_out_button {
+#sign_in_button {
+    margin-top: 10px;
     border: 0;
     border-radius: 10px;
-    background-color: rgb(255, 196, 0);
+    background-color: #F3CB3D;
     color: black;
     width: 100%;
-    height: 30px;
+    height: 34px;
+    font-size: 19px;
+    font-weight: bold;
 }
 a, a:hover, a:visited, a:active {
     color: inherit;
@@ -56,7 +57,7 @@ a, a:hover, a:visited, a:active {
 .footer {
     padding: 1% 5% 1% 5%;
     margin: auto;
-    background-color: #4484CF;
+    background-color: #044691;
     color: white;
 }
 .footer-block {
@@ -90,8 +91,7 @@ a, a:hover, a:visited, a:active {
 .auth {
     position: fixed;
     z-index: 6;
-    width: 50%;
-    height: 50% !important;
+    width: 100%;
     top: 15%;
     right: 0;
     left: 0;
@@ -123,7 +123,7 @@ a, a:hover, a:visited, a:active {
     background-color: white;
     border-radius: 15px;
     max-width: 400px;
-    
+
 }
 @media screen and (max-width: 772px) {
     .form-inputs {
@@ -137,3 +137,252 @@ a, a:hover, a:visited, a:active {
     position: absolute;
     z-index: 5;
   }
+
+/*главная страница*/
+
+
+/*карусель*/
+.bloc_carousel {
+    background: #044691;
+    padding-bottom: 105px;
+}
+
+.carousel_view {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.carousel_slide {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid white;
+}
+
+.carousel-indicators .active {
+    width: 10px;
+    height: 10px;
+    background: white;
+    margin-top: 1px;
+}
+
+.bloc_carousel {
+    padding-top: 55px;
+}
+
+.bloc_carousel h1 {
+    font-family: 'Noteworthy', sans-serif;
+    text-align: center;
+    margin-bottom: 25px;
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0.15em;
+}
+
+.bloc_carousel p {
+    font-family: 'Noteworthy', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0.1em;
+}
+
+/*кнопка записаться на курс*/
+.sign_up_button {
+    margin: 0 auto;
+    width: 300px;
+}
+
+#sign_up_button {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #F3CB3D;
+    color: black;
+    width: 100%;
+    height: 44px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/*кнопки проистывания слайдера*/
+.button_prev {
+    height: 40px;
+    width: 40px;
+    background-color: #F3CB3D;
+}
+
+/*блок кто мы*/
+.who_are_we {
+    padding-top: 70px;
+    max-width: 1115px;
+    margin: 0 auto;
+}
+
+.who_are_we h2{
+    color: #044691;
+    text-align: center;
+    font-size: 74px;
+    font-family: sans-serif, "Times New Roman";
+}
+
+.who_are_we p{
+    color: #044691;
+    text-align: center;
+    font-size: 40px;
+    font-family: sans-serif;
+    line-height: 1;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* блок about us */
+.about-us {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.card_about_as {
+    padding: 20px;
+    background-color: #044691;
+}
+
+.card_about_as h4 {
+    color: white;
+}
+
+.card_about_as p {
+    color: white;
+}
+
+.card_sign_up p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.card_sign_up_img {
+    transform: skew(4deg, -4deg);
+}
+
+.card_sign_up {
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    background-color: #F3CB3D;
+    transform: skew(-5deg, 5deg);
+}
+
+#card_sign_up_button {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    width: 100%;
+    height: 44px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/*блок отзывов*/
+.reviews {
+    background: #044691;
+    margin-top: 90px;
+}
+
+.review {
+    padding: 60px 40px 100px 20px;
+}
+
+.bg-img3 {
+    background-image: url("../images/blue star outline.png");
+    background-repeat: no-repeat;
+    padding-left: 60px;
+    padding-top: 60px;
+}
+
+.bg-img4 {
+    background-image: url("../images/blue star outline.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+
+.bg-img5 {
+    background-image: url("../images/blue star outline.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+.bg-img6 {
+    background-image: url("../images/Group 3718.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+.review_view {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.reviews h3 {
+    text-align: center;
+    color: white;
+    font-size: 70px;
+}
+
+.p_rev {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+.div_review {
+    height: 500px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.reviews_p {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.div_review h5 {
+    margin-top: 12%;
+    margin-left: 10px;
+    font-size: 50px;
+}
+
+/*блок наши партнеры*/
+.partners {
+    padding-top: 60px;
+    background: #EEEEEE;
+    padding-bottom: 60px;
+
+}
+
+.partners h3 {
+    text-align: center;
+    color: #044691;
+    font-size: 60px;
+    padding-bottom: 50px;
+}
+
+.partners_view {
+    width: 80%;
+    margin: 0 auto;
+}
+
