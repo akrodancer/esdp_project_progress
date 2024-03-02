@@ -142,6 +142,19 @@ a, a:hover, a:visited, a:active {
 
 
 /*карусель*/
+.bg-img1 {
+    background-image: url("../images/globe asia.png");
+    background-size: 800px;
+    background-repeat: no-repeat;
+}
+
+.bg-img2 {
+    background-image: url("../images/Stationery and physics book for education.png");
+    background-size: 800px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
 .bloc_carousel {
     background: #044691;
     padding-bottom: 105px;
@@ -386,3 +399,35 @@ a, a:hover, a:visited, a:active {
     margin: 0 auto;
 }
 
+/*Страница Курсы*/
+.courses {
+    background: #044691;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.courses_content h2 {
+    font-size: 48px;
+    font-weight: 700;
+    /*line-height: 73px;*/
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.courses_content p {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: white;
+}
+
+.bg_courses {
+    background-image: url("../images/img.png");
+    background-repeat: no-repeat;
+    height: 600px;
+
+}
