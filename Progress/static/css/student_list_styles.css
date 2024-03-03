@@ -1,0 +1,92 @@
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.write-name {
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-input {
+    font-weight: 400;
+    font-size: 18px;
+    width: 50vw;
+    height: 72px;
+    max-width: 882px;
+    text-transform: uppercase;
+    border-radius:15px;
+    border: black solid 1px;
+    text-indent: 22px;
+}
+
+.search-button {
+    width: 116px;
+    height: 52px;
+    position: absolute;
+    padding:10px;
+    border-radius:15px;
+    top: 52%;
+    right: 2%;
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.course-btn-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.course-btn {
+    width: 270px;
+    height: 110px;
+    margin: 0 10px;
+    background-color: #044691;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+img {
+    width: 182px;
+    height: 182px;
+    border-radius: 50%;
+}

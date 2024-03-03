@@ -1,89 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        body {
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-        }
-
-        form {
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input {
-            width: 200px;
-            text-align: left;
-        }
-        .search-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .search-input {
-            padding:15px 200px;
-            border-radius:10px;
-            border: black solid 1px;
-        }
-
-        .search-button {
-            position: absolute;
-            padding:10px;
-            border-radius:15px;
-            top: 51%;
-            right: 2%;
-            background-color: #FFD700;
-            color: black;
-            border: none;
-            cursor: pointer;
-        }
-
-        .course-btn-container {
-            display: flex;
-            margin-top: 10px;
-        }
-
-        .course-btn {
-            margin: 0 10px;
-            background-color: #FFD700;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            padding: 10px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/student_list_styles.css' %}">
 </head>
 <body>
     <form method="get">
         <div class="search-container">
-            <p>Напишите ФИО</p>
+            <p class="write-name">Напишите ФИО</p>
             <label>
                 <input type="text" class="search-input" name="search">
             </label>
-            <button type="submit" class="search-button">Поиск</button>
+            <button type="submit" class="search-button">ПОИСК</button>
         </div>
     </form>
 
-
-
-
     {% for student in students %}
-        <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+        {% if student.avatar %}
+            <img src="{{ student.avatar.url }}" alt="Аватарка">
+        {% else %}
+            <img src="{% static 'img/no-avatar.png' %}" alt="Аватарка">
+        {% endif %}
+        <h2 class="name">{{ student.first_name }} {{ student.last_name }}</h2>
         <p>Выберите курс</p>
         <div class="course-btn-container">
             {% for course in student.enrolled_courses.all %}
