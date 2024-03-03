@@ -1,6 +1,6 @@
 from django.db import models
 
-class ACCOUNT_TYPES(models.TextChoices):
+class AccoutTypeChoices(models.TextChoices):
     TEACHER = 'teacher'
     USER = 'user'
 

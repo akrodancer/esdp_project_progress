@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from django.views.generic import ListView
-from django.views.generic.base import TemplateView, View
-from accounts.models import User
+from django.views.generic.base import TemplateView
+from django.contrib.auth import get_user_model
 from courses.models import Course, Lesson
-from accounts.forms import NewUserForm, LoginUserForm
+
 
 
 class IndexPageView(TemplateView):
@@ -11,13 +10,13 @@ class IndexPageView(TemplateView):
 
 
 class AboutUsView(ListView):
-    model = User
+    model = get_user_model()
     template_name = 'courses/about_us.html'
     context_object_name = 'teachers'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['teachers'] = User.objects.all().filter(role='teacher')
+        context['teachers'] = get_user_model().objects.all().filter(role='teacher')
         return context
 
 

@@ -35,7 +35,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     #НАШИ ПРИЛОЖЕНИЯ
-    'site_pages',
+    'pages',
     'accounts',
     'courses',
     'online_tests',
@@ -76,7 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'accounts.context_processor.log_in_processor',
-                'site_pages.context_processor.page_text_display',
+                'pages.context_processor.page_text_display',
             ],
         },
     },

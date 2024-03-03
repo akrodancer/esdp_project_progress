@@ -1,13 +1,11 @@
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import login, logout, authenticate, get_user_model
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
-from accounts.models import User
+from django.views.generic import CreateView, DetailView, ListView, View
 from accounts.forms import NewUserForm, LoginUserForm
 from typing import Any
-from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.forms import CommentForm
@@ -42,7 +40,7 @@ class UserLogin(View):
         return next_url
 
 class UserRegisterView(CreateView):
-    model = User
+    model = get_user_model()
     template_name = 'accounts/sign_up.html'
     form_class = NewUserForm
 
@@ -55,7 +53,7 @@ class UserRegisterView(CreateView):
 
 
 class StudentListView(ListView, LoginRequiredMixin):
-    template_name = 'student_list.html'
+    template_name = 'accounts/student_list.html'
     model = get_user_model()
     context_object_name = 'students'
 

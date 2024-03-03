@@ -6,13 +6,13 @@ from .models import Test, Question, Answer, UserTest, UserAnswer
 class AnswerInline(admin.StackedInline):
     model = Answer
     extra = 0
-    fields = ['answer_text', 'answer_image', 'is_correct']
+    fields = ('answer_text', 'answer_image', 'is_correct')
     fk_name = 'question'
 
 class QuestionInline(admin.StackedInline):
     model = Question
     extra = 0
-    fields = ['question_name', 'question_text', 'question_image']
+    fields = ('question_name', 'question_text', 'question_image')
     fk_name = 'test'
 
 

@@ -21,27 +21,27 @@ class AvatarUpload(ImageUpload):
     @staticmethod
     def _upload(instance, filename):
         extension = filename.split('.')[-1]  
-        url = ImageDirs.AVATAR_DIR + '/%s.%s' % (uuid.uuid4(), extension)
+        url = ImageDirs.AVATAR_DIR + f'/{uuid.uuid4()}.{extension}'
         return url
     
 class CourseUpload(ImageUpload):
     @staticmethod
     def _upload(instance, filename):
         extension = filename.split('.')[-1]  
-        url = ImageDirs.COURSE_DIR + '/%s.%s' % (uuid.uuid4(), extension)
+        url = ImageDirs.COURSE_DIR + f'/{uuid.uuid4()}.{extension}'
         return url
     
 class AnswerUpload(ImageUpload):
     @staticmethod
     def _upload(instance, filename):
         extension = filename.split('.')[-1]  
-        url = ImageDirs.ANSWER_DIR + '/%s.%s' % (uuid.uuid4(), extension)
+        url = ImageDirs.ANSWER_DIR + f'/{uuid.uuid4()}.{extension}'
         return url
     
 class QuestionUpload(ImageUpload):
     @staticmethod
     def _upload(instance, filename):
         extension = filename.split('.')[-1]  
-        url = ImageDirs.QUESTION_DIR + '/%s.%s' % (uuid.uuid4(), extension)
+        url = ImageDirs.QUESTION_DIR + f'/{uuid.uuid4()}.{extension}'
         return url
     

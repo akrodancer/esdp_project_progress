@@ -1,5 +1,6 @@
 from django import forms
 from accounts.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
@@ -27,7 +28,7 @@ class NewUserForm(UserCreationForm):
 class LoginUserForm(forms.ModelForm):
     password = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
     class Meta:
-        model = User
+        model = get_user_model()
         fields = [
             'username', 
             'password',
