@@ -1,0 +1,328 @@
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+}
+
+#course-title {
+    margin: 20px;
+}
+
+#blocks-container {
+    display: inline;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+#right-block {
+    margin: 0 0 0 144px;
+}
+
+#left-block, #right-block {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#left-block img {
+    width: 182px;
+    height: 182px;
+    border-radius: 50%;
+}
+
+#left-block h2 {
+    margin: 35px 0;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+@media (max-width: 1024px) {
+    #right-block {
+        margin: 0 auto;
+    }
+
+    #comment-input textarea {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    #right-block {
+        margin: 0 auto;
+    }
+
+    #blocks-container {
+        flex-direction: column;
+    }
+
+    .feedback-section {
+        background-position: center bottom;
+        text-align: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    #comment-input textarea {
+        max-width: 300px;
+    }
+}
+
+#info-block {
+    box-shadow: 0 0 5px 1px #00000080;
+    background-color: #044691;
+    border-radius: 15px;
+    padding: 33px 46px 33px 46px;
+    width: 532px;
+    height: 311px;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+#info-block-content {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+#info-block-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.info-label, .info-value {
+    text-align: left;
+    margin: 21px 0 0 0;
+    position: relative;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.info-label::after {
+    content: '';
+    position: absolute;
+    left: 95%;
+    width: 1px;
+    height: 50px;
+    background-color: #EEEEEE;
+    transform: translateY(-20%);
+}
+
+.info-label {
+    flex-basis: 250px;
+}
+
+/*инпут для поиска студента*/
+
+.search-block {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+}
+
+.search-input {
+    font-weight: 400;
+    font-size: 18px;
+    width: 50vw;
+    height: 72px;
+    max-width: 882px;
+    text-transform: uppercase;
+    border-radius:15px;
+    border: black solid 1px;
+    text-indent: 22px;
+}
+
+.search-button {
+    width: 116px;
+    height: 52px;
+    position: absolute;
+    padding:10px;
+    border-radius:15px;
+    top: 52%;
+    right: 2%;
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.write-name {
+    font-weight: 500;
+    font-size: 22px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#searchForm {
+    text-align: left;
+}
+
+/*присутствовал, отсутствовал*/
+
+#attendance img {
+    margin: 0 25px;
+}
+
+#attendance h3 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    margin: 0;
+}
+
+#present, #absent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 18px;
+}
+
+#green, #red {
+    height: 56px;
+    width: 217px;
+    border-radius: 15px;
+    text-align: center;
+    color: #ffffff;
+    display: inline-block;
+    line-height: 56px;
+    margin: 0 0 0 16px;
+}
+
+#red {
+    background-color: rgba(196, 62, 62, 1);
+}
+
+#green {
+    background-color: rgba(0, 102, 10, 1);
+}
+
+/*Календарь*/
+
+#calendar {
+    width: 480px;
+    height: 449px;
+    margin: 20px auto;
+    border: 1px solid #ffffff;
+    border-radius: 15px;
+    background-color: #044691;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 0 5px 1px #00000080;
+}
+
+#calendar header {
+    text-align: center;
+    background-color: #ffffff;
+    color: #1b1b1b;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 2px 8px;
+    width: 73px;
+    height: 22px;
+    margin: 20px auto 0 auto;
+}
+
+#calendar table {
+    width: 409px;
+    height: 374px;
+    border-collapse: collapse;
+    font-family: "Inter", sans-serif;
+    margin-left: 35px;
+}
+
+#calendar th {
+    font-weight: 500;
+    width: 60px;
+    height: 60px;
+}
+
+#calendar td {
+    font-weight: 400;
+    margin: 0;
+    width: 60px;
+    height: 60px;
+
+}
+
+.is-viewing, .not-viewing {
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.is-viewing {
+    background-color: green;
+}
+
+.not-viewing {
+    background-color: red;
+}
+
+/*Комментарии*/
+
+.feedback-section {
+    background: url("../img/pngwing1.png") no-repeat bottom right;
+    display: inline-block;
+    margin-left: 17vw;
+    text-align: center;
+}
+
+.feedback-content {
+    max-width: 100%;
+    margin-left: 0;
+}
+
+.feedback-section p, form {
+    font-weight: 500;
+    font-size: 24px;
+    display: flex;
+    justify-content: left;
+}
+
+#comments-container {
+    margin-top: 20px;
+    max-width: 500px;
+    max-height: 300px;
+}
+
+.comment {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-info {
+    text-align: left;
+    color: #666;
+}
+
+#comment-input textarea {
+    width: 760px;
+    height: 300px;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 15px;
+    box-shadow: 0 0 5px 1px #00000080;
+}
