@@ -520,3 +520,77 @@ a, a:hover, a:visited, a:active {
     margin-left: 20px;
     margin-top: 25px;
 }
+
+/*Блок О нас*/
+.about_us {
+    background: #044691;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.about_us_p {
+    text-align: justify;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.about_us h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.about_us p {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 0.01em;
+    text-align: justify;
+    color: white;
+}
+
+.team {
+    background: lightgrey;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.team h2 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 58px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: #044691;
+    margin-bottom: 40px;
+}
+
+.team p {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    text-align: center;
+    color: #044691;
+    margin-bottom: 40px;
+}
+
+.teacher_card {
+    box-shadow: 1px 5px 7px -2px rgba(0,0,0,0.67);
+    -webkit-box-shadow: 1px 5px 7px -2px rgba(0,0,0,0.67);
+    -moz-box-shadow: 1px 5px 7px -2px rgba(0,0,0,0.67);
+    margin-bottom: 5px;
+    width: 233px;
+}
+
+.teacher_avatar img {
+    height: 100%;
+}
+
+.teacher_carousel {
+    padding-left: 150px;
+    padding-right: 150px;
+}
