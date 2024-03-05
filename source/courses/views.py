@@ -17,7 +17,13 @@ class AboutUsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['teachers'] = User.objects.all().filter(role='teacher')
+        context['teachers'] = User.objects.filter(role='teacher')[0:4]
+        teachers1 = []
+        count = 4
+        for i in range(50):
+            teachers1.append(User.objects.filter(role='teacher')[count:count + 4])
+            count += 4
+        context['teachers1'] = teachers1
         return context
 
 

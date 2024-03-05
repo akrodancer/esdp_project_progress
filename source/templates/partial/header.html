@@ -1,0 +1,31 @@
+{% load static %}
+<header>
+    <div class="upper-panel d-flex justify-content-between">
+        <p><i class="bi bi-geo-alt-fill nav-item"></i> 9-й Микрорайон, Суеркулова 10Б</p>
+        <p><i class="bi bi-phone nav-item"></i> +996 (505) 242 552</p>
+        <p><i class="bi bi-envelope-fill nav-item"></i> progress.kg@gmail.com</p>
+    </div>
+    <div class="lower-panel">
+        <div class="navbar-nav ms-auto flex-row justify-content-between flex-wrap">
+            <div class="nav-item logo">
+                <a href="{% url 'courses:index' %}">
+                    <img class="" src="{% static 'images/logo.png' %}" alt="" width="100%">
+                </a>
+            </div>
+            <a class="nav-item" href="{% url 'courses:about_us' %}">О нас</a>
+            <a class="nav-item" href="{% url 'courses:courses' %}">Наши курсы</a>
+            <a class="nav-item" href="">Онлайн тестирование</a>
+            <a class="nav-item" href="{% url 'courses:lessons' %}">Видеоуроки</a>
+            <a class="nav-item" href="{% url 'accounts:search_student' %}">Поиск учеников</a>
+            {% if user.is_authenticated %}
+                <li class="nav-item sign_in_button">
+                    <a href="{% url 'accounts:log_out' %}" id="log_out_button" class="btn btn-danger">Выход</a>
+                </li>
+            {% else %}
+                <li class="nav-item sign_in_button">
+                    <button id="sign_in_button" type="button">Войти</button>
+                </li>
+            {% endif %}
+        </div>
+    </div>
+</header>
