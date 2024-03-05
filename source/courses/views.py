@@ -2,6 +2,7 @@ from django.views.generic import ListView
 from django.views.generic.base import TemplateView
 from django.contrib.auth import get_user_model
 from courses.models import Course, Lesson
+from pages.models import PageModel
 
 
 
@@ -12,11 +13,14 @@ class IndexPageView(TemplateView):
 class AboutUsView(ListView):
     model = get_user_model()
     template_name = 'courses/about_us.html'
-    context_object_name = 'teachers'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['teachers'] = get_user_model().objects.all().filter(role='teacher')
+        try:
+            context['page'] = PageModel.objects.get(path=self.request.path)
+        except:
+            pass
         return context
 
 
