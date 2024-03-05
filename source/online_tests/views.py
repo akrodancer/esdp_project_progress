@@ -1,67 +1,68 @@
-from django.db import transaction
-from django.shortcuts import render
-from django.views.generic import ListView
-from rest_framework import generics
-from rest_framework import status
+import json
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Prefetch
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_http_methods
+from django.views.generic import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Test, Question, UserTest, UserAnswer
-from .serializers import TestSerializer, UserTestSerializer, UserAnswerSerializer
+from .models import OnlineTest, Question, UserTest
+from .serializers import TestSerializer
 
 
-def take_test(request, test_id):
-    test = Test.objects.get(id=test_id)
-    questions = Question.objects.filter(test=test)
-    return render(request, 'online_tests/take_test.html', {'test': test, 'questions': questions})
+class TestPassingView(LoginRequiredMixin, View):
+    def get(self, request, test_id):
+        test = OnlineTest.objects.get(id=test_id)
+        questions = Question.objects.filter(test=test)
+        context = {
+            'test': test,
+            'questions': questions,
+            'countdown_seconds': test.countdown.total_seconds(),
+        }
+        return render(request, 'course_tests/test_passing.html', context)
 
 
-class TestListView(ListView):
-    model = Test
-    template_name = '...'
-
-
-class TestDetailView(generics.RetrieveAPIView):
-    queryset = Test.objects.all()
+class TestDetailView(APIView):
     serializer_class = TestSerializer
 
-
-class AnswerCreateView(APIView):
-    def post(self, request):
-        serializer = UserAnswerSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request, *args, **kwargs):
+        test_id = self.kwargs['test_id']
+        test = OnlineTest.objects.get(id=test_id)
+        serializer = self.serializer_class(test)
+        return Response(serializer.data)
 
 
-class UserTestResultsView(generics.ListAPIView):
-    serializer_class = UserTestSerializer
+@require_http_methods(["POST"])
+def submit(request, test_id):
+    test = get_object_or_404(OnlineTest, id=test_id)
+    user = request.user
+    user_test, created = UserTest.objects.get_or_create(user=user, test=test)
+    correct_questions_count = 0
+    incorrect_questions_count = 0
 
-    def get_queryset(self):
-        user = self.request.user
-        return UserTest.objects.filter(user=user)
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid data format"}, status=400)
 
+    questions = Question.objects.filter(test=test).prefetch_related(
+        Prefetch('answer_set', to_attr='related_answers'),
+    )
 
-class TestSubmitView(APIView):
-    @transaction.atomic
-    def post(self, request):
-        user_test_data = request.data.get('userTest')
-        user_answers_data = request.data.get('userAnswers')
+    for question in questions:
+        user_answers = data.get(str(question.id), [])
+        if user_answers:
+            correct_flag = any(answer.is_correct and answer.id in user_answers for answer in question.related_answers)
+            incorrect_flag = not correct_flag and any(answer.id in user_answers for answer in question.related_answers)
 
-        user_test_serializer = UserTestSerializer(data=user_test_data)
-        user_test_serializer.is_valid(raise_exception=True)
-        user_test = user_test_serializer.save()
+            correct_questions_count += correct_flag
+            incorrect_questions_count += incorrect_flag
 
-        UserAnswer.objects.filter(user_test__user=user_test.user, user_test__test=user_test.test).delete()
+    user_test.correct_answer_count = correct_questions_count
+    user_test.incorrect_answer_cnt = incorrect_questions_count
+    user_test.save()
 
-        user_answers = []
-        for user_answer_data in user_answers_data:
-            user_answer_serializer = UserAnswerSerializer(data=user_answer_data)
-            user_answer_serializer.is_valid(raise_exception=True)
-            user_answer = user_answer_serializer.save(user_test=user_test)
-            user_answers.append(user_answer)
-
-        user_test.update_answer_counts()
-
-        return Response(UserTestSerializer(user_test).data, status=status.HTTP_201_CREATED)
+    return JsonResponse({"result": "success"})
