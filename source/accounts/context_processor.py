@@ -9,7 +9,7 @@ def log_in_processor(request):
             data = {
                 'form_log': form_log,
             }
+            return data
         except:
             return {}
     return {}
-
