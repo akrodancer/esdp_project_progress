@@ -29,15 +29,13 @@ class UserLogin(View):
                                     username=form['username'].value(),
                                     password=form['password'].value())
             login(request, current_user)
-            return self.get_success_url()
+            return HttpResponseRedirect(self.get_success_url())
         else:
             messages.error(request, 'Неверный логин или пароль')
-            return redirect(reverse('courses:index'))
-    
+            return HttpResponseRedirect(self.get_success_url())
+            
     def get_success_url(self):
-        next_url = self.request.GET.get('next')
-        if not next_url:
-            next_url = self.request.POST.get('next')
+        next_url = self.request.POST.get('next')
         if not next_url:
             next_url = reverse('courses:index')
         return next_url

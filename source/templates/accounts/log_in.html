@@ -21,8 +21,8 @@
                 {% csrf_token %}   
                 <h5>Войдите в свой аккаунт</h5>
                 <span>Введите новый логин и пароль</span>
-                <div><input id="username" required type="text" name="username" placeholder="Логин"></div>
-                <div><input id="password" required type="password" name="password" placeholder="пароль"></div>
+                <div><input required type="text" name="username" placeholder="Логин"></div>
+                <div><input required type="password" name="password" placeholder="пароль"></div>
                 <a href="{% url 'accounts:user_reg' %}"><span>Создать учетную запись</span></a>
                 <button id="#sign_in_submit" type="submit" class="btn btn-warning">Подтвердить</button>
             </form>

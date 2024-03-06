@@ -1,8 +1,9 @@
 from django import forms
 from accounts.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib import messages
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import check_password
 
 
 class NewUserForm(UserCreationForm):
@@ -28,15 +29,17 @@ class NewUserForm(UserCreationForm):
 
 class LoginUserForm(forms.Form):
     username = forms.CharField(label='username')
-    password = forms.CharField(label='password',)
+    password = forms.CharField(label='password', widget = forms.PasswordInput, validators=[validate_password])
            
     def clean(self):
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
-        if not get_user_model().objects.filter(username=username).exists():
-            raise forms.ValidationError('Error')
-        elif password != get_user_model().objects.get(username=username).password:
-            raise forms.ValidationError('Error')
+        user = get_user_model().user_set.by_username(username)
+
+        if not user:
+            raise forms.ValidationError('User not found!')
+        elif not check_password(password, user.password):
+            raise forms.ValidationError('Incorrect password!')
         else:
             return self.cleaned_data
             

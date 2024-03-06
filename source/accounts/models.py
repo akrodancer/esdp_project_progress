@@ -1,8 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from .account_type_choices import AccoutTypeChoices
+from .user_queryset import CustomUserManager
 from courses import AvatarUpload
-
+from django.contrib.auth.models import UserManager
+    
 
 class User(AbstractUser):
     avatar = models.ImageField(verbose_name='Аватар', upload_to=AvatarUpload._upload, null=True, blank=True)
@@ -13,9 +15,13 @@ class User(AbstractUser):
                             choices=AccoutTypeChoices,
                             default=AccoutTypeChoices.USER
                             )
-
+    
+    object = UserManager()
+    user_set = CustomUserManager()
+    
     def __str__(self):
         return self.username
+    
     
     class Meta:
         verbose_name='Пользователи'
