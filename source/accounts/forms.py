@@ -1,7 +1,8 @@
 from django import forms
 from accounts.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class NewUserForm(UserCreationForm):
@@ -25,18 +26,22 @@ class NewUserForm(UserCreationForm):
         }
 
 
-class LoginUserForm(forms.ModelForm):
-    password = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
-    class Meta:
-        model = get_user_model()
-        fields = [
-            'username', 
-            'password',
-        ]
-    
-        widgets = {
-            'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
-        }
+class LoginUserForm(forms.Form):
+    username = forms.CharField(label='username')
+    password = forms.CharField(label='password',)
+           
+    def clean(self):
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        if not get_user_model().objects.filter(username=username).exists():
+            raise forms.ValidationError('Error')
+        elif password != get_user_model().objects.get(username=username).password:
+            raise forms.ValidationError('Error')
+        else:
+            return self.cleaned_data
+            
+        
+
 
 
 

@@ -81,7 +81,7 @@ class Lesson(models.Model):
 
     def is_accessible_by(self, user):
 
-        if self.lesson_type == 'free':
+        if self.lesson_type == LessonTypeChoices.FREE:
             return True
         if self.course.is_paid_by(user):
             return True

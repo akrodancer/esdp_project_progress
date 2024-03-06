@@ -6,11 +6,12 @@ from accounts.forms import NewUserForm, LoginUserForm
 from typing import Any
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.forms import CommentForm
 from accounts.models import Comment
 from courses.models import Visit, Course
+from django.contrib import messages
 
 
 # Create your views here.
@@ -23,13 +24,15 @@ def logout_view(request):
 class UserLogin(View):
     def post(self, request, *args, **kwargs):
         form = LoginUserForm(request.POST)
-        current_user = authenticate(request, 
+        if form.is_valid():
+            current_user = authenticate(request, 
                                     username=form['username'].value(),
                                     password=form['password'].value())
-        if current_user:
             login(request, current_user)
-    
-        return redirect(reverse('courses:index'))
+            return self.get_success_url()
+        else:
+            messages.error(request, 'Неверный логин или пароль')
+            return redirect(reverse('courses:index'))
     
     def get_success_url(self):
         next_url = self.request.GET.get('next')

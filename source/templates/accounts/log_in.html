@@ -1,4 +1,19 @@
-
+{% if messages %}
+    <div style="background-color: #044691; text-align: center;">
+        <div style="height: 50px;
+                    margin: auto;
+                    background-color: #DC143C;
+                    color: white;
+                    font-size: 20px;
+                    line-height:inherit;">
+            {% for message in messages %}
+                <h3 style="vertical-align: middle;">
+                    {{ message }}
+                </h3> 
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
 <section class="auth turn-on" hidden>
     <div class="row flex-column m-auto" id="reg_form">
         <div class="form-inputs text-center m-auto mt-5">
@@ -6,10 +21,8 @@
                 {% csrf_token %}   
                 <h5>Войдите в свой аккаунт</h5>
                 <span>Введите новый логин и пароль</span>
-                <div>{{form_log.username}}</div>
-                <div>{{form_log.password}}</div>
-                <!-- <div><input name="username" placeholder="Логин" type="text"></div>
-                <div><input name="password" placeholder="Пароль" type="password"></div>  -->
+                <div><input id="username" required type="text" name="username" placeholder="Логин"></div>
+                <div><input id="password" required type="password" name="password" placeholder="пароль"></div>
                 <a href="{% url 'accounts:user_reg' %}"><span>Создать учетную запись</span></a>
                 <button id="#sign_in_submit" type="submit" class="btn btn-warning">Подтвердить</button>
             </form>
