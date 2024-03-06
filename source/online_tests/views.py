@@ -41,7 +41,6 @@ def submit(request, test_id):
     user = request.user
     user_test, created = UserTest.objects.get_or_create(user=user, test=test)
     correct_questions_count = 0
-    incorrect_questions_count = 0
 
     try:
         data = json.loads(request.body)
@@ -49,20 +48,23 @@ def submit(request, test_id):
         return JsonResponse({"error": "Invalid data format"}, status=400)
 
     questions = Question.objects.filter(test=test).prefetch_related(
-        Prefetch('answer_set', to_attr='related_answers'),
+        Prefetch('answers', to_attr='related_answers'),
     )
 
     for question in questions:
         user_answers = data.get(str(question.id), [])
         if user_answers:
             correct_flag = any(answer.is_correct and answer.id in user_answers for answer in question.related_answers)
-            incorrect_flag = not correct_flag and any(answer.id in user_answers for answer in question.related_answers)
-
             correct_questions_count += correct_flag
-            incorrect_questions_count += incorrect_flag
 
+    total_questions_count = questions.count()
+    incorrect_questions_count = total_questions_count - correct_questions_count
     user_test.correct_answer_count = correct_questions_count
     user_test.incorrect_answer_cnt = incorrect_questions_count
     user_test.save()
 
+    print(f'Правильных ответов:{correct_questions_count}')
+    print(f'Неправильных ответов:{incorrect_questions_count}')
+
     return JsonResponse({"result": "success"})
+
