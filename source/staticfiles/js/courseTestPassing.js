@@ -1,5 +1,5 @@
-let selectedAnswers = {};
-let checkboxShapes = {};
+let selectedAnswers = JSON.parse(localStorage.getItem('selectedAnswers')) || {};
+let checkboxShapes = JSON.parse(localStorage.getItem('checkboxShapes')) || {};
 
 let testContainer = document.getElementById('test-container');
 let testId = testContainer.getAttribute('data-test-id');
@@ -55,7 +55,6 @@ function displayQuestion(index) {
 
                 selectedAnswers[question.id].push(answer.id);
 
-                // Ограничить количество ответов до 2
                 if (selectedAnswers[question.id].length > 2) {
                     answerCheckbox.checked = false;
                     checkboxDiv.style.backgroundColor = answerCheckbox.checked ? '#4484CF' : '#aaaaaa';
@@ -63,11 +62,15 @@ function displayQuestion(index) {
                     return;
                 }
 
+                localStorage.setItem('selectedAnswers', JSON.stringify(selectedAnswers));
+
                 if (selectedAnswers[question.id].length === 1) {
                     checkboxShapes[answer.id] = "50%";
+                    localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
                     checkboxDiv.style.borderRadius = "50%";
                 } else {
                     checkboxShapes[answer.id] = "0";
+                    localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
                     checkboxDiv.style.borderRadius = "0";
                 }
             }
@@ -100,10 +103,8 @@ document.getElementById('nextButton').onclick = function () {
     }
 };
 
-
-
 document.getElementById('submitButton').onclick = function () {
-    let filteredAnswers = {}
+    let filteredAnswers = {};
 
     for (let question in selectedAnswers) {
         if (selectedAnswers.hasOwnProperty(question)) {
@@ -111,7 +112,7 @@ document.getElementById('submitButton').onclick = function () {
             filteredAnswers[question] = [lastAnswer];
         }
     }
-    console.log(filteredAnswers)
+    console.log(filteredAnswers);
 
     fetch('api/v1/submit', {
         method: 'POST',
@@ -128,6 +129,11 @@ document.getElementById('submitButton').onclick = function () {
                 throw new Error('Response is not OK');
             }
         })
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            localStorage.removeItem('selectedAnswers');
+            localStorage.removeItem('checkboxShapes');
+            window.location.href = `/online_tests/test/results/${data.user_test_id}/`;
+        })
         .catch(error => console.error('Error:', error));
 };
