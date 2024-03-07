@@ -1,29 +1,18 @@
+from typing import Any
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate, get_user_model
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, View, FormView
-from accounts.models import User
-from accounts.forms import NewUserForm, LoginUserForm
-from typing import Any
-from django.contrib.auth.views import LoginView
+from django.views.generic import CreateView, DetailView, ListView, View
+from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.urls import reverse, reverse_lazy
-from django.http import HttpResponseRedirect
-from .forms import CommentForm, SignedUpUsersForm
-from .models import Comment
-from .forms import NewUserForm, LoginUserForm
-from .json_form_handler import JsonFormHandler
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
-from django.shortcuts import redirect, reverse, get_object_or_404
-from django.contrib.auth import login, get_user_model
-from django.views.generic import CreateView, DetailView, UpdateView, ListView, View, FormView
-from django.contrib.auth.mixins import UserPassesTestMixin
-from accounts.forms import CommentForm
-from accounts.models import Comment
+from django.urls import reverse
 from courses.models import Visit, Course
+from .models import Comment
+from .json_form_handler import JsonFormHandler
+from .forms import NewUserForm, LoginUserForm, CommentForm, SignedUpUsersForm
+from .filters import StudentFilter
 
 def logout_view(request):
     logout(request)

@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import User, SignedUpUsers
+from accounts.models import Comment, User, SignedUpUsers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model

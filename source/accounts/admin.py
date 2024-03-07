@@ -1,6 +1,5 @@
 from django.contrib import admin
 from accounts.models import User, Comment, SignedUpUsers
-from django.conf import settings
 
 
 class CommentsInline(admin.StackedInline):
@@ -8,6 +7,7 @@ class CommentsInline(admin.StackedInline):
     extra = 0
     readonly_fields = ('teacher', 'content', 'created_at')
     fk_name = 'student'
+
 
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
@@ -25,7 +25,10 @@ class CustomUserAdmin(admin.ModelAdmin):
 @admin.register(SignedUpUsers)
 class SignedUpUsersAdmin(admin.ModelAdmin):
     list_display = ('first_name',
-                    'last_name')
+                    'last_name',
+                    'phone',
+                    'email',
+                    'course')
     readonly_fields = ('first_name', 
                        'last_name',
                        'phone',

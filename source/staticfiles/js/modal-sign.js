@@ -5,6 +5,10 @@
      $(".turn-on").prop('hidden', 'true')
      $(".sign-up").prop('hidden', 'true')
  });
+ $("#close").on('click', function(e) {
+    $(".confirm").prop('hidden', 'true')
+    $(".form-cover").prop('hidden', 'true')
+});
 
  //-------------------МОДАЛЬНОЕ ОКНО ЛОГИНА----------------------//
  $("#sign_in_button").on('click', function(e) {
@@ -36,7 +40,8 @@ $('#course_sign').on('click', function(e) {
         contentType: 'application/json',
         data: JSON.stringify(rawData),
         success: function(json) {
-            console.log(json)
+            $(".form-cover").removeAttr('hidden')
+            $(".confirm").removeAttr('hidden')
         }
     });
     e.preventDefault();
