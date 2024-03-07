@@ -3,6 +3,18 @@ from accounts.models import User, Comment
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(),
+        }
+        labels = {
+            'content': '',
+        }
+
+
 class NewUserForm(UserCreationForm):
     password1 = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
     password2 = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}))
@@ -14,7 +26,7 @@ class NewUserForm(UserCreationForm):
             'email',
             'phone',
         ]
-    
+
         widgets = {
             'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
             'first_name' : forms.TextInput(attrs={'placeholder': 'Имя'}),
@@ -29,22 +41,10 @@ class LoginUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'username', 
+            'username',
             'password',
         ]
-    
+
         widgets = {
             'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
-        }
-
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['content']
-        widgets = {
-            'content': forms.Textarea(),
-        }
-        labels = {
-            'content': '',
         }
