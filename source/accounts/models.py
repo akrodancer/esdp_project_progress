@@ -22,7 +22,6 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     
-    
     class Meta:
         verbose_name='Пользователи'
         verbose_name_plural = 'Пользователи'
@@ -38,3 +37,17 @@ class Comment(models.Model):
         verbose_name='Комментарии'
         verbose_name_plural='Комментарии'
 
+
+class SignedUpUsers(models.Model):
+    first_name = models.CharField(verbose_name='Имя')
+    last_name = models.CharField(verbose_name='Фамилия')
+    phone = models.CharField(verbose_name='Телефон')
+    email = models.EmailField(verbose_name='Электронная почта')
+    course = models.CharField(verbose_name='Курс')
+    
+    def __str__(self) -> str:
+        return f'{self.first_name}, {self.last_name}'
+    
+    class Meta:
+        verbose_name='Заявки на курсы'
+        verbose_name_plural='Заявки на курсы'

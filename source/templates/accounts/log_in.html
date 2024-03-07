@@ -24,20 +24,8 @@
                 <div><input required type="text" name="username" placeholder="Логин"></div>
                 <div><input required type="password" name="password" placeholder="пароль"></div>
                 <a href="{% url 'accounts:user_reg' %}"><span>Создать учетную запись</span></a>
-                <button id="#sign_in_submit" type="submit" class="btn btn-warning">Подтвердить</button>
+                <button id="" type="submit" class="btn btn-warning">Подтвердить</button>
             </form>
         </div>
     </div>
 </section>
-<script>
-    $(document).on('click', ".back", function(e) {
-        $('body').css('overflow', 'scroll');
-        e.preventDefault();
-        $(".turn-on").prop('hidden', 'true')
-    });
-    $(document).on('click', "#sign_in_button", function(e) {
-        $('body').css('overflow', 'hidden')
-        e.preventDefault();
-        $(".turn-on").removeAttr('hidden')
-    });
-</script>

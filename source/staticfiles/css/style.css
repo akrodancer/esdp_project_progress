@@ -111,7 +111,7 @@ a, a:hover, a:visited, a:active {
     border-radius: 15px;
     margin: 5% auto 10% auto;
 }
-.auth input {
+.auth input, select, option {
     text-align: center;
     height: 40px;
     border: 0;

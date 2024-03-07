@@ -1,6 +1,7 @@
 from django.db import models
 from .lesson_choices import LessonTypeChoices
 from . import CourseUpload
+from accounts.models import User
 from django.contrib.auth import get_user_model
 
 
@@ -20,16 +21,16 @@ class Course(models.Model):
                                      null=True, 
                                      blank=True
                                      )
-    teacher = models.ManyToManyField(to=get_user_model(), verbose_name='Учители', 
+    teacher = models.ManyToManyField(to=User, verbose_name='Учители', 
                                      limit_choices_to={'role': 'teacher'}, 
                                      related_name='courses_taught'
                                      )
-    students = models.ManyToManyField(to=get_user_model(), verbose_name='Ученики', 
+    students = models.ManyToManyField(to=User, verbose_name='Ученики', 
                                       limit_choices_to={'role': 'user'}, 
                                       related_name='enrolled_courses',
                                       blank=True
                                       )
-    paid_by = models.ManyToManyField(to=get_user_model(), verbose_name='Те, кто оплатил', 
+    paid_by = models.ManyToManyField(to=User, verbose_name='Те, кто оплатил', 
                                      limit_choices_to={'role': 'user'}, 
                                      related_name='paid_courses', 
                                      blank=True
@@ -98,7 +99,7 @@ class Visit(models.Model):
                                       auto_now_add=True
                                       )
     students = models.ForeignKey(verbose_name='Студент',
-                                 to=get_user_model(), 
+                                 to=User, 
                                  limit_choices_to={'role', 'user'}, 
                                  related_name='visits',
                                  on_delete=models.SET_NULL, 

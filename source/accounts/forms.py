@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import User
+from accounts.models import User, SignedUpUsers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
@@ -44,9 +44,22 @@ class LoginUserForm(forms.Form):
             return self.cleaned_data
             
         
-
-
-
-
 class CommentForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
+
+
+class SignedUpUsersForm(forms.Form):
+    first_name = forms.CharField(label='Имя')
+    last_name = forms.CharField(label='Фамилия')
+    phone = forms.CharField(label='Телефон')
+    email = forms.EmailField(label='Электронная почта')
+    course = forms.CharField(label='Курс')
+
+    def save(self):
+        data = self.cleaned_data
+        record = SignedUpUsers(first_name=data['first_name'],
+                               last_name=data['last_name'],
+                               phone=data['phone'],
+                               email=data['email'],
+                               course=data['course'])
+        record.save()

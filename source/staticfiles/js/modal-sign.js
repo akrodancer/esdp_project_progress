@@ -1,17 +1,43 @@
-$(document).on('click', '#sign_in_submit', function(e) {
-    var myData = {
-        login: $("#login").val(),
-        password: $("#password").val(),
-    }
+ //-------------------ЗАКРЫТИЕ МОДАЛЬНЫХ ОКОН----------------------//
+ $("#back").on('click', function(e) {
+     $('body').css('overflow', 'scroll');
+     e.preventDefault();
+     $(".turn-on").prop('hidden', 'true')
+     $(".sign-up").prop('hidden', 'true')
+ });
+
+ //-------------------МОДАЛЬНОЕ ОКНО ЛОГИНА----------------------//
+ $("#sign_in_button").on('click', function(e) {
+     $('body').css('overflow', 'hidden')
+     e.preventDefault();
+     $(".turn-on").removeAttr('hidden')
+ });
+
+  //-------------------МОДАЛЬНОЕ ОКНО ЗАЯВКИ----------------------//
+ $("#sign_up_button").on('click', function(e) {
+    $('body').css('overflow', 'hidden')
     e.preventDefault();
+    $(".sign-up").removeAttr('hidden')
+});
+
+ //-------------------МЕТОД ОТПРАВКИ ЗАПРОСА----------------------//
+$('#course_sign').on('click', function(e) {
+    var rawData = {
+        first_name: $('#first_name').val(),
+        last_name: $('#last_name').val(),
+        phone: $('#phone').val(),
+        email: $('#email').val(),
+        course: $('#course').val(),
+    };
     $.ajax({
-        headers: {"X-CSRFToken": '{{csrf_token}}'},
+        headers: {"X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value},
         type: 'POST',
-        url: "{% url 'accounts:log_in' %}",
+        url: 'accounts/sign_up/',
         contentType: 'application/json',
-        data: JSON.stringify(myData),
+        data: JSON.stringify(rawData),
         success: function(json) {
-            
+            console.log(json)
         }
-    })
+    });
+    e.preventDefault();
 })

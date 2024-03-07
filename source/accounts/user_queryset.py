@@ -1,6 +1,7 @@
 from django.db import models
 from .account_type_choices import AccoutTypeChoices
 
+
 class UserQueryset(models.QuerySet):
     def get_teachers(self):
         return self.filter(role=AccoutTypeChoices.TEACHER)

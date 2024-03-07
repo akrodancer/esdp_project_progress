@@ -1,20 +1,17 @@
+from typing import Any
 from django.db.models import Q
+from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.views.generic import CreateView, DetailView, ListView, View
-from accounts.forms import NewUserForm, LoginUserForm
-from typing import Any
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.forms import CommentForm
-from accounts.models import Comment
+from django.http import HttpResponseRedirect
+from .forms import CommentForm, SignedUpUsersForm
+from .models import Comment
+from .forms import NewUserForm, LoginUserForm
+from .json_form_handler import JsonFormHandler
 from courses.models import Visit, Course
-from django.contrib import messages
-
-
-# Create your views here.
 
 def logout_view(request):
     logout(request)
@@ -40,9 +37,10 @@ class UserLogin(View):
             next_url = reverse('courses:index')
         return next_url
 
+
 class UserRegisterView(CreateView):
     model = get_user_model()
-    template_name = 'accounts/sign_up.html'
+    template_name = 'accounts/registration.html'
     form_class = NewUserForm
 
     def form_valid(self, form):
@@ -51,9 +49,7 @@ class UserRegisterView(CreateView):
         return redirect(reverse('courses:index'))
 
 
-
-
-class StudentListView(ListView, LoginRequiredMixin):
+class StudentListView(ListView):
     template_name = 'accounts/student_list.html'
     model = get_user_model()
     context_object_name = 'students'
@@ -110,3 +106,10 @@ class StudentDetailView(DetailView):
         return HttpResponseRedirect(url)
 
 
+class SignUpUsersView(View):
+    def post(self, request, *args, **kwargs):
+        record = JsonFormHandler(request=self.request, 
+                                form=SignedUpUsersForm)
+        record.create_object()
+        
+        return record.response()

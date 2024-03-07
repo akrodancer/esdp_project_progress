@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div class='back turn-on' hidden></div>
+<div id="back" class='back turn-on sign-up' hidden></div>
 <header>
     <div class="upper-panel d-flex justify-content-between">
         <p><i class="bi bi-geo-alt-fill nav-item"></i> 9-й Микрорайон, Суеркулова 10Б</p>
@@ -49,6 +49,7 @@
     </div>
 </header>
     {% include 'accounts/log_in.html' %}
+    {% include 'accounts/course_sign_up.html' %}
 
 {% block content %}{% endblock %}
 
@@ -112,5 +113,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+<script src="{% static 'js/modal-sign.js' %}"></script>
 </body>
 </html>
