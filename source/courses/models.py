@@ -98,10 +98,12 @@ class Visit(models.Model):
         verbose_name_plural = "Посещения"
 
     is_currently_viewing = models.BooleanField()
-    visit_date = models.DateTimeField(auto_now_add=True)
-    students = models.ForeignKey(to=User, limit_choices_to={'role', 'user'}, related_name='visits',
+    visit_date = models.DateField(auto_now_add=True)
+    students = models.ForeignKey(to=User, limit_choices_to={'role': 'user'}, related_name='visits',
                                  on_delete=models.SET_NULL, null=True, blank=True)
     lesson = models.ForeignKey(to=Lesson, related_name='visits', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Visit by {self.students} on {self.visit_date}'
+
+
