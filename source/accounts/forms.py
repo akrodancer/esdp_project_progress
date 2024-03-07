@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import User
+from accounts.models import User, Comment
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
@@ -38,6 +38,13 @@ class LoginUserForm(forms.ModelForm):
         }
 
 
-
-class CommentForm(forms.Form):
-    comment = forms.CharField(widget=forms.Textarea)
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(),
+        }
+        labels = {
+            'content': '',
+        }

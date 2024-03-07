@@ -1,5 +1,5 @@
 """
-WSGI config for Progress project.
+WSGI config for source project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
