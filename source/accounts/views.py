@@ -77,6 +77,9 @@ class StudentDetailView(DetailView):
         self.object = self.get_object()
         if self.object.role != 'user':
             raise Http404('Страница не найдена')
+        course_id = self.request.GET.get('course')
+        if not course_id:
+            raise Http404('Страница не найдена')
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 

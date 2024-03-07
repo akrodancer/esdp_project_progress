@@ -6,10 +6,14 @@ function visitDates() {
         const currentStudentId = studentInfoElement.dataset.studentId;
         const currentCourseId = studentInfoElement.dataset.courseId;
         const date = new Date(day.dataset.date);
-        const visit = value.find(visit => new Date(visit.visit_date).getTime() === date.getTime()&&
-            visit.student === parseInt(currentStudentId) &&
-            visit.course === parseInt(currentCourseId)
-        )
+        const visit = value.find(visit => {
+            const visitDate = new Date(visit.visit_date);
+            return visitDate.getDate() === date.getDate() &&
+                visitDate.getMonth() === date.getMonth() &&
+                visitDate.getFullYear() === date.getFullYear() &&
+                visit.student === parseInt(currentStudentId) &&
+                visit.course === parseInt(currentCourseId);
+        });
         day.classList.remove("is-viewing", "not-viewing");
         if (visit) {
             if (visit.is_currently_viewing) {
@@ -26,26 +30,26 @@ function visitDates() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  visitDates()
+    visitDates()
 });
 
 function Calendar(selector) {
-  this.el = document.querySelector(selector);
-  this.currentMonth = new Date();
-  this.render();
+    this.el = document.querySelector(selector);
+    this.currentMonth = new Date();
+    this.render();
 }
 
 Calendar.prototype.render = function () {
-  this.el.innerHTML = "";
+    this.el.innerHTML = "";
 
-  const header = document.createElement("header");
-  header.innerHTML = this.getMonthName(this.currentMonth)
-  this.el.appendChild(header);
+    const header = document.createElement("header");
+    header.innerHTML = this.getMonthName(this.currentMonth)
+    this.el.appendChild(header);
 
-  let table = document.createElement("table");
-  table.appendChild(this.createHeaderRow());
-  table.appendChild(this.createDays());
-  this.el.appendChild(table);
+    let table = document.createElement("table");
+    table.appendChild(this.createHeaderRow());
+    table.appendChild(this.createDays());
+    this.el.appendChild(table);
 };
 
 Calendar.prototype.createHeaderRow = function () {
@@ -85,6 +89,7 @@ Calendar.prototype.createDays = function () {
       let td = document.createElement("td");
       td.textContent = currentDate.getDate();
       td.setAttribute("data-date", currentDate.toISOString());
+      td.classList.add("calendar-day");
 
       if (currentDate.getMonth() !== this.currentMonth.getMonth()) {
         td.classList.add("other-month");
@@ -122,11 +127,11 @@ Calendar.prototype.isToday = function (date) {
 };
 
 $(document).keydown(function(e) {
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13 && !e.shiftKey) {
+        e.preventDefault();
         let commentContent = $("#commentForm textarea").val().trim();
-            if (commentContent.length >= 2) {
+        if (commentContent.length >= 2) {
             $("#commentForm").submit();
-            console.log(commentContent);
         }
     }
 });

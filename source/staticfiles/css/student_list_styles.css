@@ -1,70 +1,32 @@
-body {
+.page-container {
     text-align: center;
-    margin: 0;
+    margin: 100px 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
     font-family: "Montserrat", sans-serif;
 }
 
-form {
-    text-align: left;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.write-name {
-    font-weight: 500;
-    font-size: 22px;
-}
-
-.search-container {
-    position: relative;
-    display: inline-block;
-}
-
-.search-input {
-    font-weight: 400;
-    font-size: 18px;
-    width: 50vw;
-    height: 72px;
-    max-width: 882px;
-    text-transform: uppercase;
-    border-radius:15px;
-    border: black solid 1px;
-    text-indent: 22px;
-}
-
-.search-button {
-    width: 116px;
-    height: 52px;
-    position: absolute;
-    padding:10px;
-    border-radius:15px;
-    top: 52%;
-    right: 2%;
-    background-color: #FFD700;
-    color: black;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 18px;
+#image {
+    width: 182px;
+    height: 182px;
+    border-radius: 50%;
+    margin: 40px 0;
 }
 
 .course-btn-container {
     display: flex;
-    margin-top: 10px;
+    flex-wrap: wrap;
+    margin: 0 40px;
+    align-items: center;
+    justify-content: center;
 }
 
 .course-btn {
     width: 270px;
     height: 110px;
-    margin: 0 10px;
+    margin: 10px;
     background-color: #044691;
     color: white;
     border: none;
@@ -83,10 +45,4 @@ label {
 .name {
     font-size: 24px;
     font-weight: 600;
-}
-
-img {
-    width: 182px;
-    height: 182px;
-    border-radius: 50%;
 }

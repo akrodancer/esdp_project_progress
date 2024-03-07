@@ -7,21 +7,14 @@
     <link rel="stylesheet" href="{% static 'css/student_list_styles.css' %}">
 {% endblock %}
 {% block content %}
-    <form method="get">
-        <div class="search-container">
-            <p class="write-name">Напишите ФИО</p>
-            <label>
-                <input type="text" class="search-input" name="search">
-            </label>
-            <button type="submit" class="search-button">ПОИСК</button>
-        </div>
-    </form>
-
+<div class="page-container">
+    {% include 'partial/search_form.html' %}
+{% if filter.form.is_bound %}
     {% for student in students %}
         {% if student.avatar %}
-            <img src="{{ student.avatar.url }}" alt="Аватарка">
+            <img src="{{ student.avatar.url }}" alt="Аватарка" id="image">
         {% else %}
-            <img src="{% static 'images/no-avatar.png' %}" alt="Аватарка">
+            <img src="{% static 'images/no-avatar.png' %}" alt="Аватарка" id="image">
         {% endif %}
         <h2 class="name">{{ student.first_name }} {{ student.last_name }}</h2>
         <p>Выберите курс</p>
@@ -31,5 +24,7 @@
             {% endfor %}
         </div>
     {% endfor %}
-
+{% else %}
+{% endif %}
+</div>
 {% endblock %}

@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/search_form.css' %}">
+<form method="get" action="{% url 'accounts:search_student' %}">
+    <div class="search-container">
+        <p class="write-name">Напишите ФИО</p>
+        {{ filter.form.as_p }}
+        <button type="submit" class="search-button">ПОИСК</button>
+    </div>
+</form>

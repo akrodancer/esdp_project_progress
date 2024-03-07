@@ -7,25 +7,8 @@
     <link rel="stylesheet" href="{% static 'css/student_detail_styles.css' %}">
 {% endblock %}
 {% block content %}
-<div class="search-block">
-<form action="{% url 'accounts:search_student' %}" method="get" id="searchForm">
-    <div class="search-container">
-        <p class="write-name">Напишите ФИО</p>
-        <label>
-            <input type="text" class="search-input" name="search">
-        </label>
-        <button type="submit" class="search-button">ПОИСК</button>
-    </div>
-</form>
-</div>
-    <div id="course-title">
-        <h1>
-            {% if selected_course %}
-                {{ selected_course.course_name }}
-            {% endif %}
-        </h1>
-    </div>
-
+<div class="detail-page">
+    {% include 'partial/search_form.html' %}
     <div id="blocks-container">
         <div id="left-block">
             {% if student.avatar %}
@@ -71,40 +54,38 @@
             <div id="attendance">
                 <h3>Посещаемость:</h3>
                 <div id="present">
-                    <p id="green">Зеленый цвет</p><img src="{% static 'images/Arrow-3.svg' %}" alt=""><p>Присутствовал</p>
+                    <p id="green">Зеленый цвет</p><img src="{% static 'images/Arrow-3.svg' %}" alt=""><p id="attendance-text">Присутствовал</p>
                 </div>
                 <div id="absent">
-                    <p id="red">Красный цвет</p><img src="{% static 'images/Arrow-3.svg' %}" alt=""><p>Отсутствовал</p>
+                    <p id="red">Красный цвет</p><img src="{% static 'images/Arrow-3.svg' %}" alt=""><p id="attendance-text">Отсутствовал</p>
                 </div>
             </div>
             <div id="calendar"></div>
         </div>
     </div>
 
-<div class="feedback-section">
-    <div class="feedback-content">
-    <p>Обратная связь от преподавателя</p>
-        {% if user.role == 'teacher' %}
-            <div id="comment-input">
-                <form method="post" id="commentForm" action="{% url 'accounts:add_comment' pk=student.pk %}?course={{ selected_course.id }}">
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
-                </form>
-            </div>
-        {% endif %}
-    </div>
-    <div id="comments-container">
-        {% for comment in comments %}
-            <div class="comment">
-                <p>{{ comment.content }}</p>
-                <p class="comment-info">Автор: {{ comment.teacher.first_name }} {{ comment.teacher.last_name }}</p>
-                <p class="comment-info">Дата публикации: {{ comment.created_at }}</p>
-            </div>
-        {% endfor %}
+    <div class="feedback-section">
+        <div class="feedback-content">
+        <h3>Обратная связь от преподавателя</h3>
+            {% if user.role == 'teacher' %}
+                <div id="comment-input">
+                    <form method="post" id="commentForm" action="{% url 'accounts:add_comment' pk=student.pk %}?course={{ selected_course.id }}">
+                        {% csrf_token %}
+                        {{ comment_form.as_p }}
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        <div id="comments-container">
+            {% for comment in comments %}
+                <div class="comment">
+                    <p>{{ comment.content }}</p>
+                    <p class="comment-info">Автор: {{ comment.teacher.first_name }} {{ comment.teacher.last_name }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
-
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 {{ visits_data|json_script:"visitsData" }}
@@ -112,5 +93,4 @@
 </script>
 <script src="{% static 'js/calendar_script.js' %}"></script>
 <div id="student-info" data-student-id="{{ student.id }}" data-course-id="{{ selected_course.id }}"></div>
-
 {% endblock %}

@@ -1,31 +1,30 @@
-body {
+.detail-page {
+    align-items: center;
     text-align: center;
-    margin: 0;
+    margin-top: 100px;
     padding: 0;
     display: flex;
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
+    background: url("../images/pngwing1.png") no-repeat bottom right;
 }
 
-#course-title {
-    margin: 20px;
-}
+/* информация о студенте */
 
 #blocks-container {
+    margin-top: 50px;
     display: inline;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
 }
 
-#right-block {
-    margin: 0 0 0 144px;
-}
-
 #left-block, #right-block {
     display: inline-block;
     vertical-align: top;
 }
+
+/* левый блок */
 
 #left-block img {
     width: 182px;
@@ -34,49 +33,18 @@ body {
 }
 
 #left-block h2 {
-    margin: 35px 0;
+    margin: 38px 0;
     font-weight: 600;
     font-size: 24px;
-}
-
-@media (max-width: 1024px) {
-    #right-block {
-        margin: 0 auto;
-    }
-
-    #comment-input textarea {
-        max-width: 500px;
-    }
-}
-
-@media (max-width: 768px) {
-    #right-block {
-        margin: 0 auto;
-    }
-
-    #blocks-container {
-        flex-direction: column;
-    }
-
-    .feedback-section {
-        background-position: center bottom;
-        text-align: center;
-        align-items: center;
-        margin: 0;
-    }
-
-    #comment-input textarea {
-        max-width: 300px;
-    }
 }
 
 #info-block {
     box-shadow: 0 0 5px 1px #00000080;
     background-color: #044691;
     border-radius: 15px;
-    padding: 33px 46px 33px 46px;
-    width: 532px;
-    height: 311px;
+    padding: 10px 46px;
+    width: 626px;
+    height: 379px;
     color: #ffffff;
     border: 1px solid #ffffff;
 }
@@ -94,12 +62,10 @@ body {
 
 .info-row {
     display: flex;
-    justify-content: space-between;
 }
 
 
 .info-label, .info-value {
-    text-align: left;
     margin: 21px 0 0 0;
     position: relative;
     font-size: 24px;
@@ -109,10 +75,10 @@ body {
 .info-label::after {
     content: '';
     position: absolute;
-    left: 95%;
+    left: 92%;
     width: 1px;
-    height: 50px;
-    background-color: #EEEEEE;
+    height: 60px;
+    background-color: #ffffff;
     transform: translateY(-20%);
 }
 
@@ -120,62 +86,11 @@ body {
     flex-basis: 250px;
 }
 
-/*инпут для поиска студента*/
+/* правый блок */
 
-.search-block {
-    margin: 0 auto;
-    text-align: center;
+#right-block {
+    margin: 15px 0 0 144px;
 }
-
-.search-container {
-    position: relative;
-    display: inline-block;
-    align-items: center;
-}
-
-.search-input {
-    font-weight: 400;
-    font-size: 18px;
-    width: 50vw;
-    height: 72px;
-    max-width: 882px;
-    text-transform: uppercase;
-    border-radius:15px;
-    border: black solid 1px;
-    text-indent: 22px;
-}
-
-.search-button {
-    width: 116px;
-    height: 52px;
-    position: absolute;
-    padding:10px;
-    border-radius:15px;
-    top: 52%;
-    right: 2%;
-    background-color: #FFD700;
-    color: black;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 18px;
-}
-
-.write-name {
-    font-weight: 500;
-    font-size: 22px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-#searchForm {
-    text-align: left;
-}
-
-/*присутствовал, отсутствовал*/
 
 #attendance img {
     margin: 0 25px;
@@ -194,7 +109,11 @@ label {
     align-items: center;
     font-weight: 500;
     font-size: 20px;
-    margin-top: 18px;
+    margin-top: 15px;
+}
+
+#attendance-text {
+    padding-top: 15px;
 }
 
 #green, #red {
@@ -221,7 +140,7 @@ label {
 #calendar {
     width: 480px;
     height: 449px;
-    margin: 20px auto;
+    margin-top: 20px;
     border: 1px solid #ffffff;
     border-radius: 15px;
     background-color: #044691;
@@ -253,46 +172,44 @@ label {
 
 #calendar th {
     font-weight: 500;
-    width: 60px;
-    height: 60px;
 }
 
 #calendar td {
     font-weight: 400;
-    margin: 0;
+    border-radius: 50%;
     width: 60px;
     height: 60px;
-
 }
 
-.is-viewing, .not-viewing {
-    display: inline-block;
-    border-radius: 50%;
+#calendar td.is-viewing {
+    background: green;
+    width: 24px;
+    height: 24px;
 }
 
-.is-viewing {
-    background-color: green;
-}
-
-.not-viewing {
+#calendar td.not-viewing {
     background-color: red;
+    width: 24px;
+    height: 24px;
 }
 
 /*Комментарии*/
 
 .feedback-section {
-    background: url("../images/pngwing1.png") no-repeat bottom right;
     display: inline-block;
-    margin-left: 17vw;
-    text-align: center;
+    padding: 220px;
+    margin-right: 26%;
 }
 
 .feedback-content {
     max-width: 100%;
     margin-left: 0;
+    text-align: left;
 }
 
-.feedback-section p, form {
+
+
+.feedback-section form, h3 {
     font-weight: 500;
     font-size: 24px;
     display: flex;
@@ -300,22 +217,30 @@ label {
 }
 
 #comments-container {
-    margin-top: 20px;
-    max-width: 500px;
-    max-height: 300px;
+    overflow-y: auto;
+    margin: 20px 0;
+    width: 600px;
+    height: 300px;
 }
 
 .comment {
-    background-color: #ffffff;
     border: 1px solid #ffffff;
-    border-radius: 5px;
+    width: 500px;
+    min-height: 100px;
+    border-radius: 15px;
     padding: 10px;
     margin-bottom: 10px;
+    color: #ffffff;
+    background-color: #044691;
+    font-size: 30px;
+    text-align: left;
+    word-wrap: anywhere;
 }
 
 .comment-info {
-    text-align: left;
-    color: #666;
+    border-top: 1px solid #ffffff;
+    padding-top: 10px;
+    font-size: 15px
 }
 
 #comment-input textarea {
@@ -325,4 +250,22 @@ label {
     padding: 20px;
     font-size: 15px;
     box-shadow: 0 0 5px 1px #00000080;
+}
+
+/* для средних и маленьких экранов */
+
+@media (max-width: 1255px) {
+    #right-block {
+        margin: 20px auto;
+    }
+
+    .feedback-section {
+        margin: 0;
+    }
+}
+
+@media (max-width: 1025px) {
+    #comment-input textarea {
+        max-width: 500px;
+    }
 }
