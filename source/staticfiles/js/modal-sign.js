@@ -26,7 +26,7 @@
 
  //-------------------МЕТОД ОТПРАВКИ ЗАПРОСА----------------------//
 $('#course_sign').on('click', function(e) {
-    var rawData = {
+    let rawData = {
         first_name: $('#first_name').val(),
         last_name: $('#last_name').val(),
         phone: $('#phone').val(),
