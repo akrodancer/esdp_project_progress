@@ -67,6 +67,10 @@ class StudentListView(FilterView, ListView):
     template_name = 'accounts/student_list.html'
     context_object_name = 'students'
 
+    def get_queryset(self):
+        queryset = get_user_model().objects.none()
+        return queryset
+
 
 class StudentDetailView(DetailView):
     model = get_user_model()
