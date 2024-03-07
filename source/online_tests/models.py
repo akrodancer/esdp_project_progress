@@ -1,12 +1,13 @@
 from django.conf import settings
 from django.db import models
+
 from courses import QuestionUpload, AnswerUpload
 from courses.models import Course
 from .online_test_type_choices import OnlineTestTypeChoices
 
 
 
-class Test(models.Model):
+class OnlineTest(models.Model):
     test_name = models.CharField(verbose_name='Название',
                                  max_length=255
                                  )
@@ -22,6 +23,7 @@ class Test(models.Model):
                                     to=Course, 
                                     related_name='online_tests'
                                     )
+    countdown = models.DurationField(null=True, blank=True, default=None)
 
     def __str__(self):
         return self.test_name
@@ -53,7 +55,7 @@ class Question(models.Model):
                                        null=True
                                        )
     test = models.ForeignKey(verbose_name='Тест',
-                             to=Test, 
+                             to=OnlineTest, 
                              related_name='questions', 
                              on_delete=models.CASCADE
                              )
@@ -97,33 +99,15 @@ class UserTest(models.Model):
                              on_delete=models.CASCADE
                              )
     test = models.ForeignKey(verbose_name='Тест',
-                             to=Test, 
+                             to=OnlineTest, 
                              related_name='user_tests', 
                              on_delete=models.CASCADE
                              )
-    date_taken = models.DateTimeField(verbose_name='Дата тестирование',
-                                      auto_now_add=True
-                                      )
-    correct_answers = models.IntegerField(verbose_name='Правильные ответы',
-                                          default=0
-                                          )
-    incorrect_answers = models.IntegerField(verbose_name='Неправильные ответы',
-                                            default=0
-                                            )
+    attempts = models.IntegerField(default=0)
+    correct_answer_count = models.IntegerField(default=0)
+                                          
+    incorrect_answer_cnt = models.IntegerField(default=0)
 
-    def count_answers(self):
-        answers = self.user_answers.all()
-        total = answers.count()
-        correct = answers.filter(answer__is_correct=True).count()
-        incorrect = total - correct
-        return correct, incorrect
-
-    def update_answer_counts(self):
-        correct = self.user_answers.filter(answer__is_correct=True).count()
-        incorrect = self.user_answers.count() - correct
-        self.correct_answers = correct
-        self.incorrect_answers = incorrect
-        self.save()
 
     def __str__(self):
         return f'Test {self.test} taken by {self.user}'
@@ -131,28 +115,5 @@ class UserTest(models.Model):
     class Meta:
         verbose_name='Тесты ученика'
         verbose_name_plural='Тесты ученика'
+        unique_together = ('user', 'test')
 
-
-class UserAnswer(models.Model):
-    user_test = models.ForeignKey(verbose_name='Тесты учеников',
-                                  to=UserTest, 
-                                  related_name='user_answers', 
-                                  on_delete=models.CASCADE
-                                  )
-    question = models.ForeignKey(verbose_name='Вопросы',
-                                 to=Question, 
-                                 related_name='user_answers', 
-                                 on_delete=models.CASCADE
-                                 )
-    answer = models.ForeignKey(verbose_name='Ответы',
-                               to=Answer, 
-                               related_name='user_answers', 
-                               on_delete=models.CASCADE
-                               )
-
-    def __str__(self):
-        return f'Answer by {self.user_test.user} to {self.question}'
-
-    class Meta:
-        verbose_name='Ответы учеников'
-        verbose_name_plural='Ответы учеников'

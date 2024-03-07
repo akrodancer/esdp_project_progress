@@ -1,0 +1,271 @@
+.detail-page {
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    background: url("../images/pngwing1.png") no-repeat bottom right;
+}
+
+/* информация о студенте */
+
+#blocks-container {
+    margin-top: 50px;
+    display: inline;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+#left-block, #right-block {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* левый блок */
+
+#left-block img {
+    width: 182px;
+    height: 182px;
+    border-radius: 50%;
+}
+
+#left-block h2 {
+    margin: 38px 0;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+#info-block {
+    box-shadow: 0 0 5px 1px #00000080;
+    background-color: #044691;
+    border-radius: 15px;
+    padding: 10px 46px;
+    width: 626px;
+    height: 379px;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+#info-block-content {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+#info-block-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-row {
+    display: flex;
+}
+
+
+.info-label, .info-value {
+    margin: 21px 0 0 0;
+    position: relative;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.info-label::after {
+    content: '';
+    position: absolute;
+    left: 92%;
+    width: 1px;
+    height: 60px;
+    background-color: #ffffff;
+    transform: translateY(-20%);
+}
+
+.info-label {
+    flex-basis: 250px;
+}
+
+/* правый блок */
+
+#right-block {
+    margin: 15px 0 0 144px;
+}
+
+#attendance img {
+    margin: 0 25px;
+}
+
+#attendance h3 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    margin: 0;
+}
+
+#present, #absent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+#attendance-text {
+    padding-top: 15px;
+}
+
+#green, #red {
+    height: 56px;
+    width: 217px;
+    border-radius: 15px;
+    text-align: center;
+    color: #ffffff;
+    display: inline-block;
+    line-height: 56px;
+    margin: 0 0 0 16px;
+}
+
+#red {
+    background-color: rgba(196, 62, 62, 1);
+}
+
+#green {
+    background-color: rgba(0, 102, 10, 1);
+}
+
+/*Календарь*/
+
+#calendar {
+    width: 480px;
+    height: 449px;
+    margin-top: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 15px;
+    background-color: #044691;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 0 5px 1px #00000080;
+}
+
+#calendar header {
+    text-align: center;
+    background-color: #ffffff;
+    color: #1b1b1b;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 2px 8px;
+    width: 73px;
+    height: 22px;
+    margin: 20px auto 0 auto;
+}
+
+#calendar table {
+    width: 409px;
+    height: 374px;
+    border-collapse: collapse;
+    font-family: "Inter", sans-serif;
+    margin-left: 35px;
+}
+
+#calendar th {
+    font-weight: 500;
+}
+
+#calendar td {
+    font-weight: 400;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+#calendar td.is-viewing {
+    background: green;
+    width: 24px;
+    height: 24px;
+}
+
+#calendar td.not-viewing {
+    background-color: red;
+    width: 24px;
+    height: 24px;
+}
+
+/*Комментарии*/
+
+.feedback-section {
+    display: inline-block;
+    padding: 220px;
+    margin-right: 26%;
+}
+
+.feedback-content {
+    max-width: 100%;
+    margin-left: 0;
+    text-align: left;
+}
+
+
+
+.feedback-section form, h3 {
+    font-weight: 500;
+    font-size: 24px;
+    display: flex;
+    justify-content: left;
+}
+
+#comments-container {
+    overflow-y: auto;
+    margin: 20px 0;
+    width: 600px;
+    height: 300px;
+}
+
+.comment {
+    border: 1px solid #ffffff;
+    width: 500px;
+    min-height: 100px;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    background-color: #044691;
+    font-size: 30px;
+    text-align: left;
+    word-wrap: anywhere;
+}
+
+.comment-info {
+    border-top: 1px solid #ffffff;
+    padding-top: 10px;
+    font-size: 15px
+}
+
+#comment-input textarea {
+    width: 760px;
+    height: 300px;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 15px;
+    box-shadow: 0 0 5px 1px #00000080;
+}
+
+/* для средних и маленьких экранов */
+
+@media (max-width: 1255px) {
+    #right-block {
+        margin: 20px auto;
+    }
+
+    .feedback-section {
+        margin: 0;
+    }
+}
+
+@media (max-width: 1025px) {
+    #comment-input textarea {
+        max-width: 500px;
+    }
+}

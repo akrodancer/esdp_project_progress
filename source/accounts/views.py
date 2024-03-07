@@ -1,16 +1,28 @@
-from typing import Any
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
 from django.contrib.auth import login, logout, authenticate, get_user_model
-from django.views.generic import CreateView, DetailView, ListView, View
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, View, FormView
+from accounts.models import User
+from accounts.forms import NewUserForm, LoginUserForm
+from typing import Any
+from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from .forms import CommentForm, SignedUpUsersForm
 from .models import Comment
 from .forms import NewUserForm, LoginUserForm
 from .json_form_handler import JsonFormHandler
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
+from django.shortcuts import redirect, reverse, get_object_or_404
+from django.contrib.auth import login, get_user_model
+from django.views.generic import CreateView, DetailView, UpdateView, ListView, View, FormView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from accounts.forms import CommentForm
+from accounts.models import Comment
 from courses.models import Visit, Course
 
 def logout_view(request):
@@ -37,7 +49,6 @@ class UserLogin(View):
             next_url = reverse('courses:index')
         return next_url
 
-
 class UserRegisterView(CreateView):
     model = get_user_model()
     template_name = 'accounts/registration.html'
@@ -52,22 +63,12 @@ class UserRegisterView(CreateView):
 class StudentListView(ListView):
     template_name = 'accounts/student_list.html'
     model = get_user_model()
+    filterset_class = StudentFilter
+    template_name = 'accounts/student_list.html'
     context_object_name = 'students'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        search_query = self.request.GET.get('search', None)
-        if search_query:
-            name_parts = search_query.split(' ')
-            if len(name_parts) >= 2:
-                queryset = queryset.filter(
-                    Q(first_name__iexact=name_parts[0]) & Q(last_name__iexact=name_parts[1]),
-                    role='user'
-                )
-            else:
-                queryset = queryset.none()
-        else:
-            queryset = queryset.none()
+        queryset = get_user_model().objects.none()
         return queryset
 
 
@@ -75,6 +76,16 @@ class StudentDetailView(DetailView):
     model = get_user_model()
     template_name = 'accounts/student_detail.html'
     context_object_name = 'student'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.role != 'user':
+            raise Http404('Страница не найдена')
+        course_id = self.request.GET.get('course')
+        if not course_id:
+            raise Http404('Страница не найдена')
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -84,25 +95,40 @@ class StudentDetailView(DetailView):
         if course_id:
             selected_course = get_object_or_404(Course, id=course_id)
             teachers = selected_course.teacher.all()
-            visits = Visit.objects.filter(students=student, lesson__course=selected_course)
+            visits = Visit.objects.all()
+            visits_data = ([{'visit_date': visit.visit_date.isoformat(),
+                             'is_currently_viewing': True if visit.is_currently_viewing else False,
+                             'student': visit.students.id,
+                             'course': visit.lesson.course.id,
+                             }
+                            for visit in visits])
             comments = Comment.objects.filter(student__id=student_id)
+            context['filter'] = StudentFilter
             context['teachers'] = teachers
             context['selected_course'] = selected_course
-            context['visits'] = visits
+            context['visits_data'] = visits_data
             context['comment_form'] = CommentForm()
             context['comments'] = comments
             context['student'] = student
         return context
 
-    def post(self, request, *args, **kwargs):
-        student_id = self.kwargs['pk']
-        student = get_object_or_404(get_user_model(), pk=student_id)
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            content = comment_form.cleaned_data['content']
-            teacher = request.user
-            Comment.objects.create(content=content, teacher=teacher, student=student)
-        url = reverse('accounts:student_detail', kwargs={'pk': student_id})
+
+class CommentCreateView(UserPassesTestMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'student_detail.html'
+
+    def test_func(self):
+        return self.request.user.role == 'teacher'
+
+    def form_valid(self, form):
+        student = get_object_or_404(get_user_model(), pk=self.kwargs.get('pk'))
+        comment = form.save(commit=False)
+        comment.student = student
+        comment.teacher = self.request.user
+        comment.save()
+        course_id = self.request.GET.get('course', '')
+        url = reverse('accounts:student_detail', kwargs={'pk': student.pk}) + f'?course={course_id}'
         return HttpResponseRedirect(url)
 
 

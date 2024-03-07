@@ -9,30 +9,30 @@ class Course(models.Model):
     course_name = models.CharField(verbose_name='Название курса', 
                                    max_length=255
                                    )
-    description = models.TextField(verbose_name='Описание', 
-                                   max_length=5000, 
-                                   null=True, 
+    description = models.TextField(verbose_name='Описание',
+                                   max_length=5000,
+                                   null=True,
                                    blank=True
                                    )
     date_start = models.DateField(verbose_name='Дата начала')
     date_finish = models.DateField(verbose_name='Дата окончания')
-    course_image = models.ImageField('Изображение', 
-                                     upload_to=CourseUpload._upload, 
-                                     null=True, 
+    course_image = models.ImageField('Изображение',
+                                     upload_to=CourseUpload._upload,
+                                     null=True,
                                      blank=True
                                      )
-    teacher = models.ManyToManyField(to=User, verbose_name='Учители', 
-                                     limit_choices_to={'role': 'teacher'}, 
+    teacher = models.ManyToManyField(to=User, verbose_name='Учители',
+                                     limit_choices_to={'role': 'teacher'},
                                      related_name='courses_taught'
                                      )
-    students = models.ManyToManyField(to=User, verbose_name='Ученики', 
-                                      limit_choices_to={'role': 'user'}, 
+    students = models.ManyToManyField(to=User, verbose_name='Ученики',
+                                      limit_choices_to={'role': 'user'},
                                       related_name='enrolled_courses',
                                       blank=True
                                       )
-    paid_by = models.ManyToManyField(to=User, verbose_name='Те, кто оплатил', 
-                                     limit_choices_to={'role': 'user'}, 
-                                     related_name='paid_courses', 
+    paid_by = models.ManyToManyField(to=User, verbose_name='Те, кто оплатил',
+                                     limit_choices_to={'role': 'user'},
+                                     related_name='paid_courses',
                                      blank=True
                                      )
     class Meta:
@@ -49,18 +49,18 @@ class Course(models.Model):
 
 class Lesson(models.Model):
     lesson_name = models.CharField(verbose_name='Название урока',
-                                    max_length=255, 
-                                    null=True, 
-                                    blank=True)
+                                   max_length=255,
+                                   null=True,
+                                   blank=True)
     grade = models.PositiveIntegerField(verbose_name='Уровень')
-    description = models.TextField(verbose_name='Информация', 
-                                   max_length=5000, 
-                                   null=True, 
+    description = models.TextField(verbose_name='Информация',
+                                   max_length=5000,
+                                   null=True,
                                    blank=True
                                    )
-    video = models.URLField(verbose_name='Ссылка на запись урока', 
-                            max_length=200, 
-                            null=True, 
+    video = models.URLField(verbose_name='Ссылка на запись урока',
+                            max_length=200,
+                            null=True,
                             blank=True
                             )
     datetime = models.DateTimeField(verbose_name='Дата и время', )

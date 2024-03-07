@@ -6,6 +6,18 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import check_password
 
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(),
+        }
+        labels = {
+            'content': '',
+        }
+
+
 class NewUserForm(UserCreationForm):
     password1 = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
     password2 = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}))
@@ -17,7 +29,7 @@ class NewUserForm(UserCreationForm):
             'email',
             'phone',
         ]
-    
+
         widgets = {
             'username' : forms.TextInput(attrs={'placeholder': 'Логин'}),
             'first_name' : forms.TextInput(attrs={'placeholder': 'Имя'}),
