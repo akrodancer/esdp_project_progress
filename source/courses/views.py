@@ -1,42 +1,58 @@
-from django.shortcuts import render
 from django.views.generic import ListView
-from django.views.generic.base import TemplateView, View
-from accounts.models import User
+from django.views.generic.base import TemplateView
+from django.contrib.auth import get_user_model
 from courses.models import Course, Lesson
-from accounts.forms import NewUserForm, LoginUserForm
+from pages.models import PageModel
 
 
 class IndexPageView(TemplateView):
     template_name = 'courses/index.html'
-
-
-class AboutUsView(ListView):
-    model = User
-    template_name = 'courses/about_us.html'
-    context_object_name = 'teachers'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['teachers'] = User.objects.filter(role='teacher')[0:4]
-        teachers1 = []
-        count = 4
-        for i in range(50):
-            teachers1.append(User.objects.filter(role='teacher')[count:count + 4])
-            count += 4
-        context['teachers1'] = teachers1
+        context['courses'] = Course.objects.all()
+        try:
+            context['page'] = PageModel.objects.get(path=self.request.path)
+        except:
+            pass
         return context
 
 
-class CoursesView(ListView):
-    model = Course
+class AboutUsView(ListView):
+    model = get_user_model()
+    template_name = 'courses/about_us.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['teachers'] = get_user_model().user_set.get_teachers()[0:4]
+        teachers1 = []
+        count = 4
+        for i in range(50):
+            teachers1.append(get_user_model().user_set.get_teachers()[count:count + 4])
+            count += 4
+        context['teachers1'] = teachers1
+        try:
+            context['page'] = PageModel.objects.get(path=self.request.path)
+        except:
+            pass
+        return context
+
+
+class CoursesView(TemplateView):
     template_name = 'courses/courses_view.html'
-    context_object_name = 'courses'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['courses'] = Course.objects.all()
+        try:
+            context['page'] = PageModel.objects.get(path=self.request.path)
+        except:
+            pass
+        return context
 
 class LessonsView(ListView):
     model = Lesson
     template_name = 'courses/lesson_view.html'
     context_object_name = 'lessons'
-    paginate_by = 16
+    paginate_by = 16 
     paginate_orphans = 3
     ordering = ('-datetime',)
 

@@ -3,20 +3,26 @@ from django.db import models
 
 from courses import QuestionUpload, AnswerUpload
 from courses.models import Course
-from .online_test_types import ONLINE_TEST_TYPES
+from .online_test_type_choices import OnlineTestTypeChoices
+
 
 
 class OnlineTest(models.Model):
-    class Meta:
-        verbose_name = 'Онлайн тест'
-        verbose_name_plural = 'Онлайн тесты'
-
-    test_name = models.CharField(max_length=255)
-    difficulty = models.CharField(max_length=40)
-    test_type = models.CharField(max_length=4, choices=ONLINE_TEST_TYPES,
-                                 default=ONLINE_TEST_TYPES.FREE)
-    course = models.ManyToManyField(Course, related_name='online_tests')
-
+    test_name = models.CharField(verbose_name='Название',
+                                 max_length=255
+                                 )
+    difficulty = models.CharField(verbose_name='Сложность',
+                                  max_length=40
+                                  )
+    test_type = models.CharField(verbose_name='Тип',
+                                 max_length=4, 
+                                 choices=OnlineTestTypeChoices, 
+                                 default=OnlineTestTypeChoices.FREE
+                                 )
+    course = models.ManyToManyField(verbose_name='Курс',
+                                    to=Course, 
+                                    related_name='online_tests'
+                                    )
     countdown = models.DurationField(null=True, blank=True, default=None)
 
     def __str__(self):
@@ -29,35 +35,85 @@ class OnlineTest(models.Model):
         if self.course.is_paid_by(user):
             return True
         return False
+    
+    class Meta:
+        verbose_name = 'Онлайн тест'
+        verbose_name_plural = 'Онлайн тесты'
 
 
 class Question(models.Model):
-    question_name = models.CharField(max_length=255)
-    question_text = models.TextField(max_length=2500, blank=True, null=True)
-    question_image = models.ImageField(upload_to=QuestionUpload._upload, blank=True, null=True)
-    test = models.ForeignKey(to=OnlineTest, related_name='questions', on_delete=models.CASCADE)
+    question_name = models.CharField(verbose_name='Название',
+                                     max_length=255
+                                     )
+    question_text = models.TextField(verbose_name='Описание',
+                                    blank=True, 
+                                    null=True
+                                    )
+    question_image = models.ImageField(verbose_name='Изображение',
+                                       upload_to=QuestionUpload._upload, 
+                                       blank=True, 
+                                       null=True
+                                       )
+    test = models.ForeignKey(verbose_name='Тест',
+                             to=OnlineTest, 
+                             related_name='questions', 
+                             on_delete=models.CASCADE
+                             )
 
     def __str__(self):
         return self.question_name
 
+    class Meta:
+        verbose_name='Вопросы'
+        verbose_name_plural='Вопросы'
 
 class Answer(models.Model):
-    is_correct = models.BooleanField()
-    answer_text = models.TextField(max_length=2500, blank=True, null=True)
-    answer_image = models.ImageField(upload_to=AnswerUpload._upload, blank=True, null=True)
-    question = models.ForeignKey(to=Question, related_name='answers', on_delete=models.CASCADE)
+    is_correct = models.BooleanField(verbose_name='Правильный')
+    answer_text = models.TextField(verbose_name='Описание',
+                                   blank=True, 
+                                   null=True
+                                   )
+    answer_image = models.ImageField(verbose_name='Изображение',
+                                    upload_to=AnswerUpload._upload, 
+                                    blank=True, 
+                                    null=True
+                                    )
+    question = models.ForeignKey(verbose_name='Вопрос',
+                                 to=Question, 
+                                 related_name='answers', 
+                                 on_delete=models.CASCADE
+                                 )
 
     def __str__(self):
         return str(self.pk)
+    
+    class Meta:
+        verbose_name='Ответ'
+        verbose_name_plural='Ответ'
 
 
 class UserTest(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    correct_answer_count = models.IntegerField(default=0)
-    incorrect_answer_cnt = models.IntegerField(default=0)
-    test = models.ForeignKey(to=OnlineTest, related_name='user_tests', on_delete=models.CASCADE, blank=True,
-                             null=True)
+    user = models.ForeignKey(verbose_name='Пользователь',
+                             to=settings.AUTH_USER_MODEL, 
+                             related_name='user_tests', 
+                             on_delete=models.CASCADE
+                             )
+    test = models.ForeignKey(verbose_name='Тест',
+                             to=OnlineTest, 
+                             related_name='user_tests', 
+                             on_delete=models.CASCADE
+                             )
     attempts = models.IntegerField(default=0)
+    correct_answer_count = models.IntegerField(default=0)
+                                          
+    incorrect_answer_cnt = models.IntegerField(default=0)
 
+
+    def __str__(self):
+        return f'Test {self.test} taken by {self.user}'
+    
     class Meta:
+        verbose_name='Тесты ученика'
+        verbose_name_plural='Тесты ученика'
         unique_together = ('user', 'test')
+

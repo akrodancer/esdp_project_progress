@@ -1,7 +1,7 @@
 from django.contrib import admin
-from site_pages.models import PageFlatText
+from pages.models import PageModel
 
-@admin.register(PageFlatText)
+@admin.register(PageModel)
 class PageFlatTextAdmin(admin.ModelAdmin):
     list_display = ('title', 'path')
 

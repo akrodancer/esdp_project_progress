@@ -1,29 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth import login, logout, authenticate, get_user_model
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
-from accounts.forms import NewUserForm, LoginUserForm
 from typing import Any
-from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
-from django.http import HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.shortcuts import redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate, get_user_model
+from django.views.generic import CreateView, DetailView, ListView, View
 from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
-from django.shortcuts import redirect, reverse, get_object_or_404
-from django.contrib.auth import login, get_user_model
-from django.views.generic import CreateView, DetailView, UpdateView, ListView, View, FormView
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import UserPassesTestMixin
-from accounts.forms import CommentForm
-from accounts.models import Comment
+from django.urls import reverse
 from courses.models import Visit, Course
-from django.contrib.auth.views import PasswordChangeView
-from courses.models import Course, Visit, Lesson
-from accounts.models import Comment, User
-from django_filters.views import FilterView
+from .models import Comment
+from .json_form_handler import JsonFormHandler
+from .forms import NewUserForm, LoginUserForm, CommentForm, SignedUpUsersForm
 from .filters import StudentFilter
-
-
-# Create your views here.
 
 def logout_view(request):
     logout(request)
@@ -33,26 +22,25 @@ def logout_view(request):
 class UserLogin(View):
     def post(self, request, *args, **kwargs):
         form = LoginUserForm(request.POST)
-        current_user = authenticate(request,
+        if form.is_valid():
+            current_user = authenticate(request, 
                                     username=form['username'].value(),
                                     password=form['password'].value())
-        if current_user:
             login(request, current_user)
-
-        return redirect(reverse('courses:index'))
-
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            messages.error(request, 'Неверный логин или пароль')
+            return HttpResponseRedirect(self.get_success_url())
+            
     def get_success_url(self):
-        next_url = self.request.GET.get('next')
-        if not next_url:
-            next_url = self.request.POST.get('next')
+        next_url = self.request.POST.get('next')
         if not next_url:
             next_url = reverse('courses:index')
         return next_url
 
-
 class UserRegisterView(CreateView):
-    model = User
-    template_name = 'accounts/sign_up.html'
+    model = get_user_model()
+    template_name = 'accounts/registration.html'
     form_class = NewUserForm
 
     def form_valid(self, form):
@@ -61,7 +49,8 @@ class UserRegisterView(CreateView):
         return redirect(reverse('courses:index'))
 
 
-class StudentListView(FilterView, ListView):
+class StudentListView(ListView):
+    template_name = 'accounts/student_list.html'
     model = get_user_model()
     filterset_class = StudentFilter
     template_name = 'accounts/student_list.html'
@@ -132,3 +121,10 @@ class CommentCreateView(UserPassesTestMixin, CreateView):
         return HttpResponseRedirect(url)
 
 
+class SignUpUsersView(View):
+    def post(self, request, *args, **kwargs):
+        record = JsonFormHandler(request=self.request, 
+                                form=SignedUpUsersForm)
+        record.create_object()
+        
+        return record.response()

@@ -1,16 +1,12 @@
 from django.db import models
-
-from accounts.models import User
-from courses.lesson_types import LESSON_TYPES
+from .lesson_choices import LessonTypeChoices
 from . import CourseUpload
+from accounts.models import User
+from django.contrib.auth import get_user_model
 
 
 class Course(models.Model):
-    class Meta:
-        verbose_name = "Курсы"
-        verbose_name_plural = "Курсы"
-
-    course_name = models.CharField(verbose_name='Название курса',
+    course_name = models.CharField(verbose_name='Название курса', 
                                    max_length=255
                                    )
     description = models.TextField(verbose_name='Описание',
@@ -39,6 +35,10 @@ class Course(models.Model):
                                      related_name='paid_courses',
                                      blank=True
                                      )
+    class Meta:
+        verbose_name = "Курсы"
+        verbose_name_plural = "Курсы"
+
 
     def __str__(self):
         return self.course_name
@@ -48,10 +48,6 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
-    class Meta:
-        verbose_name = 'Урок'
-        verbose_name_plural = 'Урок'
-
     lesson_name = models.CharField(verbose_name='Название урока',
                                    max_length=255,
                                    null=True,
@@ -68,16 +64,17 @@ class Lesson(models.Model):
                             blank=True
                             )
     datetime = models.DateTimeField(verbose_name='Дата и время', )
-    course = models.ForeignKey(to=Course, verbose_name='Курс',
-                               related_name='lessons',
-                               on_delete=models.SET_NULL,
-                               null=True,
+    course = models.ForeignKey(to=Course, 
+                               verbose_name='Курс', 
+                               related_name='lessons', 
+                               on_delete=models.SET_NULL, 
+                               null=True, 
                                blank=True
                                )
     lesson_type = models.CharField(verbose_name='Бесплатный/платный',
-                                   max_length=4,
-                                   choices=LESSON_TYPES,
-                                   default=LESSON_TYPES.FREE
+                                    max_length=4, 
+                                   choices=LessonTypeChoices, 
+                                   default=LessonTypeChoices.FREE
                                    )
 
     def __str__(self):
@@ -85,25 +82,41 @@ class Lesson(models.Model):
 
     def is_accessible_by(self, user):
 
-        if self.lesson_type == 'free':
+        if self.lesson_type == LessonTypeChoices.FREE:
             return True
         if self.course.is_paid_by(user):
             return True
         return False
+    
+    class Meta:
+        verbose_name = 'Урок'
+        verbose_name_plural = 'Урок'
 
 
 class Visit(models.Model):
-    class Meta:
-        verbose_name = "Посещения"
-        verbose_name_plural = "Посещения"
-
     is_currently_viewing = models.BooleanField()
-    visit_date = models.DateField(auto_now_add=True)
-    students = models.ForeignKey(to=User, limit_choices_to={'role': 'user'}, related_name='visits',
-                                 on_delete=models.SET_NULL, null=True, blank=True)
-    lesson = models.ForeignKey(to=Lesson, related_name='visits', on_delete=models.CASCADE)
+    visit_date = models.DateTimeField(verbose_name='Дата посеения',
+                                      auto_now_add=True
+                                      )
+    students = models.ForeignKey(verbose_name='Студент',
+                                 to=User, 
+                                 limit_choices_to={'role', 'user'}, 
+                                 related_name='visits',
+                                 on_delete=models.SET_NULL, 
+                                 null=True, 
+                                 blank=True
+                                 )
+    lesson = models.ForeignKey(verbose_name='Урок',
+                               to=Lesson, 
+                               related_name='visits', 
+                               on_delete=models.CASCADE
+                               )
 
     def __str__(self):
         return f'Visit by {self.students} on {self.visit_date}'
 
+
+    class Meta:
+            verbose_name = "Посещения"
+            verbose_name_plural = "Посещения"
 
