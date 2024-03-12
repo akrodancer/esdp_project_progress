@@ -1,25 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/test_passing.css' %}">
+    <link rel="stylesheet" href="{% static '/css/testPassing.css' %}">
 {% endblock %}
 {% block title %}Test Passing{% endblock %}
 
 {% block content %}
     <div class="container text-center mt-5 mb-5">
         <h1>{{ test.test_name }}</h1>
-        {% csrf_token %}
-        <div id="test-end-container" data-countdown="{{ countdown_seconds }}">
-            <button class="btn btn-primary btn1" id="submitButton">Завершить тест</button>
-            <span id="countdown"></span>
-        </div>
-        <div id="test-container" data-test-id="{{ test.id }}"></div>
+
+        <div id="question-container" data-test-id="{{ test.id }}"></div>
         <div class="mt-3 mb-3">
             <button type="button" class="btn btn-primary btn1" id="prevButton">Предыдущий</button>
             <button type="button" class="btn btn-primary btn1" id="nextButton">Следующий</button>
         </div>
+        <div id="chekboxes-container" data-checkboxes="{{ test_id }}" class="checkboxes"></div>
+        <div id="end-container">
+            {% csrf_token %}
+            <div id="test-end-container" data-countdown="{{ countdown_seconds }}">
+                <button class="btn btn-primary btn1" id="submitButton">Завершить тест</button>
+                <span id="countdown"></span>
+            </div>
+        </div>
 
-        <script src="{% static 'js/courseTestPassing.js' %}"></script>
-        <script src="{% static 'js/coutdown.js' %}"></script>
     </div>
+    <script src="{% static 'js/courseTestPassing.js' %}"></script>
 {% endblock %}
+
+
+{##}
+{#    Вопросы:#}
+{#        questionContainer: Контейнер для каждого вопроса. Классы: col-md-6.#}
+{#        questionContent: Контейнер для содержимого вопроса (текст вопроса или изображение). Классы: card-body.#}
+{#        questionTitle: Заголовок вопроса. Классы: card-title.#}
+{#        imageElement: Изображение вопроса (если имеется). Классы: card-img-top.#}
+{#        answersList: Список ответов на вопрос. Классы: list-group, list-group-horizontal.#}
+{#        answerItem: Элемент списка с ответом (текст ответа или изображение). Классы: list-group-item, flex-fill, border-0.#}
+{##}
+{#    Чекбоксы:#}
+{#        answersContainer: Контейнер для ответов на один вопрос. Классы: d-flex, answers.#}
+{#        questionNumberSpan: Элемент для отображения порядкового номера вопроса.#}
+{#        checkboxContainer: Контейнер для чекбокса ответа. Классы: answer-container, custom-checkbox.#}
+{#        checkbox: Чекбокс для выбора ответа. Нет примененных классов.#}
+{#        imageElement: Изображение ответа (если имеется). Нет примененных классов.#}
+{#        textElement: Текстовый элемент ответа. Нет примененных классов.#}
+{##}
+{#    Группы контейнеров:#}
+{#        groupContainer: Контейнер для группы ответов на несколько вопросов. Классы: group-container.#}

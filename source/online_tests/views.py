@@ -8,7 +8,7 @@ from django.views.generic import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import OnlineTest, Question, UserTest
+from .models import OnlineTest, Question, UserTest, Answer
 from .serializers import TestSerializer
 
 
@@ -17,12 +17,17 @@ class TestPassingView(LoginRequiredMixin, View):
         test = get_object_or_404(OnlineTest, id=test_id)
         user = request.user
         user_test, created = UserTest.objects.get_or_create(user=user, test=test)
+        answers = []
 
         questions = Question.objects.filter(test=test)
+        for question in questions:
+            question_answers = Answer.objects.filter(question_id=question.pk)
+            answers = question_answers
         context = {
             'test': test,
             'questions': questions,
             'countdown_seconds': test.countdown.total_seconds(),
+            'answers': answers
         }
         return render(request, 'course_tests/test_passing.html', context)
 
@@ -61,6 +66,8 @@ class TestSubmitView(View):
                     correct_count += 1
                 else:
                     incorrect_count += 1
+            else:
+                incorrect_count += 1
 
         return correct_count, incorrect_count
 
@@ -79,6 +86,7 @@ class TestSubmitView(View):
         user_test = UserTest.objects.get(user=user, test=test)
         TestSubmitView.save_test_results(user_test, correct_count, incorrect_count)
         return JsonResponse({"user_test_id": user_test.id})
+
 
 
 def test_results(request, user_test_id):
