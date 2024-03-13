@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -23,11 +24,14 @@ class TestPassingView(LoginRequiredMixin, View):
         for question in questions:
             question_answers = Answer.objects.filter(question_id=question.pk)
             answers = question_answers
+
+        server_time = datetime.datetime.now()
         context = {
             'test': test,
             'questions': questions,
             'countdown_seconds': test.countdown.total_seconds(),
-            'answers': answers
+            'answers': answers,
+            'server_time': server_time.strftime('%Y-%m-%dT%H:%M:%S')
         }
         return render(request, 'course_tests/test_passing.html', context)
 
@@ -75,6 +79,7 @@ class TestSubmitView(View):
     def save_test_results(user_test, correct_count, incorrect_count):
         user_test.correct_answer_count = correct_count
         user_test.incorrect_answer_cnt = incorrect_count
+        user_test.attempts += 1
         user_test.save()
         return user_test
 
@@ -86,7 +91,6 @@ class TestSubmitView(View):
         user_test = UserTest.objects.get(user=user, test=test)
         TestSubmitView.save_test_results(user_test, correct_count, incorrect_count)
         return JsonResponse({"user_test_id": user_test.id})
-
 
 
 def test_results(request, user_test_id):

@@ -4,7 +4,8 @@ let nextButton = document.getElementById('nextButton');
 let prevButton = document.getElementById('prevButton');
 let currentIndex = 0;
 let testData = null;
-let selectedAnswers = {};
+let selectedAnswers = JSON.parse(localStorage.getItem('selectedAnswers')) || {};
+let checkboxShapes = JSON.parse(localStorage.getItem('checkboxShapes')) || {};
 
 fetch(`api/v1`)
     .then(response => response.json())
@@ -89,31 +90,58 @@ function displayCheckboxes() {
         checkbox.value = answer.id;
         checkbox.dataset.questionId = questionId;
 
+        if (selectedAnswers[questionId] && selectedAnswers[questionId].includes(answer.id)) {
+            checkbox.checked = true;
+            checkboxContainer.style.backgroundColor = '#4484CF';
+            if (checkboxShapes[questionId] && checkboxShapes[questionId][answer.id]) {
+                checkboxContainer.style.borderRadius = checkboxShapes[questionId][answer.id];
+            }
+        }
+
         checkboxContainer.addEventListener('click', function () {
-            if (!checkbox.checked) {
+            if (!checkbox.checked && (!selectedAnswers[questionId] || selectedAnswers[questionId].length < 2)) {
                 checkbox.checked = true;
-                checkboxContainer.style.backgroundColor = checkbox.checked ? '#4484CF' : '#aaaaaa';
+                checkboxContainer.style.backgroundColor = '#4484CF';
 
                 if (!selectedAnswers[questionId]) {
                     selectedAnswers[questionId] = [];
                 }
 
+                selectedAnswers[questionId].push(answer.id);
+
+                localStorage.setItem('selectedAnswers', JSON.stringify(selectedAnswers));
+
                 if (selectedAnswers[questionId].length === 1) {
-                    checkboxContainer.style.borderRadius = "0";
+                    if (!checkboxShapes[questionId]) {
+                        checkboxShapes[questionId] = {};
+                    }
+                    checkboxShapes[questionId][answer.id] = "100%";
+                } else {
+                    checkboxShapes[questionId][answer.id] = "0";
                 }
 
-                selectedAnswers[questionId].push(answer.id);
-                if (selectedAnswers[questionId].length > 2) {
-                    checkbox.checked = false;
-                    checkboxContainer.style.backgroundColor = checkbox.checked ? '#4484CF' : '#aaaaaa';
-                    selectedAnswers[questionId].pop();
-                }
+                localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
+                checkboxContainer.style.borderRadius = checkboxShapes[questionId][answer.id];
+
                 console.log(selectedAnswers);
+            } else if (checkbox.checked) {
+                const index = selectedAnswers[questionId].indexOf(answer.id);
+                if (index > -1) {
+                    selectedAnswers[questionId].splice(index, 1);
+                    checkboxShapes[questionId][answer.id] = "0";
+                    checkboxContainer.style.borderRadius = "0";
+                }
+                checkbox.checked = false;
+                checkboxContainer.style.backgroundColor = '#aaaaaa';
+                localStorage.setItem('selectedAnswers', JSON.stringify(selectedAnswers));
+                localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
             }
         });
+
         checkboxContainer.appendChild(checkbox);
         return checkboxContainer;
     }
+
 
     let groupContainer;
     let questionCounter = 1;
@@ -175,6 +203,8 @@ document.getElementById('submitButton').onclick = function () {
         })
         .then(data => {
             console.log(data);
+            localStorage.removeItem('selectedAnswers');
+            localStorage.removeItem('checkboxShapes');
             window.location.href = `/online_tests/test/results/${data.user_test_id}/`;
         })
         .catch(error => {
