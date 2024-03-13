@@ -317,7 +317,9 @@ a, a:hover, a:visited, a:active {
     padding-top: 10px;
     padding-bottom: 15px;
 }
-
+.card-generate img {
+    border-radius: 15px;
+}
 .card_about_as {
     padding: 20px;
     background-color: #044691;
@@ -417,12 +419,13 @@ a, a:hover, a:visited, a:active {
     height: 500px;
     background-color: white;
     border: 1px solid black;
+    
 }
 
 .reviews_p {
     text-align: center;
     width: 60%;
-    margin: 0 auto;
+    margin: 0 auto;word-wrap: break-word;
 }
 
 .div_review h5 {

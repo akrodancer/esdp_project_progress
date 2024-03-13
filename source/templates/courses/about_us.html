@@ -19,7 +19,7 @@
             <div id="carouselExample" class="carousel slide">
                 <div class="teacher_carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                         <div class="carousel-item active">
                             <div class="d-flex">
                                 {% for teacher in teachers %}
                                     <div class="card teacher_card rounded-4 mx-2">
@@ -39,10 +39,10 @@
                                     </div>
                                 {% endfor %}
                             </div>
-                        </div>
+                        </div> 
                         {% for teacher_s in teachers1 %}
                             {% if teacher_s.count %}
-                                <div class="carousel-item">
+                                <div class="carousel-item {% if forloop.counter == 0 %}active{% endif %}">
                                     <div class="d-flex">
                                         {% for teacher in teacher_s %}
                                             <div class="card teacher_card rounded-4 mx-2">

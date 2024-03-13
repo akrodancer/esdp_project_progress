@@ -4,6 +4,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.views.generic import CreateView, DetailView, ListView, View
+from django_filters.views import FilterView
 from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -49,7 +50,7 @@ class UserRegisterView(CreateView):
         return redirect(reverse('courses:index'))
 
 
-class StudentListView(ListView):
+class StudentListView(FilterView, ListView):
     template_name = 'accounts/student_list.html'
     model = get_user_model()
     filterset_class = StudentFilter
