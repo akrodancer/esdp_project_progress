@@ -1,20 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/noteworthy');
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
 {% endblock %}
 {% block content %}
+
+    {#    блок о нас#}
     <div class="about_us">
         <div class="container">
-            {{page.text_primary|safe}}
+            <div class="about_us_content">
+                <h2>о нас</h2>
+                <p>Учебный центр ПРОГРЕСС — ваш надежный партнер в образовании на
+                    протяжении двух лет и
+                    более. Мы предоставляем курсы по различным предметам, а также гибкий график занятий,
+                    чтобы удовлетворить ваши потребности. Наша команда предлагает индивидуальные, парные и
+                    групповые занятия по доступным ценам. С уверенностью заявляем, что наши молодые и
+                    опытные преподаватели являются экспертами в своих предметах. Они готовы помочь вашим
+                    детям достичь поставленных целей, обучая с использованием новых методов и интерактивных
+                    игр. У нас нет места скучным лекциям – уроки увлекательны, а обучение проходит эффективно
+                    и с удовольствием.</p>
+                <h2>наша миссия</h2>
+                <p>Миссия нашего образовательного центра заключается в том, чтобы
+                    поддерживать и
+                    вдохновлять возрастающее поколение на пути к знаниям и успеху. Мы стремимся
+                    предотвратить утрату интереса к обучению у детей, вместо этого стимулируя их любовь к
+                    каждому предмету. Наша цель – сделать обучение увлекательным и доступным для каждого
+                    ученика. Мы верим, что, полюбив важные предметы, дети с легкостью смогут успешно сдавать
+                    экзамены и поступать в лучшие вузы. В нашем образовательном процессе мы используем
+                    инновационные методы и интерактивные подходы, чтобы сделать учение увлекательным и
+                    запоминающимся.Наш коллектив преподавателей стремится не только передать знания, но и
+                    вдохновить учеников к творческому мышлению, развивая их потенциал. Таким образом, мы
+                    создаем условия для того, чтобы каждый ребенок мог не только успешно учиться, но и
+                    стремиться к постоянному личностному и интеллектуальному росту.</p>
+            </div>
         </div>
     </div>
+
+    {#    блок карусели с преподавателями#}
     <div class="team">
         <div class="container">
-            <h2 style="font-family: 'Montserrat';">наша команда</h2>
-            <p style="font-family: 'Montserrat';">Более 50 человек упорно трудятся изо дня в день для того,<br>
+            <h2 class="team_h2">наша команда</h2>
+            <p class="team_p">Более 50 человек упорно трудятся изо дня в день для того,<br>
                 чтобы все процессы обучения не останавливались и на минуту!</p>
             <div id="carouselExample" class="carousel slide">
                 <div class="teacher_carousel">
@@ -24,17 +51,21 @@
                                 {% for teacher in teachers %}
                                     <div class="card teacher_card rounded-4 mx-2">
                                         {% if teacher.avatar %}
-                                            <div class="teacher_avatar rounded-4">
-                                                <img src="{{ teacher.avatar.url }}" class="card-img-top"
-                                                     alt="...">
+                                            <div class="rounded-4" style="height: 250px;
+                                                    background-image: url({{ teacher.avatar.url }});
+                                                    background-size: 230px;
+                                                    background-repeat: no-repeat">
                                             </div>
                                         {% else %}
                                             <img src="{% static 'images/profile.png' %}"
-                                                 class="card-img-top rounded-4"
+                                                 class="card-img-top rounded-top-4"
                                                  alt="...">
                                         {% endif %}
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ teacher.username }}</h5>
+                                        <div class="card-body" style="height: 150px">
+                                            <h5>{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                                            {% for course in teacher.courses_taught.all %}
+                                                <p>Преподает: {{ course.course_name }}</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -47,17 +78,26 @@
                                         {% for teacher in teacher_s %}
                                             <div class="card teacher_card rounded-4 mx-2">
                                                 {% if teacher.avatar %}
-                                                    <div class="teacher_avatar rounded-4">
-                                                        <img src="{{ teacher.avatar.url }}" class="card-img-top"
-                                                             alt="...">
+                                                    <div class="rounded-4" style="height: 250px;
+                                                            background-image: url({{ teacher.avatar.url }});
+                                                            background-size: 230px;
+                                                            background-repeat: no-repeat">
                                                     </div>
                                                 {% else %}
-                                                    <img src="{% static 'images/profile.png' %}"
-                                                         class="card-img-top rounded-4"
-                                                         alt="...">
+                                                    <div class="rounded-4" style="height: 250px;
+                                                            background-image: url({% static 'images/profile.png' %});
+                                                            background-size: 230px;
+                                                            background-repeat: no-repeat">
+                                                    </div>
+{#                                                    <img src="{% static 'images/profile.png' %}"#}
+{#                                                         class="card-img-top rounded-top-4"#}
+{#                                                         alt="...">#}
                                                 {% endif %}
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ teacher.username }}</h5>
+                                                <div class="card-body" style="height: 150px">
+                                                    <h5>{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                                                    {% for course in teacher.courses_taught.all %}
+                                                        <p>Преподает: {{ course.course_name }}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         {% endfor %}
@@ -66,6 +106,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
+                    {#                блок кноки пролисывать карусель#}
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                             data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon rounded-4 btn btn-warning"
