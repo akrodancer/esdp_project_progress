@@ -108,18 +108,34 @@ a, a:hover, a:visited, a:active {
     margin-right:auto;
 }
 
+.form-cover {
+    background: rgb(14, 14, 14, 0.3);
+    width: 400px;
+    height: 410px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: 7;
+    border-radius: 15px;
+    align-self: center;
+}
+
+
+
 .auth h5 {
     padding: 1% 10% 1% 10%;
 }
 .auth a, span {
     color: gray;
 }
-.auth .btn, input {
+.auth .btn, input, select, option{
     width: 80%;
     border-radius: 15px;
     margin: 5% auto 10% auto;
 }
-.auth input {
+.auth input, select, option {
     text-align: center;
     height: 40px;
     border: 0;
