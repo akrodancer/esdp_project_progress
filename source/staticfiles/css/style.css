@@ -91,13 +91,26 @@ a, a:hover, a:visited, a:active {
 .auth {
     position: fixed;
     z-index: 6;
-    width: 100%;
+    width: 50%;
     top: 15%;
     right: 0;
     left: 0;
-    height: calc(var(--vh, 1vh) * 70);
+    height: calc(var(--vh, 1vh) * 60);
     margin-left:auto;
     margin-right:auto;
+}
+.form-cover {
+    background: rgb(14, 14, 14, 0.3);
+    width: 400px;
+    height: 410px;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    position: absolute;
+    z-index: 7;
+    border-radius: 15px;
+    align-self: center;
 }
 
 .auth h5 {
@@ -106,12 +119,12 @@ a, a:hover, a:visited, a:active {
 .auth a, span {
     color: gray;
 }
-.auth .btn, input {
+.auth .btn, input, select, option{
     width: 80%;
     border-radius: 15px;
     margin: 5% auto 10% auto;
 }
-.auth input {
+.auth input, select, option {
     text-align: center;
     height: 40px;
     border: 0;
@@ -138,6 +151,45 @@ a, a:hover, a:visited, a:active {
     z-index: 5;
   }
 
+/*-----------------БЛОК ПОДТВЕРЖДЕННОЙ ЗАЯВКИ-------------*/
+.confirm {
+    background-color: #044691;
+    border-radius: 15px;
+    max-width: 250px;
+    aspect-ratio: 1;
+    position: fixed;
+    z-index: 8;
+    top: 30%;
+    right: 0;
+    left: 0;
+    margin-left:auto;
+    margin-right:auto;
+}
+.bi-check2-circle {
+    font-size: 180px;
+    line-height: 130px;
+    margin: auto;
+    color: #F3CB3D;
+}
+.x-mark {
+    border: 0;
+    background-color: transparent;
+    font-size: 25px;
+    color: white;
+}
+#close {
+    text-align: end;
+    height: 33px;
+}
+.thanks-text {
+    margin-bottom: 10px;    
+    line-height: 15px;        
+}
+.thanks-text span {
+    color: white;
+    font-size: 13px;
+    text-transform: uppercase;
+}
 /*главная страница*/
 
 

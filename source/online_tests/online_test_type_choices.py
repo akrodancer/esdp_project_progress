@@ -1,8 +1,6 @@
 from django.db import models
 
-class LESSON_TYPES(models.TextChoices):
+class OnlineTestTypeChoices(models.TextChoices):
     FREE = 'free'
     PAID = 'paid'
-
-
 
