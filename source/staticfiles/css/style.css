@@ -162,6 +162,48 @@ a, a:hover, a:visited, a:active {
     z-index: 5;
   }
 
+
+/*-----------------БЛОК ПОДТВЕРЖДЕННОЙ ЗАЯВКИ-------------*/
+.confirm {
+    background-color: #044691;
+    border-radius: 15px;
+    max-width: 250px;
+    aspect-ratio: 1;
+    position: fixed;
+    z-index: 8;
+    top: 30%;
+    right: 0;
+    left: 0;
+    margin-left:auto;
+    margin-right:auto;
+}
+.bi-check2-circle {
+    font-size: 180px;
+    line-height: 130px;
+    margin: auto;
+    color: #F3CB3D;
+}
+.x-mark {
+    border: 0;
+    background-color: transparent;
+    font-size: 25px;
+    color: white;
+}
+#close {
+    text-align: end;
+    height: 33px;
+}
+.thanks-text {
+    margin-bottom: 10px;
+    line-height: 15px;
+}
+.thanks-text span {
+    color: white;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+
 /*главная страница*/
 
 
