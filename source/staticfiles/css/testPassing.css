@@ -1,0 +1,47 @@
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+
+.custom-checkbox {
+    content: "";
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    margin-top: 3px;
+    background-color: #aaaaaa;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.custom-checkbox:last-child{
+    margin-right: 0;
+}
+
+
+
+.answer-container > div {
+    padding: 5px;
+}
+
+.checkboxes {
+    display: flex;
+}
+
+.group-container > div {
+    margin-right: 15px;
+}
+
+.group-container > div:last-child {
+    margin-right: 0;
+}
+
+.question-number{
+    align-content: center;
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.answers{
+    padding-top: 5px;
+}

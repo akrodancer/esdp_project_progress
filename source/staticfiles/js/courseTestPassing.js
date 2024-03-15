@@ -1,118 +1,190 @@
-let selectedAnswers = JSON.parse(localStorage.getItem('selectedAnswers')) || {};
-let checkboxShapes = JSON.parse(localStorage.getItem('checkboxShapes')) || {};
-
-let testContainer = document.getElementById('test-container');
-let testId = testContainer.getAttribute('data-test-id');
+let testContainer = document.getElementById('question-container');
+let checkboxesContainer = document.getElementById('chekboxes-container');
+let nextButton = document.getElementById('nextButton');
+let prevButton = document.getElementById('prevButton');
 let currentIndex = 0;
 let testData = null;
+let selectedAnswers = JSON.parse(localStorage.getItem('selectedAnswers')) || {};
+let checkboxShapes = JSON.parse(localStorage.getItem('checkboxShapes')) || {};
 
 fetch(`api/v1`)
     .then(response => response.json())
     .then(data => {
         testData = data;
-        displayQuestion(currentIndex);
+        displayQuestions(currentIndex);
+        displayCheckboxes();
     });
 
-function displayQuestion(index) {
-    let question = testData.questions[index];
+function displayQuestions(startIndex) {
     testContainer.innerHTML = '';
+    testContainer.classList.add('row');
 
-    let questionElement = document.createElement('h2');
-    questionElement.textContent = question.question_text;
-    testContainer.appendChild(questionElement);
+    for (let i = startIndex; i < Math.min(startIndex + 4, testData.questions.length); i++) {
+        let question = testData.questions[i];
+        let questionElement = document.createElement('div');
+        questionElement.classList.add('col-md-6');
 
-    let answersContainer = document.createElement('div');
-    answersContainer.className = 'd-flex flex-row justify-content-between align-items-center flex-wrap';
+        let questionContainer = document.createElement('div');
+        questionContainer.classList.add('card', 'mb-3');
 
-    question.answers.forEach(answer => {
-        let answerDiv = document.createElement('div');
-        answerDiv.className = 'answer d-flex flex-column align-items-center mx-3';
+        let questionContent = document.createElement('div');
+        questionContent.classList.add('card-body');
 
-        let checkboxDiv = document.createElement('div');
-        checkboxDiv.className = 'custom-checkbox';
+        let questionTitle = document.createElement('h5');
+        questionTitle.classList.add('card-title');
+        questionTitle.textContent = question.question_text;
 
-        let answerCheckbox = document.createElement('input');
-        answerCheckbox.type = 'checkbox';
-        answerCheckbox.id = 'answer-' + answer.id;
-        answerCheckbox.value = answer.id;
-
-        if (selectedAnswers.hasOwnProperty(question.id) && selectedAnswers[question.id].includes(answer.id)) {
-            answerCheckbox.checked = true;
-            checkboxDiv.style.backgroundColor = answerCheckbox.checked ? '#4484CF' : '#aaaaaa';
+        if (question.question_image) {
+            let imageElement = document.createElement('img');
+            imageElement.src = question.question_image;
+            imageElement.classList.add('card-img-top');
+            questionContent.appendChild(imageElement);
+        } else {
+            questionContent.appendChild(questionTitle);
         }
 
-        checkboxDiv.appendChild(answerCheckbox);
-        checkboxDiv.style.borderRadius = checkboxShapes[answer.id] || "50%";
+        let answersList = document.createElement('ul');
+        answersList.classList.add('list-group', 'list-group-horizontal');
+        question.answers.forEach(answer => {
+            let answerItem = document.createElement('li');
+            answerItem.classList.add('list-group-item', 'flex-fill', 'border-0');
+            if (answer.answer_image) {
+                let imageElement = document.createElement('img');
+                imageElement.src = answer.answer_image;
+                answerItem.appendChild(imageElement);
+            } else {
+                answerItem.textContent = answer.answer_text;
+            }
+            answersList.appendChild(answerItem);
+        });
 
-        checkboxDiv.addEventListener('click', function () {
-            if (!answerCheckbox.checked) {
-                answerCheckbox.checked = true;
-                checkboxDiv.style.backgroundColor = answerCheckbox.checked ? '#4484CF' : '#aaaaaa';
+        questionContent.appendChild(answersList);
+        questionContainer.appendChild(questionContent);
+        questionElement.appendChild(questionContainer);
+        testContainer.appendChild(questionElement);
+    }
+}
 
-                if (!selectedAnswers[question.id]) {
-                    selectedAnswers[question.id] = [];
+function displayCheckboxes() {
+    const questions = testData.questions;
+    const groupSize = 4;
+
+    function createAnswersContainer(questionNumber) {
+        const answersContainer = document.createElement('div');
+        answersContainer.classList.add('d-flex', 'answers');
+
+        const questionNumberSpan = document.createElement('h5');
+        questionNumberSpan.classList.add('question-number')
+        questionNumberSpan.textContent = `${questionNumber}.`;
+        answersContainer.appendChild(questionNumberSpan);
+
+        return answersContainer;
+    }
+
+    function createCheckbox(answer, questionId) {
+        const checkboxContainer = document.createElement('div');
+        checkboxContainer.classList.add('answer-container', 'custom-checkbox');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'answer';
+        checkbox.value = answer.id;
+        checkbox.dataset.questionId = questionId;
+
+        if (selectedAnswers[questionId] && selectedAnswers[questionId].includes(answer.id)) {
+            checkbox.checked = true;
+            checkboxContainer.style.backgroundColor = '#4484CF';
+            if (checkboxShapes[questionId] && checkboxShapes[questionId][answer.id]) {
+                checkboxContainer.style.borderRadius = checkboxShapes[questionId][answer.id];
+            }
+        }
+
+        checkboxContainer.addEventListener('click', function () {
+            if (!checkbox.checked && (!selectedAnswers[questionId] || selectedAnswers[questionId].length < 2)) {
+                checkbox.checked = true;
+                checkboxContainer.style.backgroundColor = '#4484CF';
+
+                if (!selectedAnswers[questionId]) {
+                    selectedAnswers[questionId] = [];
                 }
 
-                selectedAnswers[question.id].push(answer.id);
-
-                if (selectedAnswers[question.id].length > 2) {
-                    answerCheckbox.checked = false;
-                    checkboxDiv.style.backgroundColor = answerCheckbox.checked ? '#4484CF' : '#aaaaaa';
-                    selectedAnswers[question.id].pop();
-                    return;
-                }
+                selectedAnswers[questionId].push(answer.id);
 
                 localStorage.setItem('selectedAnswers', JSON.stringify(selectedAnswers));
 
-                if (selectedAnswers[question.id].length === 1) {
-                    checkboxShapes[answer.id] = "50%";
-                    localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
-                    checkboxDiv.style.borderRadius = "50%";
+                if (selectedAnswers[questionId].length === 1) {
+                    if (!checkboxShapes[questionId]) {
+                        checkboxShapes[questionId] = {};
+                    }
+                    checkboxShapes[questionId][answer.id] = "100%";
                 } else {
-                    checkboxShapes[answer.id] = "0";
-                    localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
-                    checkboxDiv.style.borderRadius = "0";
+                    checkboxShapes[questionId][answer.id] = "0";
                 }
+
+                localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
+                checkboxContainer.style.borderRadius = checkboxShapes[questionId][answer.id];
+
+                console.log(selectedAnswers);
+            } else if (checkbox.checked) {
+                const index = selectedAnswers[questionId].indexOf(answer.id);
+                if (index > -1) {
+                    selectedAnswers[questionId].splice(index, 1);
+                    checkboxShapes[questionId][answer.id] = "0";
+                    checkboxContainer.style.borderRadius = "0";
+                }
+                checkbox.checked = false;
+                checkboxContainer.style.backgroundColor = '#aaaaaa';
+                localStorage.setItem('selectedAnswers', JSON.stringify(selectedAnswers));
+                localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
             }
         });
 
-        let answerLabel = document.createElement('label');
-        answerLabel.htmlFor = answerCheckbox.id;
-        answerLabel.className = 'answertext mb-3';
-        answerLabel.textContent = answer.answer_text;
+        checkboxContainer.appendChild(checkbox);
+        return checkboxContainer;
+    }
 
-        answerDiv.appendChild(answerLabel);
-        answerDiv.appendChild(checkboxDiv);
 
-        answersContainer.appendChild(answerDiv);
+    let groupContainer;
+    let questionCounter = 1;
+
+    questions.forEach((question, index) => {
+        if (index % groupSize === 0) {
+            groupContainer = document.createElement('div');
+            groupContainer.classList.add('group-container');
+            checkboxesContainer.appendChild(groupContainer);
+        }
+        const answersContainer = createAnswersContainer(questionCounter);
+        question.answers.forEach(answer => {
+            const checkbox = createCheckbox(answer, question.id);
+            answersContainer.appendChild(checkbox);
+        });
+        groupContainer.appendChild(answersContainer);
+        questionCounter++; // Увеличиваем счетчик вопросов
     });
-    testContainer.appendChild(answersContainer);
 }
 
-document.getElementById('prevButton').onclick = function () {
-    if (currentIndex > 0) {
-        currentIndex--;
-        displayQuestion(currentIndex);
+nextButton.addEventListener('click', () => {
+    const maxIndex = testData.questions.length - 4;
+    if (currentIndex < maxIndex) {
+        currentIndex += 4;
+        displayQuestions(currentIndex);
     }
-};
+});
 
-document.getElementById('nextButton').onclick = function () {
-    if (currentIndex < testData.questions.length - 1) {
-        currentIndex++;
-        displayQuestion(currentIndex);
+prevButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex -= 4;
+        displayQuestions(currentIndex);
     }
-};
+});
 
 document.getElementById('submitButton').onclick = function () {
     let filteredAnswers = {};
-
     for (let question in selectedAnswers) {
         if (selectedAnswers.hasOwnProperty(question)) {
             let lastAnswer = selectedAnswers[question][selectedAnswers[question].length - 1];
             filteredAnswers[question] = [lastAnswer];
         }
     }
-    console.log(filteredAnswers);
 
     fetch('api/v1/submit', {
         method: 'POST',
@@ -135,5 +207,7 @@ document.getElementById('submitButton').onclick = function () {
             localStorage.removeItem('checkboxShapes');
             window.location.href = `/online_tests/test/results/${data.user_test_id}/`;
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error:', error);
+        });
 };
