@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/montserrat');
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
 {% endblock %}
 {% block content %}
+
+{#   блок карточки с курсами#}
     <div class="courses">
         <div class="container">
             <div class="courses_content">
-                {{page.text_primary|safe}}
+                <h2>самые востребованные курсы<br>в кыргызстане</h2>
+                <p style="font-family: 'Montserrat';">мы постоянно исследуем рынок труда в поиске<br>
+                    самых популярных и перспективных направлений</p>
             </div>
             <div class="courses_card">
                 <div class="row row-col-5 mx-5">
@@ -30,14 +33,15 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+{#   блок почему выбирают нас#}
     <div class="bg_courses">
         <div class="container">
             <div class="why_progress">
                 <div>
-                    <h3 style="font-family: 'Montserrat';">почему выбирают<br>образовательный<br>
+                    <h3>почему выбирают<br>образовательный<br>
                         центр <span class="span_progress">прогресс</span></h3>
                 </div>
             </div>
@@ -68,7 +72,7 @@
 
 {#    modal#}
     {% for course in courses %}
-        <div id="myModal">
+        <div id="myModal courses_modal_window">
             <div class="modal fade" id="{{ course.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
@@ -81,7 +85,7 @@
                             <div class="mb-3">
                                 <img src="{{ course.course_image.url }}" class="card-img-top" alt="...">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" style="word-wrap: break-word">
                                 <p>{{ course.description }}</p>
                             </div>
                             <div class="mb-3">
@@ -95,7 +99,5 @@
                 </div>
             </div>
         </div>
-
     {% endfor %}
-
 {% endblock %}

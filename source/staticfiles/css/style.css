@@ -24,19 +24,27 @@ html {
 }
 
 .lower-panel {
-    padding: 1% 5% 1% 5%;
+    padding: 1% 6% 1% 5%;
     /*height: 90px;*/
     border-bottom: 2px solid #3877BF;
 }
 
 .lower-panel a {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 19px;
 }
 
 .sign_in_button {
     width: 128px;
 }
+
+.name_user {
+    margin-bottom: 0;
+    font-size: 19px;
+    color: white;
+    padding-top: 0;
+}
+
 #sign_in_button {
     margin-top: 10px;
     border: 0;
@@ -84,34 +92,37 @@ a, a:hover, a:visited, a:active {
     margin: 1% auto 1% auto;
 }
 .f-social a {
-    margin: 0 10px 0 10px
+    margin: 0 15px 0 15px
 }
 
 /*-----------------ФОРМА ВХОДА------------------*/
 .auth {
     position: fixed;
     z-index: 6;
-    width: 50%;
+    width: 100%;
     top: 15%;
     right: 0;
     left: 0;
-    height: calc(var(--vh, 1vh) * 60);
+    height: calc(var(--vh, 1vh) * 70);
     margin-left:auto;
     margin-right:auto;
 }
+
 .form-cover {
     background: rgb(14, 14, 14, 0.3);
     width: 400px;
     height: 410px;
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     position: absolute;
     z-index: 7;
     border-radius: 15px;
     align-self: center;
 }
+
+
 
 .auth h5 {
     padding: 1% 10% 1% 10%;
@@ -151,6 +162,7 @@ a, a:hover, a:visited, a:active {
     z-index: 5;
   }
 
+
 /*-----------------БЛОК ПОДТВЕРЖДЕННОЙ ЗАЯВКИ-------------*/
 .confirm {
     background-color: #044691;
@@ -182,14 +194,16 @@ a, a:hover, a:visited, a:active {
     height: 33px;
 }
 .thanks-text {
-    margin-bottom: 10px;    
-    line-height: 15px;        
+    margin-bottom: 10px;
+    line-height: 15px;
 }
 .thanks-text span {
     color: white;
     font-size: 13px;
     text-transform: uppercase;
 }
+
+
 /*главная страница*/
 
 
@@ -220,21 +234,6 @@ a, a:hover, a:visited, a:active {
 .carousel_slide {
     width: 80%;
     margin: 0 auto;
-}
-
-.carousel-indicators [data-bs-target] {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: transparent;
-    border: 2px solid white;
-}
-
-.carousel-indicators .active {
-    width: 10px;
-    height: 10px;
-    background: white;
-    margin-top: 1px;
 }
 
 .bloc_carousel {
@@ -459,6 +458,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .courses_content h2 {
+    font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 700;
     letter-spacing: 0.18em;
@@ -468,6 +468,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .courses_content p {
+    font-family: Montserrat sans-serif;
     font-size: 24px;
     font-weight: 500;
     line-height: 34px;
@@ -478,6 +479,7 @@ a, a:hover, a:visited, a:active {
 
 .courses_card {
     margin-top: 30px;
+    word-wrap: break-word;
 }
 
 .courses_card h5 {
@@ -519,6 +521,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .why_progress h3 {
+    font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 700;
     letter-spacing: 0.18em;
@@ -573,6 +576,11 @@ a, a:hover, a:visited, a:active {
     margin-top: 25px;
 }
 
+.courses_modal_window {
+    word-wrap: inherit;
+
+}
+
 /*Блок О нас*/
 .about_us {
     background: #044691;
@@ -580,13 +588,13 @@ a, a:hover, a:visited, a:active {
     padding-bottom: 60px;
 }
 
-.about_us_p {
-    text-align: justify;
+.about_us_content {
     width: 80%;
     margin: 0 auto;
 }
 
 .about_us h2 {
+    font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 700;
     line-height: 73px;
@@ -597,6 +605,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .about_us p {
+    font-family: Montserrat sans-serif;
     font-size: 24px;
     font-weight: 500;
     line-height: 34px;
@@ -611,7 +620,8 @@ a, a:hover, a:visited, a:active {
     padding-bottom: 60px;
 }
 
-.team h2 {
+.team_h2 {
+    font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 600;
     line-height: 58px;
@@ -621,7 +631,8 @@ a, a:hover, a:visited, a:active {
     margin-bottom: 40px;
 }
 
-.team p {
+.team_p {
+    font-family: Montserrat sans-serif;
     font-size: 24px;
     font-weight: 500;
     line-height: 29px;
@@ -638,9 +649,6 @@ a, a:hover, a:visited, a:active {
     width: 233px;
 }
 
-.teacher_avatar img {
-    height: 100%;
-}
 
 .teacher_carousel {
     padding-left: 150px;
