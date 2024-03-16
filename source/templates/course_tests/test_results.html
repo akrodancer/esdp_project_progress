@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>Результаты теста</h1>
+        <p>Пользователь: {{ user_test.user }}</p>
+        <p>Количество правильных ответов: {{ user_test.correct_answer_count }}</p>
+        <p>Количество неправильных ответов: {{ user_test.incorrect_answer_cnt }}</p>
+        <p>Попыток прохождения: {{ user_test.attempts }}</p>
+
+        {% if total_questions_count > 0 %}
+            <div class="progress mt-5 mb-2">
+                <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ progress }}%;"
+                     aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

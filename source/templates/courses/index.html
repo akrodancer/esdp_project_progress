@@ -15,22 +15,16 @@
             <div class="bg-img2">
                 <div class="container">
                     <div>
-                        {{page.text_primary|safe}}
+                        <h1>ИЗУЧАЙ НОВЫЕ НАВЫКИ СЕЙЧАС</h1>
+                        <p>Мы предлагаем курсы для всех уровней,<br>
+                            от начинающих до продвинутых. Групповые и индивидуальные занятия с<br>
+                            опытными преподавателями помогут вам достичь желаемого результата</p>
                     </div>
                     <div class="sign_up_button">
                         <button class="nav-item" id="sign_up_button" type="button">Записаться на курс</button>
                     </div>
                     <div id="carouselExampleCaptions" class="carousel slide">
                         <div class="carousel_view">
-                            <!-- <div class="carousel-indicators mb-5">
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                                        class="active"
-                                        aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                                        aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                                        aria-label="Slide 3"></button>
-                            </div> -->
                             <div class="carousel-inner">
                                 {% for slide in page.main.all %}
                                             {% if forloop.first %}
@@ -158,14 +152,6 @@
             <div>
                 <div id="carouselExampleIndicators" class="carousel slide">
                     <div class="partners_view">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                    class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
-                        </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="{% static 'images/partners_1.png' %}" class="d-block w-100" alt="...">
