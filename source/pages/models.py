@@ -73,5 +73,5 @@ class CarouselAdvantagesModel(models.Model):
                                     )
 
     class Meta:
-        verbose_name = "Преимущества"
-        verbose_name_plural = "Преимущества"
+        verbose_name = "Статичные блоки"
+        verbose_name_plural = "Статичные блоки"

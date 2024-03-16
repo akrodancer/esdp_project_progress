@@ -264,7 +264,7 @@ a, a:hover, a:visited, a:active {
 /*кнопка записаться на курс*/
 .sign_up_button {
     margin: 0 auto;
-    width: 300px;
+    max-width: 300px;
 }
 
 #sign_up_button {
@@ -366,17 +366,17 @@ a, a:hover, a:visited, a:active {
 .reviews {
     background: #044691;
     margin-top: 90px;
+    padding-top: 50px;
+
 }
 
-.review {
-    padding: 60px 40px 100px 20px;
-}
 
-.bg-img3 {
-    background-image: url("../images/blue star outline.png");
-    background-repeat: no-repeat;
-    padding-left: 60px;
-    padding-top: 60px;
+.bg-img {
+    background: url("../images/blue star outline.png") left 2% top 2%,
+                        url("../images/blue star outline.png") right 2% top 2%,
+                        url("../images/blue star outline.png") left 10% bottom 15%,
+                        url("../images/Group 3718.png") right 0 bottom 0;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
 }
 
 .bg-img4 {
@@ -398,8 +398,9 @@ a, a:hover, a:visited, a:active {
 }
 
 .review_view {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
+    padding-bottom: 150px;
 }
 
 .reviews h3 {
@@ -422,9 +423,10 @@ a, a:hover, a:visited, a:active {
 }
 
 .reviews_p {
-    text-align: center;
-    width: 60%;
-    margin: 0 auto;word-wrap: break-word;
+    text-align: left;
+    width: 90%;
+    margin: 0 auto;
+    word-wrap: break-word;
 }
 
 .div_review h5 {
@@ -432,6 +434,7 @@ a, a:hover, a:visited, a:active {
     margin-left: 10px;
     font-size: 50px;
 }
+
 
 /*блок наши партнеры*/
 .partners {

@@ -15,10 +15,7 @@
             <div class="bg-img2">
                 <div class="container">
                     <div>
-                        <h1>ИЗУЧАЙ НОВЫЕ НАВЫКИ СЕЙЧАС</h1>
-                        <p>Мы предлагаем курсы для всех уровней,<br>
-                            от начинающих до продвинутых. Групповые и индивидуальные занятия с<br>
-                            опытными преподавателями помогут вам достичь желаемого результата</p>
+                        {{page.text_primary|safe}}
                     </div>
                     <div class="sign_up_button">
                         <button class="nav-item" id="sign_up_button" type="button">Записаться на курс</button>
@@ -33,7 +30,6 @@
                                                 <div class="carousel-item">
                                             {% endif %}
                                     <img src="{{slide.image.url}}" class="d-block w-100" alt="pic-1">
-                                    </div>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -51,14 +47,10 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
 
     <div class="container">
         <div class="who_are_we">
-
-            <h2>кто мы и почему выбирают нас?</h2>
-            <p>Мы научим Вашего ребенка любить и<br>получать удовольствие от учебы!</p>
+            {{page.text_secondary|safe}}
         </div>
     </div>
     <div class="about-us">
@@ -91,7 +83,7 @@
     </div>
 
 
-    <div class="reviews">
+    <!-- <div class="reviews">
         <div class="bg-img6">
             <div class="review">
                 <div class="bg-img3">
@@ -99,7 +91,7 @@
                         <div class="bg-img5">
                             <h3>отзывы</h3>
                             <p class="p_rev">Узнайте, почему детям очень нравится заниматься у нас</p>
-                            <div class="container">
+                            <div class="container comments">
                                 <div id="carouselExample" class="carousel slide">
                                     <div class="review_view">
                                         <div class="carousel-inner">
@@ -109,19 +101,22 @@
                                             {% else %}
                                                 <div class="carousel-item">
                                             {% endif %}
-                                                    <div class="rounded-4 div_review d-flex flex-column justify-content-around">
-                                                        <div class="d-flex">
-                                                            <img src="{{comment.image.url}}" width="25%" class="mx-4"
-                                                                alt="">
-                                                            <h5 style="margin-top: 10%">{{comment.name}}</h5>
+                                                    <div class="rounded-4 div_review d-flex flex-column">
+                                                        <div class="row d-flex mt-5 flex-wrap">
+                                                            <div class="rounded-4 comment-image col-md-2">
+                                                                <img src="{{comment.image.url}}" width="100%" class="mx-4" alt="" style="object-fit: cover;">
+                                                            </div>
+                                                            <div class="comment-name col-md-8 ms-3">
+                                                                <h5 style="margin-top: 10%">{{comment.name}}</h5>
+                                                            </div>
                                                         </div>
-                                                        <p class="reviews_p">{{comment.review}}</p>
+                                                        <div class="comment-text mt-5">
+                                                            <p class="reviews_p">{{comment.review}}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
                                             </div>
+                                            {% endfor %}  
                                         </div>
-                                        {% endfor %}
-
                                     <button class="carousel-control-prev" type="button"
                                             data-bs-target="#carouselExample"
                                             data-bs-slide="prev">
@@ -144,7 +139,58 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <div class="reviews">
+        <div class="bg-img">     
+        <h3>отзывы</h3>
+        <p class="p_rev">Узнайте, почему детям очень нравится заниматься у нас</p>
+        <div class="container comments">
+            <div id="carouselExample" class="carousel slide">
+                <div class="review_view">
+                    <div class="carousel-inner">
+                    {% for comment in page.comments.all %}
+                        {% if forloop.first %}
+                            <div class="carousel-item active">
+                        {% else %}
+                            <div class="carousel-item">
+                        {% endif %}
+                                <div class="rounded-4 div_review d-flex flex-column">
+                                    <div class="row d-flex mt-5 flex-wrap">
+                                        <div class="rounded-4 comment-image col-md-2">
+                                            <img src="{{comment.image.url}}" width="100%" class="mx-4" alt="" style="object-fit: cover;">
+                                        </div>
+                                        <div class="comment-name col-md-8 ms-3">
+                                            <h5 style="margin-top: 10%">{{comment.name}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="comment-text mt-5">
+                                        <p class="reviews_p">{{comment.review}}</p>
+                                    </div>
+                                </div>
+                        </div>
+                        {% endfor %}  
+                    </div>
+                <button class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+            <span class="carousel-control-prev-icon btn btn-warning rounded-4"
+                  aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+            <span class="carousel-control-next-icon rounded-4 btn btn-warning"
+                  aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>   
+    </div>                    
+
 
     <div class="partners">
         <div class="container">

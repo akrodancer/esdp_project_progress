@@ -10,9 +10,7 @@
     <div class="courses">
         <div class="container">
             <div class="courses_content">
-                <h2>самые востребованные курсы<br>в кыргызстане</h2>
-                <p style="font-family: 'Montserrat';">мы постоянно исследуем рынок труда в поиске<br>
-                    самых популярных и перспективных направлений</p>
+                {{page.text_primary|safe}}
             </div>
             <div class="courses_card">
                 <div class="row row-col-5 mx-5">
@@ -41,30 +39,20 @@
         <div class="container">
             <div class="why_progress">
                 <div>
-                    <h3>почему выбирают<br>образовательный<br>
-                        центр <span class="span_progress">прогресс</span></h3>
+                    {{page.text_secondary|safe}}
                 </div>
             </div>
             <div class="why_progress">
                 <div class="d-flex justify-content-between">
-                    <div class="rounded-4 why_progress_1">
-                        <h4>#1</h4>
-                        <p>Репетиторы по всему<br>Кыргызстану</p>
-                    </div>
-                    <div class="rounded-4 why_progress_1">
-                        <h4>500+</h4>
-                        <p>Довольных учеников, успешно<br>сдавших экзамены по всем<br>предметам</p>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="rounded-4 why_progress_1">
-                        <h4>24/7</h4>
-                        <p>Учеба в собственном графике<br>из любой точки мира</p>
-                    </div>
-                    <div class="rounded-4 why_progress_2">
-                        <h4>96%</h4>
-                        <p>Окончевших курс отмечают,<br>что достигли своих целей</p>
-                    </div>
+                    {% for adv in page.adv.all %}
+                        {% if forloop.last %}
+                            <div class="rounded-4 why_progress_1">
+                        {% else %}
+                            <div class="rounded-4 why_progress_2"> 
+                        {% endif %} 
+                            {{adv.text|safe}}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
