@@ -586,11 +586,17 @@ a, a:hover, a:visited, a:active {
 }
 
 .why_progress {
-    width: 658px;
+    max-width: 658px;
     padding-top: 50px;
     margin-left: 40px;
 }
-
+@media screen and (max-width:778px) {
+    .why_progress {
+        max-width: 658px;
+        padding-top: 50px;
+        margin: auto;
+    }
+}
 .why_progress h3 {
     font-family: Montserrat sans-serif;
     font-size: 48px;
@@ -604,49 +610,31 @@ a, a:hover, a:visited, a:active {
     color: #044691;
 }
 
-.why_progress_1 {
-    background: #044691;
-    width: 48%;
-    color: white;
-    margin-bottom: 20px;
-    height: 200px;
-}
-
-.why_progress_1 h4 {
+.why_progress h4 {
     font-size: 48px;
     font-weight: 700;
-    margin-left: 20px;
-    margin-top: 25px;
 }
 
-.why_progress_1 p {
+.why_progress p {
     font-size: 16px;
-    font-weight: 400;
-    margin-left: 20px;
-    margin-top: 25px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .why_progress_2 {
     background: #F3CB3D;
     width: 48%;
     margin-bottom: 20px;
-    height: 200px;
+    padding: 3%;
 }
-
-.why_progress_2 h4 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-left: 20px;
-    margin-top: 25px;
+.why_progress_1 {
+    background: #044691;
+    width: 48%;
+    color: white;
+    margin-bottom: 20px;
+    padding: 3%;
 }
-
-.why_progress_2 p {
-    font-size: 16px;
-    font-weight: 700;
-    margin-left: 20px;
-    margin-top: 25px;
-}
-
 .courses_modal_window {
     word-wrap: inherit;
 

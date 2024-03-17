@@ -43,12 +43,12 @@
                 </div>
             </div>
             <div class="why_progress">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-around flex-wrap">
                     {% for adv in page.adv.all %}
                         {% if forloop.last %}
-                            <div class="rounded-4 why_progress_1">
+                            <div class="rounded-4 why_progress_2">
                         {% else %}
-                            <div class="rounded-4 why_progress_2"> 
+                            <div class="rounded-4 why_progress_1"> 
                         {% endif %} 
                             {{adv.text|safe}}
                         </div>
