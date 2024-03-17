@@ -61,7 +61,15 @@
     color: #0BAB1B;
 }
 
+.correct-result span {
+    color: #0BAB1B;
+}
+
 .incorrect-result {
+    color: #C43E3E;
+}
+
+.incorrect-result span {
     color: #C43E3E;
 }
 
@@ -95,9 +103,5 @@
     .button-container {
         width: 100%;
         max-width: 996px;
-    }
-
-    .result {
-        /*justify-content: center;*/
     }
 }

@@ -13,19 +13,19 @@
         
         {% if total_questions_count > 0 %}
             <div class="progress-bar">
-                <div class="progress-bar-inner"></div>
+                <div class="progress-bar-inner" data-progress="{{ progress }}"></div>
             </div>
         {% endif %}    
     
         <div class="result">
         <div class="correct">
             <h3>Правильно</h3>
-            <p class="correct-result">{{ user_test.correct_answer_count }} из {{ total_questions_count }} ({{ correct_percent }}%)</p>
+            <p class="correct-result">{{ user_test.correct_answer_count }} из {{ total_questions_count }} (<span id="correctPercent"></span>%)</p>
         </div>
         
         <div class="incorrect">
             <h3>Неправильно</h3>
-            <p class="incorrect-result">{{ user_test.incorrect_answer_cnt }} из {{ total_questions_count }} ({{ incorrect_percent }}%)</p>
+            <p class="incorrect-result">{{ user_test.incorrect_answer_cnt }} из {{ total_questions_count }} (<span id="incorrectPercent"></span>%)</p>
         </div>
         </div>    
     
@@ -36,16 +36,11 @@
             <a href="{% url 'online_tests:take_test' user_test.test.id %}">Повторить тест</a>
             <a href="{% url 'online_tests:all_tests' %}">Выбрать предмет</a>
         </div>
-    
+    <div id="data-container" data-correct-answer-count="{{ user_test.correct_answer_count }}" 
+         data-incorrect-answer-count="{{ user_test.incorrect_answer_cnt }}"
+         data-total-questions-count="{{ total_questions_count }}">
     </div>
-    
-    <script>
-        const progressBar = document.querySelector('.progress-bar-inner');
-        
-        function updateProgressBar() {
-            progressBar.style.width = {{ progress }} + '%';
-        }
-        updateProgressBar();
-    </script>
+    </div>
+    <script src="{% static 'js/progress_bar.js' %}"></script>
 
 {% endblock %}
