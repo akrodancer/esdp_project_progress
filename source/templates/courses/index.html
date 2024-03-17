@@ -148,19 +148,14 @@
         <div class="container comments">
             <div id="carouselExample" class="carousel slide">
                 <div class="review_view">
-                    <div class="carousel-inner">
+                    <div class="owl-carousel owl-theme">
                     {% for comment in page.comments.all %}
-                        {% if forloop.first %}
-                            <div class="carousel-item active">
-                        {% else %}
-                            <div class="carousel-item">
-                        {% endif %}
+                            <div class="item">
                                 <div class="rounded-4 div_review d-flex flex-column">
-                                    <div class="row d-flex mt-5 flex-wrap">
-                                        <div class="rounded-4 comment-image col-md-2">
-                                            <img src="{{comment.image.url}}" width="100%" class="mx-4" alt="" style="object-fit: cover;">
-                                        </div>
-                                        <div class="comment-name col-md-8 ms-3">
+                                    <div class="user row d-flex mt-5">
+                                        <div class="comment-image col-4" 
+                                                style=" background-image: url({{comment.image.url}});"></div>
+                                        <div class="comment-name col-6">
                                             <h5 style="margin-top: 10%">{{comment.name}}</h5>
                                         </div>
                                     </div>
@@ -190,7 +185,6 @@
         </div>
     </div>   
     </div>                    
-
 
     <div class="partners">
         <div class="container">
@@ -224,4 +218,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}

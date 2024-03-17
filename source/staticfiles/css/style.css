@@ -398,9 +398,21 @@ a, a:hover, a:visited, a:active {
 }
 
 .review_view {
-    width: 100%;
     margin: 0 auto;
     padding-bottom: 150px;
+}
+
+.comment-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.user {
+    width: 100%;
+    padding-left: 10%;
 }
 
 .reviews h3 {
@@ -416,7 +428,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .div_review {
-    height: 500px;
+    min-height: 350px;
     background-color: white;
     border: 1px solid black;
     
@@ -427,14 +439,25 @@ a, a:hover, a:visited, a:active {
     width: 90%;
     margin: 0 auto;
     word-wrap: break-word;
+    font-size: 18px;
 }
 
 .div_review h5 {
     margin-top: 12%;
     margin-left: 10px;
-    font-size: 50px;
+    font-size: 24px;
 }
 
+@media screen and (max-width: 400px) {
+    .comment-image {
+        margin: auto;
+    }
+    .comment-name {
+        margin: auto;
+        width: 100%;
+        text-align: center;
+    }
+}
 
 /*блок наши партнеры*/
 .partners {
