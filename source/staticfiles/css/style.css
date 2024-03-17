@@ -148,8 +148,7 @@ a, a:hover, a:visited, a:active {
 }
 @media screen and (max-width:922px) {
     .f-menu {
-        margin-bottom: 30px;
-        margin-top: 10px;
+        margin: 10px auto 20px auto;
     }
 }
 /*-----------------ФОРМА ВХОДА------------------*/
@@ -265,7 +264,7 @@ a, a:hover, a:visited, a:active {
 
 
 /*карусель*/
-.owl-nav {
+.owl-nav, .owl-dots {
     display: none;
 }
 .bg-img1 {
@@ -283,14 +282,18 @@ a, a:hover, a:visited, a:active {
 
 .bloc_carousel {
     background: #044691;
-    padding-bottom: 105px;
 }
 
 .carousel_view {
     width: 80%;
     margin: 0 auto;
 }
-
+.carousel_view .owl-stage {
+    height: 600px;
+}
+.carousel_view .owl-stage-outer {
+    justify-content: space-between;
+}
 .carousel_slide {
     width: 80%;
     height: 100%;
@@ -322,26 +325,48 @@ a, a:hover, a:visited, a:active {
     letter-spacing: 0.1em;
 }
 .owl-item.active.center .main-item{
-    transform: scale(1);
     opacity: 1;
+    transform: scale(1.4);
 }
-.owl-item .main-item{
-    transform: scale(0.8);
+@media screen and (max-width:1380px) {
+    .carousel_view .owl-stage {
+        height: 500px;
+    }
+}
+@media screen and (max-width:991px) {
+    .owl-item.active.center .main-item {
+        transform: scale(1);
+    }
+    .carousel_view .owl-stage {
+        height: 700px;
+    }
+}
+@media screen and (max-width:778px) {
+    .carousel_view .owl-stage {
+        height: 600px;
+    }
+}
+@media screen and (max-width:488px) {
+    .carousel_view .owl-stage {
+        height: 500px;
+    }
+}
+.owl-item.active .main-item{
+    transform: scale(1.2);
     opacity: .8;
     position: relative;
     z-index: 1;
+    display: block;
+    top: 70px;
+
 }
 .main-item {
-    width: 120%;
-    height: 100%;
-    right: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    aspect-ratio: 1;
+    display: none;
 }
-@media screen and (max-width: 1000px) {
-    .main-item {
-        width: 100%;
-        right: 0;
-    }
-}
+
 
 /*кнопка записаться на курс*/
 .sign_up_button {
