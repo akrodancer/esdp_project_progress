@@ -1,8 +1,13 @@
 {% load static %}
 <footer>
     <div class="footer row justify-content-between">
-        <div class="footer-block f-menu col-2">
-            <ul class="navbar-nav ms-auto">
+        <div class="nav-item f-logo">
+            <a class="logo-link" href="{% url 'courses:index' %}">
+                <img class="image-fluid" src="{% static 'images/logo.png' %}" alt="">
+            </a>
+        </div>
+        <div class="footer-block f-menu col-lg-2">
+            <ul class="navbar-nav m-auto">
                 <li class="nav-item logo">
                     <a href="">
                         <h5>Главная</h5>
@@ -14,12 +19,7 @@
                 <li class="nav-item"><a href="">Поиск учеников</a></li>
             </ul>
         </div>
-        <div class="footer-block f-map col-8 row">
-            <div class="nav-item f-logo">
-                <a href="{% url 'courses:index' %}">
-                    <img class="image-fluid" src="{% static 'images/logo.png' %}" alt="" width="100%">
-                </a>
-            </div>
+        <div class="footer-block f-map col-lg-8 row">
             <div class="f-maps">
                 <iframe id="gmap_canvas"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13419.032130422971!2d-79.94077173022463!3d32.772154400000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fe7a1ae84ff639%3A0xe5c782f71924a526!2s24%20King%20St%2C%20Charleston%2C%20SC%2029401%2C%20Amerika%20Birle%C5%9Fik%20Devletleri!5e0!3m2!1str!2str!4v1665070628853!5m2!1str!2str"
@@ -33,7 +33,7 @@
                 <a href=""><i class="bi bi-whatsapp"></i></a>
             </div>
         </div>
-        <div class="footer-block f-contacts col-2">
+        <div class="footer-block f-contacts col-lg-2">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item logo">
                     <a href="">

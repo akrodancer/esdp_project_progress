@@ -7,7 +7,10 @@ html {
 .logo {
     max-width: 250px;
 }
-
+.navbar-collapse ul{
+    width: 100%;
+    justify-content: space-between;
+}
 .upper-panel, .lower-panel {
     margin: auto;
     background-color: #044691;
@@ -18,19 +21,26 @@ html {
     /*height: 50px;*/
     padding: 1% 20% 1% 20%;
 }
+.upper-panel ul {
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+}
 
 .upper-panel p {
     font-size: 19px;
+    margin: 10px 0 10px 0;
 }
 
 .lower-panel {
     padding: 1% 6% 1% 5%;
     /*height: 90px;*/
     border-bottom: 2px solid #3877BF;
+    text-align: center;
 }
 
 .lower-panel a {
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
     font-size: 19px;
 }
 
@@ -59,7 +69,34 @@ a, a:hover, a:visited, a:active {
     color: inherit;
     text-decoration: none;
    }
+@media screen and (max-width:992px) {
+    .logged {
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .sign_in_button {
+        margin: auto;
+        margin-top: 20px;
+    }
+    .lower-panel li {
+        margin: 10px 0 10px 0;
+        font-size: 19px;
+    }
+}
 
+@media screen and (max-width:400px) {
+    .menu-button {
+        width: 100%;
+        margin: 10px 0 20px 0
+    }
+    .navbar-toggler .logo {
+        margin: auto;
+    }
+    .container-fluid {
+        justify-content: space-around;
+    }
+
+}
 /*-----------------ПОДВАЛ САЙТА----------------------*/
 .footer {
     padding: 1% 5% 1% 5%;
@@ -84,7 +121,9 @@ a, a:hover, a:visited, a:active {
     border-radius: 15px;
 }
 .f-logo {
-    width: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 .f-social {
     width: 150px;
@@ -93,7 +132,26 @@ a, a:hover, a:visited, a:active {
 .f-social a {
     margin: 0 15px 0 15px
 }
-
+.f-menu {
+    align-items: center;
+}
+.image-fluid {
+    max-width: 312px;
+}
+.logo-link {
+    margin: auto;
+}
+@media screen and (max-width: 400px) {
+    .image-fluid {
+        width: 100%;
+    }
+}
+@media screen and (max-width:922px) {
+    .f-menu {
+        margin-bottom: 30px;
+        margin-top: 10px;
+    }
+}
 /*-----------------ФОРМА ВХОДА------------------*/
 .auth {
     position: fixed;
@@ -276,7 +334,7 @@ a, a:hover, a:visited, a:active {
 .main-item {
     width: 120%;
     height: 100%;
-    right: 35px;
+    right: 30px;
 }
 @media screen and (max-width: 1000px) {
     .main-item {
