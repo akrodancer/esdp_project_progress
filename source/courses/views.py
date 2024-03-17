@@ -23,13 +23,7 @@ class AboutUsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['teachers'] = get_user_model().user_set.get_teachers()[0:4]
-        teachers1 = []
-        count = 4
-        for i in range(50):
-            teachers1.append(get_user_model().user_set.get_teachers()[count:count + 4])
-            count += 4
-        context['teachers1'] = teachers1
+        context['teachers'] = get_user_model().user_set.get_teachers()
         try:
             context['page'] = PageModel.objects.get(path=self.request.path)
         except:

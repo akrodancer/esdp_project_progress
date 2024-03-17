@@ -1,57 +1,62 @@
 {% load static %}
 <header>
     <nav class="navbar navbar-expand-lg upper-panel">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav d-flex">
             <li class="nav-item">
-                <p class="me-5"><i class="bi bi-geo-alt-fill nav-item"></i> 9-й Микрорайон, Суеркулова 10Б</p>
+                <p class=""><i class="bi bi-geo-alt-fill nav-item"></i> 9-й Микрорайон, Суеркулова 10Б</p>
             </li>
             <li class="nav-item">
-                <p class="me-5"><i class="bi bi-phone nav-item"></i> +996 (505) 242 552</p>
+                <p class=""><i class="bi bi-phone nav-item"></i> +996 (505) 242 552</p>
             </li>
             <li class="nav-item">
-                <p class="me-5"><i class="bi bi-envelope-fill nav-item"></i> progress.kg@gmail.com</p>
+                <p class=""><i class="bi bi-envelope-fill nav-item"></i> progress.kg@gmail.com</p>
             </li>
         </ul>
     </nav>
     <nav class="navbar navbar-expand-lg lower-panel">
         <div class="container-fluid">
-            <a href="{% url 'courses:index' %}" class="m-2">
-                <img class="nav-item me-5 logo" src="{% static 'images/logo.png' %}" alt="" width="100%">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="logo-image">
+                <a href="{% url 'courses:index' %}" class="m-2">
+                    <img class="nav-item logo" src="{% static 'images/logo.png' %}" alt="" width="100%">
+                </a>
+            </div>
+            <div class="menu-button">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-item me-5" href="{% url 'courses:about_us' %}">О нас</a>
+                        <a class="nav-item" href="{% url 'courses:about_us' %}">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item me-5" href="{% url 'courses:courses' %}">Наши курсы</a>
+                        <a class="nav-item" href="{% url 'courses:courses' %}">Наши курсы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item me-5" href="">Онлайн тестирование</a>
+                        <a class="nav-item" href="">Онлайн тестирование</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item me-5" href="{% url 'courses:lessons' %}">Видеоуроки</a>
+                        <a class="nav-item" href="{% url 'courses:lessons' %}">Видеоуроки</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item me-5" href="{% url 'accounts:search_student' %}">Поиск учеников</a>
+                        <a class="nav-item" href="{% url 'accounts:search_student' %}">Поиск учеников</a>
                     </li>
-                    <li class="nav-item me-4">
+                    <li class="nav-item">
                         {% if user.is_authenticated %}
-                            <div>
-                                <li class="nav-item sign_in_button d-flex">
-                                    <span class="name_user me-5">{{ request.user }}</span>
+                            <div class="logged d-flex">
+                                    <span class="name_user me-5">{{ request.user.first_name }}</br>
+                                        {{ request.user.last_name }}</span>
+                                    
                                     <a href="{% url 'accounts:log_out' %}" id="log_out_button"
-                                       class="btn btn-danger my-0">Выход</a>
-                                </li>
+                                       class="btn btn-danger mt-0">Выход</a>
                             </div>
                         {% else %}
-                            <li class="nav-item sign_in_button">
+                            <div class="nav-item sign_in_button">
                                 <button id="sign_in_button" type="button">Войти</button>
-                            </li>
+                            </div>
                         {% endif %}
                     </li>
                 </ul>

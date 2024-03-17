@@ -9,6 +9,7 @@ class ImageDirs:
     COURSE_DIR = os.path.join(settings.MEDIA_ROOT, 'courses')
     ANSWER_DIR = os.path.join(settings.MEDIA_ROOT, 'answers')
     QUESTION_DIR = os.path.join(settings.MEDIA_ROOT, 'questions')
+    HOME_DIR = os.path.join(settings.MEDIA_ROOT, 'home_images')
 
 
 class ImageUpload:
@@ -22,7 +23,7 @@ class AvatarUpload(ImageUpload):
     def _upload(instance, filename):
         extension = filename.split('.')[-1]
         unique_filename = f'{uuid.uuid4()}.{extension}'
-        return os.path.join('avatars', unique_filename)
+        return os.path.join(ImageDirs.AVATAR_DIR, unique_filename)
 
 
 class CourseUpload(ImageUpload):
@@ -30,7 +31,7 @@ class CourseUpload(ImageUpload):
     def _upload(instance, filename):
         extension = filename.split('.')[-1]
         unique_filename = f'{uuid.uuid4()}.{extension}'
-        return os.path.join('courses', unique_filename)
+        return os.path.join(ImageDirs.COURSE_DIR, unique_filename)
 
 
 class AnswerUpload(ImageUpload):
@@ -38,7 +39,7 @@ class AnswerUpload(ImageUpload):
     def _upload(instance, filename):
         extension = filename.split('.')[-1]
         unique_filename = f'{uuid.uuid4()}.{extension}'
-        return os.path.join('answers', unique_filename)
+        return os.path.join(ImageDirs.ANSWER_DIR, unique_filename)
 
 
 class QuestionUpload(ImageUpload):
@@ -46,4 +47,11 @@ class QuestionUpload(ImageUpload):
     def _upload(instance, filename):
         extension = filename.split('.')[-1]
         unique_filename = f'{uuid.uuid4()}.{extension}'
-        return os.path.join('questions', unique_filename)
+        return os.path.join(ImageDirs.QUESTION_DIR, unique_filename)
+    
+class HomeUpload(ImageUpload):
+    @staticmethod
+    def _upload(instance, filename):
+        extension = filename.split('.')[-1]
+        unique_filename = f'{uuid.uuid4()}.{extension}'
+        return os.path.join(ImageDirs.HOME_DIR, unique_filename)
