@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/tests_view.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="test-view">
+        <h1>ОНЛАЙН ТЕСТ</h1>
+        <div class="button-container">
+            <div class="button" onclick="changeColor(this)">
+                <span class="button-text">Все предметы</span>
+            </div>
+            <div class="button" onclick="changeColor(this)">
+                <span class="button-text">На кыргызском</span>
+            </div>
+            <div class="button" onclick="changeColor(this)">
+                <span class="button-text">На русском</span>
+            </div>
+        </div>
+        <div class="tests">
+            {% for test in tests %}
+                <a href="{% url 'online_tests:start_test' test.id %}" class="test-card-link">
+                    <div class="test-card">
+                        <p class="test-name">{{ test.test_name }}</p>
+                        <p class="test-course">{{ test.course }}</p>
+                        <div class="time-questions">
+                            <p>Время: {{ test.countdown }}</p>
+                            <p>Количество вопросов: {{ test.questions.count }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        let activeButton = null;
+
+        function changeColor(button) {
+            if (activeButton) {
+            activeButton.classList.remove("active");
+          }
+
+            activeButton = button;
+            activeButton.classList.add("active");
+        }
+    </script>
+{% endblock %}

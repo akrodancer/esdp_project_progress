@@ -5,12 +5,35 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import OnlineTest, Question, UserTest, Answer
 from .serializers import TestSerializer
+
+
+class AllTestsView(TemplateView):
+    template_name = 'course_tests/tests_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tests'] = OnlineTest.objects.all()
+        return context
+
+
+class TestView(LoginRequiredMixin, View):
+    template_name = 'course_tests/test_start.html'
+
+    def get(self, request, test_id):
+        test = get_object_or_404(OnlineTest, id=test_id)
+        questions_count = Question.objects.filter(test=test).count()
+        context = {
+            'test': test,
+            'course': test.course.first(),
+            'questions_count': questions_count
+        }
+        return render(request, self.template_name, context)
 
 
 class TestPassingView(LoginRequiredMixin, View):

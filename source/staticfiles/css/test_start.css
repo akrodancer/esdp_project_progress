@@ -1,0 +1,26 @@
+.test-start {
+    margin: 100px;
+    font-family: Montserrat, sans-serif;
+    background: url("../images/board.png") no-repeat right;
+}
+
+.course-name {
+    padding: 100px 0;
+    font-weight: 500;
+    font-size: 36px;
+}
+
+.test-btn {
+    width: 200px !important;
+    height: 45px !important;
+    background-color: #F3CB3D;
+    color: black;
+    border-radius: 15px;
+    padding: 13px 52px;
+    border: 0;
+}
+
+.time-questions {
+    margin-top: 20px;
+    display: flex;
+}
