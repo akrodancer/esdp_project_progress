@@ -46,7 +46,6 @@ html {
 }
 
 #sign_in_button {
-    margin-top: 10px;
     border: 0;
     border-radius: 10px;
     background-color: #F3CB3D;
@@ -515,16 +514,19 @@ a, a:hover, a:visited, a:active {
 }
 
 .why_progress {
-    width: 658px;
     padding-top: 50px;
-    margin-left: 40px;
+    margin-left: 20px;
+}
+
+.why_progress_h3 {
+    max-width: 672px;
 }
 
 .why_progress h3 {
     font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -535,7 +537,6 @@ a, a:hover, a:visited, a:active {
 
 .why_progress_1 {
     background: #044691;
-    width: 48%;
     color: white;
     margin-bottom: 20px;
     height: 200px;
@@ -557,7 +558,6 @@ a, a:hover, a:visited, a:active {
 
 .why_progress_2 {
     background: #F3CB3D;
-    width: 48%;
     margin-bottom: 20px;
     height: 200px;
 }

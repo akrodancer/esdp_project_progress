@@ -1,34 +1,61 @@
 {% load static %}
 <header>
-    <div class="upper-panel d-flex justify-content-between">
-        <p><i class="bi bi-geo-alt-fill nav-item"></i> 9-й Микрорайон, Суеркулова 10Б</p>
-        <p><i class="bi bi-phone nav-item"></i> +996 (505) 242 552</p>
-        <p><i class="bi bi-envelope-fill nav-item"></i> progress.kg@gmail.com</p>
-    </div>
-    <div class="lower-panel">
-        <div class="navbar-nav ms-auto flex-row justify-content-between flex-wrap">
-            <div class="nav-item logo">
-                <a href="{% url 'courses:index' %}">
-                    <img class="" src="{% static 'images/logo.png' %}" alt="" width="100%">
-                </a>
-            </div>
-            <a class="nav-item" href="{% url 'courses:about_us' %}">О нас</a>
-            <a class="nav-item" href="{% url 'courses:courses' %}">Наши курсы</a>
-            <a class="nav-item" href="">Онлайн тестирование</a>
-            <a class="nav-item" href="{% url 'courses:lessons' %}">Видеоуроки</a>
-            <a class="nav-item" href="{% url 'accounts:search_student' %}">Поиск учеников</a>
-            {% if user.is_authenticated %}
-                <div>
-                    <span class="name_user">{{ request.user }}</span>
-                    <li class="nav-item sign_in_button">
-                        <a href="{% url 'accounts:log_out' %}" id="log_out_button" class="btn btn-danger my-0">Выход</a>
+    <nav class="navbar navbar-expand-lg upper-panel">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <p class="me-5"><i class="bi bi-geo-alt-fill nav-item"></i> 9-й Микрорайон, Суеркулова 10Б</p>
+            </li>
+            <li class="nav-item">
+                <p class="me-5"><i class="bi bi-phone nav-item"></i> +996 (505) 242 552</p>
+            </li>
+            <li class="nav-item">
+                <p class="me-5"><i class="bi bi-envelope-fill nav-item"></i> progress.kg@gmail.com</p>
+            </li>
+        </ul>
+    </nav>
+    <nav class="navbar navbar-expand-lg lower-panel">
+        <div class="container-fluid">
+            <a href="{% url 'courses:index' %}" class="m-2">
+                <img class="nav-item me-5 logo" src="{% static 'images/logo.png' %}" alt="" width="100%">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-item me-5" href="{% url 'courses:about_us' %}">О нас</a>
                     </li>
-                </div>
-            {% else %}
-                <li class="nav-item sign_in_button">
-                    <button id="sign_in_button" type="button">Войти</button>
-                </li>
-            {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-item me-5" href="{% url 'courses:courses' %}">Наши курсы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item me-5" href="">Онлайн тестирование</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item me-5" href="{% url 'courses:lessons' %}">Видеоуроки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item me-5" href="{% url 'accounts:search_student' %}">Поиск учеников</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        {% if user.is_authenticated %}
+                            <div>
+                                <li class="nav-item sign_in_button d-flex">
+                                    <span class="name_user me-5">{{ request.user }}</span>
+                                    <a href="{% url 'accounts:log_out' %}" id="log_out_button"
+                                       class="btn btn-danger my-0">Выход</a>
+                                </li>
+                            </div>
+                        {% else %}
+                            <li class="nav-item sign_in_button">
+                                <button id="sign_in_button" type="button">Войти</button>
+                            </li>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 </header>
