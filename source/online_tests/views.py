@@ -18,7 +18,14 @@ class AllTestsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tests'] = OnlineTest.objects.all()
+        language = self.request.GET.get('language')
+        tests = OnlineTest.objects.all()
+        if language == 'RU':
+            context['tests'] = tests.filter(test_language='русский')
+        elif language == 'KG':
+            context['tests'] = tests.filter(test_language='кыргызский')
+        else:
+            context['tests'] = tests.all()
         return context
 
 
