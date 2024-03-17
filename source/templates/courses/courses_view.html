@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
 
-{#   блок карточки с курсами#}
+    {#   блок карточки с курсами#}
     <div class="courses">
         <div class="container">
             <div class="courses_content">
@@ -15,7 +15,7 @@
                     самых популярных и перспективных направлений</p>
             </div>
             <div class="courses_card">
-                <div class="row row-col-5 mx-5">
+                <div class="row row-col- mx-5">
                     <div class="row">
                         {% for course in courses %}
                             <div class="card m-4 rounded-4" style="width: 21rem;">
@@ -36,41 +36,44 @@
         </div>
     </div>
 
-{#   блок почему выбирают нас#}
+    {#   блок почему выбирают нас#}
     <div class="bg_courses">
         <div class="container">
             <div class="why_progress">
-                <div>
+                <div class="why_progress_h3">
                     <h3>почему выбирают<br>образовательный<br>
                         центр <span class="span_progress">прогресс</span></h3>
                 </div>
             </div>
-            <div class="why_progress">
-                <div class="d-flex justify-content-between">
-                    <div class="rounded-4 why_progress_1">
-                        <h4>#1</h4>
-                        <p>Репетиторы по всему<br>Кыргызстану</p>
+            <div>
+                <div class="why_progress">
+                    <div class="row">
+                        <div class="col-lg-3 col-sx-10 rounded-4 me-4 why_progress_1">
+                            <h4>#1</h4>
+                            <p>Репетиторы по всему<br>Кыргызстану</p>
+                        </div>
+                        <div class="col-lg-3 col-sx-10 rounded-4 why_progress_1">
+                            <h4>500+</h4>
+                            <p>Довольных учеников, успешно<br>сдавших экзамены по всем<br>предметам</p>
+                        </div>
                     </div>
-                    <div class="rounded-4 why_progress_1">
-                        <h4>500+</h4>
-                        <p>Довольных учеников, успешно<br>сдавших экзамены по всем<br>предметам</p>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="rounded-4 why_progress_1">
-                        <h4>24/7</h4>
-                        <p>Учеба в собственном графике<br>из любой точки мира</p>
-                    </div>
-                    <div class="rounded-4 why_progress_2">
-                        <h4>96%</h4>
-                        <p>Окончевших курс отмечают,<br>что достигли своих целей</p>
+                    <div class="row">
+                        <div class="col-lg-3 col-sx-10 rounded-4 me-4 why_progress_1">
+                            <h4>24/7</h4>
+                            <p>Учеба в собственном графике<br>из любой точки мира</p>
+                        </div>
+                        <div class="col-lg-3 col-sx-10 rounded-4 why_progress_2">
+                            <h4>96%</h4>
+                            <p>Окончевших курс отмечают,<br>что достигли своих целей</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-{#    modal#}
+
+    {#    modal#}
     {% for course in courses %}
         <div id="myModal courses_modal_window">
             <div class="modal fade" id="{{ course.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -79,7 +82,8 @@
                     <div class="modal-content modal_content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">{{ course.course_name }}</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
