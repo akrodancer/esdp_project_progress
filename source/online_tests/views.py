@@ -28,10 +28,11 @@ class TestView(LoginRequiredMixin, View):
     def get(self, request, test_id):
         test = get_object_or_404(OnlineTest, id=test_id)
         questions_count = Question.objects.filter(test=test).count()
+        total_minutes = int(test.countdown.total_seconds() // 60)
         context = {
             'test': test,
-            'course': test.course.first(),
-            'questions_count': questions_count
+            'questions_count': questions_count,
+            'total_minutes': total_minutes
         }
         return render(request, self.template_name, context)
 
@@ -54,7 +55,8 @@ class TestPassingView(LoginRequiredMixin, View):
             'questions': questions,
             'countdown_seconds': test.countdown.total_seconds(),
             'answers': answers,
-            'server_time': server_time.strftime('%Y-%m-%dT%H:%M:%S')
+            'server_time': server_time.strftime('%Y-%m-%dT%H:%M:%S'),
+            'minutes': test.countdown.seconds // 60
         }
         return render(request, 'course_tests/test_passing.html', context)
 
@@ -126,9 +128,11 @@ def test_results(request, user_test_id):
         progress = 0
 
     context = {
+        'test_name': user_test.test.test_name,
         'user_test': user_test,
         'progress': progress,
-        'total_questions_count': total_questions_count
+        'total_questions_count': total_questions_count,
+        'test_id': user_test.test.id,
     }
 
     return render(request, 'course_tests/test_results.html', context)
