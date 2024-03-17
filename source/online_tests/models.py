@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import models
-
 from courses import QuestionUpload, AnswerUpload
 from courses.models import Course
 from .online_test_type_choices import OnlineTestTypeChoices
@@ -14,6 +13,7 @@ class OnlineTest(models.Model):
     difficulty = models.CharField(verbose_name='Сложность',
                                   max_length=40
                                   )
+    description = models.TextField(verbose_name='Описание')
     test_type = models.CharField(verbose_name='Тип',
                                  max_length=4, 
                                  choices=OnlineTestTypeChoices, 

@@ -11,6 +11,7 @@
     <div class="test-start">
         <p>ТЕСТ НА РУССКОМ ЯЗЫКЕ</p>
         <p class="course-name">{{ test.test_name }}</p>
+        <p class="course-description">{{ test.description }}</p>
         <a href="{% url 'online_tests:take_test' test.id %}" class="test-btn">Начать тест</a>
         <div class="time-questions">
             <ul>

@@ -5,9 +5,15 @@
 }
 
 .course-name {
-    padding: 100px 0;
     font-weight: 500;
     font-size: 36px;
+}
+
+.course-description {
+    max-width: 666px;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 
 .test-btn {
@@ -23,7 +29,7 @@
 }
 
 .time-questions {
-    margin-top: 40px;
+    margin: 40px 0 0 15px;
 }
 
 .time-questions ul {
