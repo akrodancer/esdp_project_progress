@@ -11,16 +11,26 @@
 }
 
 .test-btn {
-    width: 200px !important;
-    height: 45px !important;
+    width: 200px;
+    height: 45px;
     background-color: #F3CB3D;
     color: black;
     border-radius: 15px;
-    padding: 13px 52px;
+    padding: 11px 44px;
     border: 0;
+    font-weight: 600;
+    font-size: 18px;
 }
 
 .time-questions {
-    margin-top: 20px;
+    margin-top: 40px;
+}
+
+.time-questions ul {
     display: flex;
+    padding: 0;
+}
+
+.time-questions li {
+    margin-right: 100px;
 }

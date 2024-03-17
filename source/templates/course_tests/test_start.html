@@ -11,11 +11,10 @@
     <div class="test-start">
         <p>ТЕСТ НА РУССКОМ ЯЗЫКЕ</p>
         <p class="course-name">{{ test.test_name }}</p>
-        <p>{{ course.course_name }}</p>
         <a href="{% url 'online_tests:take_test' test.id %}" class="test-btn">Начать тест</a>
         <div class="time-questions">
             <ul>
-                <li>Время: {{ test.countdown }}</li>
+                <li>Время: {{ total_minutes }} минут</li>
                 <li>Количество заданий: {{ questions_count }}</li>
             </ul>
         </div>
