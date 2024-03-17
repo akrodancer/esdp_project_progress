@@ -58,6 +58,10 @@
 
 /*карточки для тестов*/
 
+.tests {
+  margin: 0 180px;
+}
+
 .test-card {
   display: inline-block;
   min-width: 288px;

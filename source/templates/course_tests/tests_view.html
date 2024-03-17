@@ -23,13 +23,17 @@
         </div>
         <div class="tests">
             {% for test in tests %}
-                <a href="{% url 'online_tests:start_test' test.id %}" class="test-card-link">
+                <a href="{% url 'online_tests:start_test' test.pk %}" class="test-card-link">
                     <div class="test-card">
                         <p class="test-name">{{ test.test_name }}</p>
-                        <p class="test-course">{{ test.course }}</p>
+                        <p class="test-course">
+                            {% for course in test.course.all %}
+                                {{ course.course_name }}
+                            {% endfor %}
+                        </p>
                         <div class="time-questions">
                             <p>Время: {{ test.countdown }}</p>
-                            <p>Количество вопросов: {{ test.questions.count }}</p>
+                            <p>Количество заданий: {{ test.questions.count }}</p>
                         </div>
                     </div>
                 </a>
@@ -42,8 +46,8 @@
         function changeColor(button) {
             if (activeButton) {
             activeButton.classList.remove("active");
-          }
-
+            }
+            
             activeButton = button;
             activeButton.classList.add("active");
         }
