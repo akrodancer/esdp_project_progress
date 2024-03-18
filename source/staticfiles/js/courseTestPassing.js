@@ -92,7 +92,7 @@ function displayCheckboxes() {
 
         if (selectedAnswers[questionId] && selectedAnswers[questionId].includes(answer.id)) {
             checkbox.checked = true;
-            checkboxContainer.style.backgroundColor = '#4484CF';
+            checkboxContainer.style.backgroundColor = '#044691';
             if (checkboxShapes[questionId] && checkboxShapes[questionId][answer.id]) {
                 checkboxContainer.style.borderRadius = checkboxShapes[questionId][answer.id];
             }
@@ -101,7 +101,7 @@ function displayCheckboxes() {
         checkboxContainer.addEventListener('click', function () {
             if (!checkbox.checked && (!selectedAnswers[questionId] || selectedAnswers[questionId].length < 2)) {
                 checkbox.checked = true;
-                checkboxContainer.style.backgroundColor = '#4484CF';
+                checkboxContainer.style.backgroundColor = '#044691';
 
                 if (!selectedAnswers[questionId]) {
                     selectedAnswers[questionId] = [];
@@ -132,7 +132,7 @@ function displayCheckboxes() {
                     checkboxContainer.style.borderRadius = "0";
                 }
                 checkbox.checked = false;
-                checkboxContainer.style.backgroundColor = '#aaaaaa';
+                checkboxContainer.style.backgroundColor = '#D9D9D9';
                 localStorage.setItem('selectedAnswers', JSON.stringify(selectedAnswers));
                 localStorage.setItem('checkboxShapes', JSON.stringify(checkboxShapes));
             }

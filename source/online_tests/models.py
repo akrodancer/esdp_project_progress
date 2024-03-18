@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.db import models
-
 from courses import QuestionUpload, AnswerUpload
 from courses.models import Course
-from .online_test_type_choices import OnlineTestTypeChoices
+from .online_test_type_choices import OnlineTestTypeChoices, LanguageTypeChoices
+from django.utils import timezone
 
 
 
@@ -14,11 +14,16 @@ class OnlineTest(models.Model):
     difficulty = models.CharField(verbose_name='Сложность',
                                   max_length=40
                                   )
+    description = models.TextField(verbose_name='Описание')
     test_type = models.CharField(verbose_name='Тип',
                                  max_length=4, 
                                  choices=OnlineTestTypeChoices, 
                                  default=OnlineTestTypeChoices.FREE
                                  )
+    test_language = models.CharField(verbose_name='Язык курса',
+                                     max_length=10,
+                                     choices=LanguageTypeChoices,
+                                     default=LanguageTypeChoices.KG)
     course = models.ManyToManyField(verbose_name='Курс',
                                     to=Course, 
                                     related_name='online_tests'
@@ -27,6 +32,26 @@ class OnlineTest(models.Model):
 
     def __str__(self):
         return self.test_name
+
+    @property
+    def countdown_formatted_ru(self):
+        total_minutes = self.countdown.seconds // 60
+        if total_minutes <= 60:
+            return f"{total_minutes} минут"
+        else:
+            hours = self.countdown.seconds // 3600
+            minutes = (self.countdown.seconds // 60) % 60
+            return f"{hours} часа {minutes} минут"
+
+    @property
+    def countdown_formatted_kg(self):
+        total_minutes = self.countdown.seconds // 60
+        if total_minutes <= 60:
+            return f"{total_minutes} мүнөт"
+        else:
+            hours = self.countdown.seconds // 3600
+            minutes = (self.countdown.seconds // 60) % 60
+            return f"{hours} саат {minutes} мүнөт"
 
     def is_accessible_by(self, user):
 

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/tests_view.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="test-view">
+        <h1>ОНЛАЙН ТЕСТ</h1>
+        <div class="button-container">
+            <div class="button" onclick="filterTests('')" data-language="">
+                <span class="button-text">Все предметы</span>
+            </div>
+            <div class="button" onclick="filterTests('KG')" data-language="KG">
+                <span class="button-text">На кыргызском</span>
+            </div>
+            <div class="button" onclick="filterTests('RU')" data-language="RU">
+                <span class="button-text">На русском</span>
+            </div>
+        </div>
+        <div class="tests">
+            {% for test in tests %}
+                <a href="{% url 'online_tests:start_test' test.pk %}" class="test-card-link">
+                    <div class="test-card">
+                        <p class="test-name">{{ test.test_name }}</p>
+                        <p class="test-course">
+                            {% for course in test.course.all %}
+                                {{ course.course_name }}
+                            {% endfor %}
+                        </p>
+                        <div class="time-questions">
+                            {% if test.test_language == 'кыргызский' %}
+                                <p>Убакыт: {{ test.countdown_formatted_kg }}</p>
+                                <p>Суроолордун саны: {{ test.questions.count }}</p>
+                            {% else %}
+                                <p>Время: {{ test.countdown_formatted_ru }}</p>
+                                <p>Количество заданий: {{ test.questions.count }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{% static 'js/languageButtons.js' %}"></script>
+{% endblock %}
