@@ -1,16 +1,19 @@
 from django.contrib import admin
+from django.db import transaction
+from courses.models import Course, Lesson, Visit
 
-from courses.models import Course, Lesson
+class VisitInline(admin.TabularInline):
+    model = Visit
+    fields = ('students', 'is_currently_viewing', 'grade')
+    extra = 0  # чтобы не создавать по умолчанию пустые строки
 
-
-# Register your models here.
 class LessonInline(admin.StackedInline):
     model = Lesson
     extra = 0
-    fields = ('lesson_name', 'grade', 'description',
-                'video', 'datetime', 'course','lesson_type')
+    fields = ('lesson_name', 'description',
+              'video', 'datetime', 'course', 'lesson_type')
     fk_name = 'course'
-
+    show_change_link = True
 
 @admin.register(Course)
 class CustomCourseAdmin(admin.ModelAdmin):
@@ -20,7 +23,19 @@ class CustomCourseAdmin(admin.ModelAdmin):
         'date_start',
         'date_finish',
     )
-    
-    fields = ('course_name', 'description', 'date_start', 
-              'course_image', 'date_finish', 'teacher', 
+    fields = ('course_name', 'description', 'date_start',
+              'course_image', 'date_finish', 'teacher',
               'students', 'paid_by')
+
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    inlines = [VisitInline]
+    list_display = ['lesson_name']
+
+    @transaction.atomic
+    def save_related(self, request, form, formsets, change):
+        super().save_related(request, form, formsets, change)
+        lesson = form.instance
+        students = lesson.course.students.all()
+        for student in students:
+            Visit.objects.get_or_create(students=student, lesson=lesson)

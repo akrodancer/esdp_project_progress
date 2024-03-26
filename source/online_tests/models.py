@@ -14,7 +14,7 @@ class OnlineTest(models.Model):
     difficulty = models.CharField(verbose_name='Сложность',
                                   max_length=40
                                   )
-    description = models.TextField(verbose_name='Описание')
+    description = models.TextField(verbose_name='Описание', blank=True, null=True)
     test_type = models.CharField(verbose_name='Тип',
                                  max_length=4, 
                                  choices=OnlineTestTypeChoices, 
