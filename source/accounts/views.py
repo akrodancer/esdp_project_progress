@@ -6,13 +6,11 @@ from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.views.generic import CreateView, DetailView, ListView, View
 from django_filters.views import FilterView
 from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
-from django.shortcuts import redirect
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse
 from courses.models import Visit, Course
 from .models import Comment
 from .json_form_handler import JsonFormHandler
-from django_filters.views import FilterView
 from .forms import NewUserForm, LoginUserForm, CommentForm, SignedUpUsersForm
 from .filters import StudentFilter
 
