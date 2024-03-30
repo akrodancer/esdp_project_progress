@@ -3,6 +3,11 @@ html {
 }
 /*------------------ШАПКА САЙТА-------------------*/
 
+.navbar-toggler {
+    border-color: white;
+    font-size: 30px;
+    color: white;
+}
 
 .logo {
     max-width: 250px;
@@ -261,12 +266,12 @@ a, a:hover, a:visited, a:active {
 
 
 /*главная страница*/
-
+.main-text {
+    word-wrap: break-word;
+}
 
 /*карусель*/
-.owl-nav, .owl-dots {
-    display: none;
-}
+
 .bg-img1 {
     background-image: url("../images/globe asia.png");
     background-size: 800px;
@@ -289,7 +294,7 @@ a, a:hover, a:visited, a:active {
     margin: 0 auto;
 }
 .carousel_view .owl-stage {
-    height: 600px;
+    height: 500px;
 }
 .carousel_view .owl-stage-outer {
     justify-content: space-between;
@@ -328,9 +333,34 @@ a, a:hover, a:visited, a:active {
     opacity: 1;
     transform: scale(1.4);
 }
+
+.owl-nav {
+    display: flex !important;
+    justify-content: space-between;
+}
+.owl-dots {
+    display: block !important;
+    padding-bottom: 30px;
+}
+.owl-prev, .owl-next {
+    width: 60px;
+    height: 60px;
+    display: flex !important;
+    justify-content: center;
+    color: white !important;
+    font-size: 50px !important;
+    border-radius: 50% !important; 
+    background-color: #F3CB3D !important;
+    backface-visibility: 0.8;
+}
+.owl-nav i {
+    position: relative;
+    bottom: 4px;
+}
+
 @media screen and (max-width:1380px) {
     .carousel_view .owl-stage {
-        height: 500px;
+        height: 400px;
     }
 }
 @media screen and (max-width:991px) {
@@ -338,17 +368,17 @@ a, a:hover, a:visited, a:active {
         transform: scale(1);
     }
     .carousel_view .owl-stage {
-        height: 700px;
+        height: 650px;
     }
 }
 @media screen and (max-width:778px) {
     .carousel_view .owl-stage {
-        height: 600px;
+        height: 500px;
     }
 }
 @media screen and (max-width:488px) {
     .carousel_view .owl-stage {
-        height: 500px;
+        height: 400px;
     }
 }
 .owl-item.active .main-item{
@@ -449,6 +479,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .card_sign_up {
+    width: 90%;
     padding: 20px;
     margin-left: 20px;
     margin-top: 5px;
@@ -505,7 +536,7 @@ a, a:hover, a:visited, a:active {
 }
 .review_view {
     margin: 0 auto;
-    padding-bottom: 150px;
+    padding-bottom: 100px;
 }
 
 .comment-image {
