@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/test_start.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="test-start">
+        {% if test.test_language == 'русский' %}
+            <p>ТЕСТ НА РУССКОМ ЯЗЫКЕ</p>
+        {% elif test.test_language == 'кыргызский' %}
+            <p>ТЕСТ НА КЫРГЫЗСКОМ ЯЗЫКЕ</p>
+        {% endif %}
+        <p class="course-name">{{ test.test_name }}</p>
+        <p class="course-description">{{ test.description }}</p>
+        <a href="{% url 'online_tests:take_test' test.id %}" class="test-btn">Начать тест</a>
+        <div class="time-questions">
+            <ul>
+                <li>Время: {{ total_minutes }} минут</li>
+                <li>Количество заданий: {{ questions_count }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

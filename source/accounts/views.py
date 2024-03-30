@@ -12,6 +12,7 @@ from django.urls import reverse
 from courses.models import Visit, Course
 from .models import Comment
 from .json_form_handler import JsonFormHandler
+from django_filters.views import FilterView
 from .forms import NewUserForm, LoginUserForm, CommentForm, SignedUpUsersForm
 from .filters import StudentFilter
 
@@ -54,7 +55,6 @@ class StudentListView(FilterView, ListView):
     template_name = 'accounts/student_list.html'
     model = get_user_model()
     filterset_class = StudentFilter
-    template_name = 'accounts/student_list.html'
     context_object_name = 'students'
 
     def get_queryset(self):

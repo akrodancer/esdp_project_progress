@@ -20,7 +20,7 @@ class StudentFilter(django_filters.FilterSet):
                 last_name__iexact=last_name,
                 role='user',
                 enrolled_courses__isnull=False
-            )
+            ).distinct()
         else:
             queryset = get_user_model().objects.none()
         return queryset

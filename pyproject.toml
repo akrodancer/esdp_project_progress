@@ -1,5 +1,6 @@
 [tool.poetry]
 name = "source"
+name = "source"
 version = "0.1.0"
 description = ""
 authors = ["SagidullinEmil <se12373@auca.kg>"]
