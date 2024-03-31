@@ -5,11 +5,12 @@ from django.conf import settings
 
 
 class ImageDirs:
-    AVATAR_DIR = os.path.join(settings.MEDIA_ROOT, 'avatars')
-    COURSE_DIR = os.path.join(settings.MEDIA_ROOT, 'courses')
-    ANSWER_DIR = os.path.join(settings.MEDIA_ROOT, 'answers')
-    QUESTION_DIR = os.path.join(settings.MEDIA_ROOT, 'questions')
-    HOME_DIR = os.path.join(settings.MEDIA_ROOT, 'home_images')
+    MEDIA = 'media/'
+    AVATAR_DIR = MEDIA + 'avatars'
+    COURSE_DIR = MEDIA + 'courses'
+    ANSWER_DIR = MEDIA + 'answers'
+    QUESTION_DIR = MEDIA + 'questions'
+    HOME_DIR = MEDIA + 'home_images'
 
 
 class ImageUpload:

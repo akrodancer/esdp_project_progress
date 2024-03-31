@@ -14,7 +14,7 @@
         <div class="bg-img1">
             <div class="bg-img2">
                 <div class="container">
-                    <div>
+                    <div class="main-text">
                         {{page.text_primary|safe}}
                     </div>
                     <div class="sign_up_button">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <div class="col-lg-4 col-sx-12">
+                <div class="col-lg-4 col-sx-10">
                     <div class="card rounded-4 h-100 card_sign_up">
                         <div class="card-body">
                             <h4>Бесплатный<br>урок!</h4>
@@ -122,25 +122,26 @@
 
 <script src="{% static 'js/owl_carousel/owl.carousel.min.js' %}"></script>    
 <script>
-    $(document).ready(function(){
+$(document).ready(function(){
     $(".owl-carousel").owlCarousel();
-  });
-  $('.owl-carousel').owlCarousel({
+});
+$('.owl-carousel').owlCarousel({
     center: true,
-      loop:true,
-      nav:true,
-      mergeFit: true,
-      responsive:{
-          0:{
-              items:1
-          },
-          778:{
-              items:1
-          },
-          1000:{
-              items:3
-          }
-      }
-  })
+    mouseDrag: false,
+    loop:true,
+    nav:true,
+    mergeFit: true,
+    responsive:{
+        0:{
+            items:1
+        },
+        778:{
+            items:1
+        },
+        1000:{
+            items:3
+        }
+    }
+})
 </script>
 {% endblock %}

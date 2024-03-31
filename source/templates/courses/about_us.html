@@ -55,27 +55,27 @@
     $(".owl-carousel").owlCarousel();
   });
   $('.owl-carousel').owlCarousel({
-      loop:true,
-      nav:true,
-      mergeFit: true,
-      responsive:{
-          0:{
-              items:1
-          },
-          720:{
+    mouseDrag: false,
+    loop:true,
+    nav:true,
+    mergeFit: true,
+    responsive:{
+        0:{
             items:1
-          },
-          961:{
-              items:2
-          },
-          1117:{
+        },
+        720:{
+            items:1
+        },
+        961:{
+            items:2
+        },
+        1117:{
             items:3
-          },
-          1440:{
+        },
+        1440:{
             items:4
-          },
-
-      }
+        },
+    }
   })
 </script>
 {% endblock %}
