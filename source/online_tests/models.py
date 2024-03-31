@@ -132,6 +132,8 @@ class UserTest(models.Model):
     correct_answer_count = models.IntegerField(default=0)
                                           
     incorrect_answer_cnt = models.IntegerField(default=0)
+    test_start = models.DateTimeField(default=timezone.now)
+    test_end = models.DateTimeField(auto_now=True)
 
 
     def __str__(self):

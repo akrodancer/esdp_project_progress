@@ -1,6 +1,6 @@
 import datetime
 import json
-
+from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
 from django.http import JsonResponse
@@ -49,6 +49,8 @@ class TestPassingView(LoginRequiredMixin, View):
         test = get_object_or_404(OnlineTest, id=test_id)
         user = request.user
         user_test, created = UserTest.objects.get_or_create(user=user, test=test)
+        user_test.test_start = timezone.now()
+        user_test.save()
         answers = []
 
         questions = Question.objects.filter(test=test)
@@ -134,12 +136,18 @@ def test_results(request, user_test_id):
     else:
         progress = 0
 
+    time_spent = user_test.test_end - user_test.test_start
+    time_spent_seconds = time_spent.total_seconds()
+    time_spent_format = (f"{int(time_spent_seconds // 3600):02d}:"
+                         f"{int((time_spent_seconds % 3600) // 60):02d}:{int(time_spent_seconds):02d}")
+
     context = {
         'test_name': user_test.test.test_name,
         'user_test': user_test,
         'progress': progress,
         'total_questions_count': total_questions_count,
         'test_id': user_test.test.id,
+        'time_spent': time_spent_format,
     }
 
     return render(request, 'course_tests/test_results.html', context)

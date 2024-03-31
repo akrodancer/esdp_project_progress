@@ -76,6 +76,13 @@
 .test-time {
     font-weight: 500;
     font-size: 20px;
+    margin: 0;
+}
+
+.time-spent {
+    color: #044691;
+    font-weight: 700;
+    font-size: 40px;
 }
 
 .button-container {
