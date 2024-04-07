@@ -3,40 +3,49 @@ version: '3.8'
 services:
   db_1:
     container_name: db_1
-    network_mode: host
     ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+      - "5433:5432"
     image: postgres:14.3-alpine
     restart: always
     volumes:
       - postgres:/var/lib/postgres/data
     env_file:
       - .env
+    environment:
+        - POSTGRES_DB=${DB_NAME}
+        - POSTGRES_PASSWORD=${DB_PASSWORD}
+        - POSTGRES_USER=${DB_USER}
 
   web:
     container_name: progress
-    image: source:latest
-    network_mode: host
-
     build: ./
-#    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
+    command: gunicorn main_config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./source:/src/source
-    ports:
-      - "8000:8000"
-    
+      - static_volume:/src/source/static
+      - media_volume:/src/source/media
+    expose:
+      - 8000
     restart: always
     depends_on:
       - db_1
     environment:
-      - SECRET_KEY=${SECRET_KEY}
-      - DATABASE_URL=postgres://postgres:postgres@db_1:5432/postgres
+      #- SECRET_KEY=${SECRET_KEY}
+      #- DATABASE_URL=postgres://postgres:postgres@db_1:5432/postgres
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db_1:5432/postgres
     env_file: .env
-# networks:
-#       host:
-#         external: true
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/src/source/static
+      - media_volume:/src/source/media
+    ports: 
+      - 1337:80
+    depends_on: 
+      - web
+
 volumes:
   postgres:
+  static_volume:
+  media_volume:

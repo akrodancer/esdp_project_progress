@@ -1,0 +1,835 @@
+html {
+    height: 100vh;
+}
+/*------------------ШАПКА САЙТА-------------------*/
+
+.navbar-toggler {
+    border-color: white;
+    font-size: 30px;
+    color: white;
+}
+
+.logo {
+    max-width: 250px;
+}
+.navbar-collapse ul{
+    width: 100%;
+    justify-content: space-between;
+}
+.upper-panel, .lower-panel {
+    margin: auto;
+    background-color: #044691;
+    color: white;
+    border-bottom: 1px solid #3877BF;
+}
+.upper-panel {
+    /*height: 50px;*/
+    padding: 1% 20% 1% 20%;
+}
+.upper-panel ul {
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+}
+
+.upper-panel p {
+    font-size: 19px;
+    margin: 10px 0 10px 0;
+}
+
+.lower-panel {
+    padding: 1% 6% 1% 5%;
+    /*height: 90px;*/
+    border-bottom: 2px solid #3877BF;
+    text-align: center;
+}
+
+.lower-panel a {
+    margin: 20px 0 20px 0;
+    font-size: 19px;
+}
+
+.sign_in_button {
+    width: 128px;
+}
+
+.name_user {
+    margin-bottom: 0;
+    font-size: 19px;
+    color: white;
+    padding-top: 0;
+}
+
+#sign_in_button {
+    border: 0;
+    border-radius: 10px;
+    background-color: #F3CB3D;
+    color: black;
+    width: 100%;
+    height: 34px;
+    font-size: 19px;
+    font-weight: bold;
+}
+a, a:hover, a:visited, a:active {
+    color: inherit;
+    text-decoration: none;
+   }
+@media screen and (max-width:992px) {
+    .logged {
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .sign_in_button {
+        margin: auto;
+        margin-top: 20px;
+    }
+    .lower-panel li {
+        margin: 10px 0 10px 0;
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .menu-button {
+        width: 100%;
+        margin: 10px 0 20px 0
+    }
+    .navbar-toggler .logo {
+        margin: auto;
+    }
+    .container-fluid {
+        justify-content: space-around;
+    }
+
+}
+/*-----------------ПОДВАЛ САЙТА----------------------*/
+.footer {
+    padding: 1% 5% 1% 5%;
+    margin: auto;
+    background-color: #044691;
+    color: white;
+}
+.footer-block {
+    display: flex;
+    align-items: center;
+}
+.footer h6 {
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.f-contacts ul, .f-logo {
+    margin: auto;
+}
+.f-map iframe {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+}
+.f-logo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.f-social {
+    width: 150px;
+    margin: 1% auto 1% auto;
+}
+.f-social a {
+    margin: 0 15px 0 15px
+}
+.f-menu {
+    align-items: center;
+}
+.image-fluid {
+    max-width: 312px;
+}
+.logo-link {
+    margin: auto;
+}
+@media screen and (max-width: 400px) {
+    .image-fluid {
+        width: 100%;
+    }
+}
+@media screen and (max-width:922px) {
+    .f-menu {
+        margin: 10px auto 20px auto;
+    }
+}
+/*-----------------ФОРМА ВХОДА------------------*/
+.auth {
+    position: fixed;
+    z-index: 6;
+    width: 100%;
+    top: 15%;
+    right: 0;
+    left: 0;
+    height: calc(var(--vh, 1vh) * 70);
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.form-cover {
+    background: rgb(14, 14, 14, 0.3);
+    width: 400px;
+    height: 410px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: 7;
+    border-radius: 15px;
+    align-self: center;
+}
+
+
+
+.auth h5 {
+    padding: 1% 10% 1% 10%;
+}
+.auth a, span {
+    color: gray;
+}
+.auth .btn, input, select, option{
+    width: 80%;
+    border-radius: 15px;
+    margin: 5% auto 10% auto;
+}
+.auth input, select, option {
+    text-align: center;
+    height: 40px;
+    border: 0;
+    border-radius: 15px;
+    background-color: rgba(255, 196, 0, 0.5);
+    margin: 2% auto 2% auto;
+}
+.form-inputs {
+    background-color: white;
+    border-radius: 15px;
+    max-width: 400px;
+
+}
+@media screen and (max-width: 772px) {
+    .form-inputs {
+        width: 90%;
+    }
+}
+.back {
+    background: rgb(14, 14, 14, 0.8);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 5;
+  }
+
+
+/*-----------------БЛОК ПОДТВЕРЖДЕННОЙ ЗАЯВКИ-------------*/
+.confirm {
+    background-color: #044691;
+    border-radius: 15px;
+    max-width: 250px;
+    aspect-ratio: 1;
+    position: fixed;
+    z-index: 8;
+    top: 30%;
+    right: 0;
+    left: 0;
+    margin-left:auto;
+    margin-right:auto;
+}
+.bi-check2-circle {
+    font-size: 180px;
+    line-height: 130px;
+    margin: auto;
+    color: #F3CB3D;
+}
+.x-mark {
+    border: 0;
+    background-color: transparent;
+    font-size: 25px;
+    color: white;
+}
+#close {
+    text-align: end;
+    height: 33px;
+}
+.thanks-text {
+    margin-bottom: 10px;
+    line-height: 15px;
+}
+.thanks-text span {
+    color: white;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+
+/*главная страница*/
+.main-text {
+    word-wrap: break-word;
+}
+
+/*карусель*/
+
+.bg-img1 {
+    background-image: url("../images/globe asia.png");
+    background-size: 800px;
+    background-repeat: no-repeat;
+}
+
+.bg-img2 {
+    background-image: url("../images/Stationery and physics book for education.png");
+    background-size: 800px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.bloc_carousel {
+    background: #044691;
+}
+
+.carousel_view {
+    width: 80%;
+    margin: 0 auto;
+}
+.carousel_view .owl-stage {
+    height: 500px;
+}
+.carousel_view .owl-stage-outer {
+    justify-content: space-between;
+}
+.carousel_slide {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.bloc_carousel {
+    padding-top: 55px;
+}
+
+.bloc_carousel h1 {
+    font-family: 'Noteworthy', sans-serif;
+    text-align: center;
+    margin-bottom: 25px;
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0.15em;
+}
+
+.bloc_carousel p {
+    font-family: 'Noteworthy', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0.1em;
+}
+.owl-item.active.center .main-item{
+    opacity: 1;
+    transform: scale(1.4);
+}
+
+.owl-nav {
+    display: flex !important;
+    justify-content: space-between;
+}
+.owl-dots {
+    display: block !important;
+    padding-bottom: 30px;
+}
+.owl-prev, .owl-next {
+    width: 60px;
+    height: 60px;
+    display: flex !important;
+    justify-content: center;
+    color: white !important;
+    font-size: 50px !important;
+    border-radius: 50% !important; 
+    background-color: #F3CB3D !important;
+    backface-visibility: 0.8;
+}
+.owl-nav i {
+    position: relative;
+    bottom: 4px;
+}
+
+@media screen and (max-width:1380px) {
+    .carousel_view .owl-stage {
+        height: 400px;
+    }
+}
+@media screen and (max-width:991px) {
+    .owl-item.active.center .main-item {
+        transform: scale(1);
+    }
+    .carousel_view .owl-stage {
+        height: 650px;
+    }
+}
+@media screen and (max-width:778px) {
+    .carousel_view .owl-stage {
+        height: 500px;
+    }
+}
+@media screen and (max-width:488px) {
+    .carousel_view .owl-stage {
+        height: 400px;
+    }
+}
+.owl-item.active .main-item{
+    transform: scale(1.2);
+    opacity: .8;
+    position: relative;
+    z-index: 1;
+    display: block;
+    top: 70px;
+
+}
+.main-item {
+    background-repeat: no-repeat;
+    background-size: cover;
+    aspect-ratio: 1;
+    display: none;
+}
+
+
+/*кнопка записаться на курс*/
+.sign_up_button {
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+#sign_up_button {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #F3CB3D;
+    color: black;
+    width: 100%;
+    height: 44px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/*кнопки проистывания слайдера*/
+.button_prev {
+    height: 40px;
+    width: 40px;
+    background-color: #F3CB3D;
+}
+
+/*блок кто мы*/
+.who_are_we {
+    padding-top: 70px;
+    max-width: 1115px;
+    margin: 0 auto;
+}
+
+.who_are_we h2{
+    color: #044691;
+    text-align: center;
+    font-size: 74px;
+    font-family: sans-serif, "Times New Roman";
+}
+
+.who_are_we p{
+    color: #044691;
+    text-align: center;
+    font-size: 40px;
+    font-family: sans-serif;
+    line-height: 1;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* блок about us */
+.about-us {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+.card-generate img {
+    border-radius: 15px;
+}
+.card_about_as {
+    padding: 20px;
+    background-color: #044691;
+}
+
+.card_about_as h4 {
+    color: white;
+}
+
+.card_about_as p {
+    color: white;
+}
+
+.card_sign_up p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.card_sign_up_img {
+    transform: skew(4deg, -4deg);
+}
+
+.card_sign_up {
+    width: 90%;
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    background-color: #F3CB3D;
+    transform: skew(-5deg, 5deg);
+}
+
+#card_sign_up_button {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    width: 100%;
+    height: 44px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/*блок отзывов*/
+.reviews {
+    background: #044691;
+    margin-top: 90px;
+    padding-top: 50px;
+
+}
+
+.bg-img {
+    background: url("../images/blue star outline.png") left 2% top 2%,
+                        url("../images/blue star outline.png") right 2% top 2%,
+                        url("../images/blue star outline.png") left 10% bottom 15%,
+                        url("../images/Group 3718.png") right 0 bottom 0;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+}
+.owl-item .item{
+    transform: scale(0.8);
+    opacity: .8;
+    position: relative;
+    z-index: 1;
+}
+.owl-item.active.center .item{
+    transform: scale(1);
+    opacity: 1;
+}
+.owl-item.active.center {
+    margin:auto;
+    position: relative;
+    z-index: 6;
+}
+.item {
+    width: 120%;
+    right: 35px;
+}
+.review_view {
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+.comment-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.user {
+    width: 100%;
+    padding-left: 10%;
+}
+
+.reviews h3 {
+    text-align: center;
+    color: white;
+    font-size: 70px;
+}
+
+.p_rev {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+.div_review {
+    min-height: 350px;
+    background-color: white;
+    border: 1px solid black;
+    
+}
+
+.reviews_p {
+    text-align: left;
+    width: 90%;
+    margin: 0 auto;
+    word-wrap: break-word;
+    font-size: 18px;
+}
+
+.div_review h5 {
+    margin-top: 12%;
+    margin-left: 10px;
+    font-size: 24px;
+}
+@media screen and (max-width: 1000px) {
+    .item {
+        width: 100%;
+        right: 0;
+    }
+}
+@media screen and (max-width: 400px) {
+    .comment-image {
+        margin: auto;
+    }
+    .comment-name {
+        margin: auto;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/*блок наши партнеры*/
+.partners {
+    padding-top: 60px;
+    background: #EEEEEE;
+    padding-bottom: 60px;
+
+}
+
+.partners h3 {
+    text-align: center;
+    color: #044691;
+    font-size: 60px;
+    padding-bottom: 50px;
+}
+
+.partners_view {
+    width: 80%;
+    margin: 0 auto;
+}
+.partners-item {
+    background-color: #044691;
+    transform: scale(0.9);
+    aspect-ratio: 1;
+}
+.partners-image {
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    transform: scale(0.9);
+}
+
+
+/*Страница Курсы*/
+.courses {
+    background: #044691;
+    padding-top: 60px;
+    padding-bottom: 90px;
+}
+
+.courses_content h2 {
+    font-family: Montserrat sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.courses_content p {
+    font-family: Montserrat sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: white;
+}
+
+.courses_card {
+    margin-top: 30px;
+    word-wrap: break-word;
+}
+
+.courses_card h5 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.courses_card p {
+    text-align: center;
+}
+
+.btn_see_more {
+    font-weight: bold;
+    color: black;
+    background: #F3CB3D;
+    margin: 0 auto;
+    border: none;
+    width: 100%;
+    height: 35px;
+}
+
+.modal_content p {
+    text-align: center;
+}
+
+.bg_courses {
+    background-image: url("../images/img1.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 680px;
+    padding-top: 20px;
+    padding-bottom: 90px;
+}
+
+.why_progress {
+    max-width: 658px;
+    padding-top: 50px;
+    margin-left: 40px;
+}
+@media screen and (max-width:778px) {
+    .why_progress {
+        max-width: 658px;
+        padding-top: 50px;
+        margin: auto;
+    }
+}
+.why_progress h3 {
+    font-family: Montserrat sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.span_progress {
+    color: #044691;
+}
+
+.why_progress h4 {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.why_progress p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.why_progress_2 {
+    background: #F3CB3D;
+    width: 48%;
+    margin-bottom: 20px;
+    padding: 3%;
+}
+.why_progress_1 {
+    background: #044691;
+    width: 48%;
+    color: white;
+    margin-bottom: 20px;
+    padding: 3%;
+}
+.courses_modal_window {
+    word-wrap: inherit;
+
+}
+
+/*Блок О нас*/
+.about_us {
+    background: #044691;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.about_us_content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.about_us h2 {
+    font-family: Montserrat sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.about_us p {
+    font-family: Montserrat sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 0.01em;
+    text-align: justify;
+    color: white;
+}
+
+.team {
+    background: lightgrey;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.team   h2 {
+    font-family: Montserrat sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 58px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: #044691;
+    margin-bottom: 40px;
+}
+
+.team p {
+    font-family: Montserrat sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    text-align: center;
+    color: #044691;
+}
+.teacher_carousel p {
+    font-family: Montserrat sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 16.8px;
+    text-align: center;
+    color: #000000;
+}
+
+.teacher_card {
+    box-shadow: 1px 5px 7px -2px rgba(0,0,0,0.67);
+    -webkit-box-shadow: 1px 5px 7px -2px rgba(0,0,0,0.67);
+    -moz-box-shadow: 1px 5px 7px -2px rgba(0,0,0,0.67);
+    margin-bottom: 5px;
+}
+
+
+.teacher_carousel {
+    max-width: 90%;
+    margin: auto;
+    margin-top: 50px;
+}
