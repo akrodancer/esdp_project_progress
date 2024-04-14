@@ -1,12 +1,13 @@
+from django.core.validators import MaxValueValidator
 from django.db import models
-from .lesson_choices import LessonTypeChoices
+from .lesson_choices import LessonTypeChoices, VisitRateChoices, LessonVisitChoices
 from . import CourseUpload
 from accounts.models import User
 from django.contrib.auth import get_user_model
 
 
 class Course(models.Model):
-    course_name = models.CharField(verbose_name='Название курса', 
+    course_name = models.CharField(verbose_name='Название курса',
                                    max_length=255
                                    )
     description = models.TextField(verbose_name='Описание',
@@ -35,10 +36,10 @@ class Course(models.Model):
                                      related_name='paid_courses',
                                      blank=True
                                      )
+
     class Meta:
         verbose_name = "Курсы"
         verbose_name_plural = "Курсы"
-
 
     def __str__(self):
         return self.course_name
@@ -97,8 +98,8 @@ class Lesson(models.Model):
                                blank=True
                                )
     lesson_type = models.CharField(verbose_name='Бесплатный/платный',
-                                    max_length=4, 
-                                   choices=LessonTypeChoices, 
+                                   max_length=4,
+                                   choices=LessonTypeChoices,
                                    default=LessonTypeChoices.FREE
                                    )
 
@@ -112,7 +113,7 @@ class Lesson(models.Model):
         if self.course.is_paid_by(user):
             return True
         return False
-    
+
     class Meta:
         verbose_name = 'Урок'
         verbose_name_plural = 'Урок'
@@ -142,16 +143,17 @@ class LessonPerGroup(models.Model):
 
 
 class Visit(models.Model):
-    is_currently_viewing = models.BooleanField()
+    is_currently_viewing = models.CharField(verbose_name='Посещение', max_length=15, choices=LessonVisitChoices,
+                                            blank=True, default='')
     visit_date = models.DateTimeField(verbose_name='Дата посеения',
                                       auto_now_add=True
                                       )
     students = models.ForeignKey(verbose_name='Студент',
-                                 to=User, 
-                                 limit_choices_to={'role', 'user'}, 
+                                 to=User,
+                                 limit_choices_to={'role': 'user'},
                                  related_name='visits',
-                                 on_delete=models.SET_NULL, 
-                                 null=True, 
+                                 on_delete=models.SET_NULL,
+                                 null=True,
                                  blank=True
                                  )
     lesson = models.ForeignKey(verbose_name='Урок у группы',
@@ -159,12 +161,11 @@ class Visit(models.Model):
                                related_name='visits', 
                                on_delete=models.CASCADE
                                )
+    grade = models.CharField(verbose_name='Оценка', max_length=5, choices=VisitRateChoices, blank=True, default='')
 
     def __str__(self):
         return f'Visit by {self.students} on {self.visit_date}'
 
-
     class Meta:
-            verbose_name = "Посещения"
-            verbose_name_plural = "Посещения"
-
+        verbose_name = "Посещения"
+        verbose_name_plural = "Посещения"

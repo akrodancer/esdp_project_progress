@@ -23,7 +23,7 @@
             <div class="menu-button">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                        <i class="bi bi-list"></i>
                 </button>
             </div>
             
@@ -36,7 +36,7 @@
                         <a class="nav-item" href="{% url 'courses:courses' %}">Наши курсы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item" href="">Онлайн тестирование</a>
+                        <a class="nav-item" href="{% url 'online_tests:all_tests' %}">Онлайн тестирование</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-item" href="{% url 'courses:lessons' %}">Видеоуроки</a>
@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         {% if user.is_authenticated %}
                             <div class="logged d-flex">
-                                    <span class="name_user me-5">{{ request.user.first_name }}</br>
+                                    <span class="name_user me-5">{{ request.user.first_name }}<br>
                                         {{ request.user.last_name }}</span>
                                     
                                     <a href="{% url 'accounts:log_out' %}" id="log_out_button"

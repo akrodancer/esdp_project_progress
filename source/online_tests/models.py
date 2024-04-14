@@ -14,7 +14,7 @@ class OnlineTest(models.Model):
     difficulty = models.CharField(verbose_name='Сложность',
                                   max_length=40
                                   )
-    description = models.TextField(verbose_name='Описание')
+    description = models.TextField(verbose_name='Описание', blank=True, null=True)
     test_type = models.CharField(verbose_name='Тип',
                                  max_length=4, 
                                  choices=OnlineTestTypeChoices, 
@@ -132,6 +132,8 @@ class UserTest(models.Model):
     correct_answer_count = models.IntegerField(default=0)
                                           
     incorrect_answer_cnt = models.IntegerField(default=0)
+    test_start = models.DateTimeField(default=timezone.now)
+    test_end = models.DateTimeField(auto_now=True)
 
 
     def __str__(self):
