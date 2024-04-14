@@ -48,6 +48,33 @@ class Course(models.Model):
         return self.paid_by.filter(pk=user.pk).exists()
 
 
+class Group(models.Model):
+    name = models.CharField(verbose_name='Название группы',
+                                   max_length=255,
+                                   null=True,
+                                   blank=True)
+    course = models.ForeignKey(to=Course,
+                               verbose_name='Курс',
+                               related_name='lessons',
+                               on_delete=models.SET_NULL,
+                               null=True,
+                               blank=True
+                               )
+    teacher = models.ForeignKey(to=User,
+                                verbose_name='Учитель',
+                                related_name='teacher',
+                                limit_choices_to={'role': 'user'},
+                                on_delete=models.SET_NULL,
+                                null=True,
+                                blank=True
+                                )
+    students = models.ManyToManyField(to=User, verbose_name='Ученики',
+                                      limit_choices_to={'role': 'user'},
+                                      related_name='enrolled_courses',
+                                      blank=True
+                                      )
+
+
 class Lesson(models.Model):
     lesson_name = models.CharField(verbose_name='Название урока',
                                    max_length=255,
@@ -63,12 +90,11 @@ class Lesson(models.Model):
                             null=True,
                             blank=True
                             )
-    datetime = models.DateTimeField(verbose_name='Дата и время', )
-    course = models.ForeignKey(to=Course,
-                               verbose_name='Курс',
-                               related_name='lessons',
-                               on_delete=models.SET_NULL,
-                               null=True,
+    course = models.ForeignKey(to=Course, 
+                               verbose_name='Курс', 
+                               related_name='lessons', 
+                               on_delete=models.SET_NULL, 
+                               null=True, 
                                blank=True
                                )
     lesson_type = models.CharField(verbose_name='Бесплатный/платный',
@@ -93,6 +119,29 @@ class Lesson(models.Model):
         verbose_name_plural = 'Урок'
 
 
+class LessonPerGroup(models.Model):
+    group = models.ForeignKey(to=Group,
+                               verbose_name='Группа',
+                               related_name='group',
+                               on_delete=models.SET_NULL,
+                               null=True,
+                               blank=True
+                               )
+    lesson = models.ForeignKey(verbose_name='Урок',
+                               to=Lesson,
+                               related_name='lesson',
+                               on_delete=models.CASCADE
+                               )
+    datetime = models.DateTimeField(verbose_name='Дата и время')
+
+    def __str__(self):
+        return f'Lesson conducted in {self.group.name} on {self.datetime}'
+
+    class Meta:
+            verbose_name = "Урок у группы"
+            verbose_name_plural = "Уроки у групп"
+
+
 class Visit(models.Model):
     is_currently_viewing = models.CharField(verbose_name='Посещение', max_length=15, choices=LessonVisitChoices,
                                             blank=True, default='')
@@ -107,10 +156,10 @@ class Visit(models.Model):
                                  null=True,
                                  blank=True
                                  )
-    lesson = models.ForeignKey(verbose_name='Урок',
-                               to=Lesson,
-                               related_name='visits',
-                               on_delete=models.PROTECT
+    lesson = models.ForeignKey(verbose_name='Урок у группы',
+                               to=LessonPerGroup,
+                               related_name='visits', 
+                               on_delete=models.CASCADE
                                )
     grade = models.CharField(verbose_name='Оценка', max_length=5, choices=VisitRateChoices, blank=True, default='')
 
