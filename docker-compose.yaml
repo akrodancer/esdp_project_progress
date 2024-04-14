@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db_1:
+    container_name: db_1
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    image: postgres:14.3-alpine
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgres/data
+    env_file:
+      - .env
+
+  web:
+    container_name: progress
+    build: ./
+#    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
+    volumes:
+      - ./source:/src/source
+    ports:
+      - "8000:8000"
+    restart: always
+    depends_on:
+      - db_1
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DATABASE_URL=postgres://postgres:postgres@db_1:5432/postgres
+    env_file: .env
+
+volumes:
+  postgres:
