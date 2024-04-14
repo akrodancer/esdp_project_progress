@@ -4,7 +4,7 @@ services:
   db_1:
     container_name: db_1
     ports:
-      - "5433:5432"
+      - "5432:5432"
     image: postgres:14.3-alpine
     restart: always
     volumes:
@@ -19,11 +19,11 @@ services:
   web:
     container_name: progress
     build: ./
-    command: gunicorn main_config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./source:/src/source
       - static_volume:/src/source/static
       - media_volume:/src/source/media
+    command: gunicorn main_config.wsgi:application --bind 0.0.0.0:8000  
     expose:
       - 8000
     restart: always

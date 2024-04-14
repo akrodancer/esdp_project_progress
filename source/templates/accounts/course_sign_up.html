@@ -7,7 +7,7 @@
                 <h5>Отправить заявку</h5>
                 <div><input id="first_name" required type="text" name="first_name" placeholder="Имя"></div>
                 <div><input id="last_name" required type="text" name="last_name" placeholder="Фамилия"></div>
-                <div><input id="phone" required type="text" name="phone" placeholder="Телефон"></div>
+                <div><input id="phone" required type="text" name="phone" placeholder="+996-XXX-XXX-XXX"></div>
                 <div><input id="email" required type="email" name="email" placeholder="Электронная почта"></div>
                 <div>
                     <select id="course" required list="course_list" name="course" placeholder="Курс">
@@ -30,5 +30,7 @@
         </div>  
     </div>
 </section>
-
+<script>
+    mask('#phone')
+</script>
 

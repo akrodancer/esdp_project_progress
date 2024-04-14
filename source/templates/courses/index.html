@@ -6,6 +6,8 @@
     <style>
         @import url('https://fonts.cdnfonts.com/css/noteworthy');
     </style>
+    <script src="{% static 'js/mask/mask.js' %}"></script>
+    <script src="{% static 'js/mask/mask_list.js' %}"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/ckeditor5.css' %}" type="text/css">
 {% endblock %}
@@ -59,7 +61,7 @@
                             <p>Запишись на пробное<br>занятие прямо сейчас<br>и получи это</p>
                             <img src="{% static 'images/8.png' %}" class="my-3 card-img-top card_sign_up_img" alt="...">
                             <div class="sign_up_button">
-                                <button class="nav-item" id="card_sign_up_button" type="button">Записаться на курс
+                                <button class="nav-item card_sign_up_button" id="sign_up_button" type="button">Записаться на курс
                                 </button>
                             </div>
                         </div>

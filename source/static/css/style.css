@@ -487,7 +487,7 @@ a, a:hover, a:visited, a:active {
     transform: skew(-5deg, 5deg);
 }
 
-#card_sign_up_button {
+.card_sign_up_button {
     margin-top: 100px;
     margin-bottom: 50px;
     border: 0;

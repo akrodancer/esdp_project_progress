@@ -62,7 +62,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'main_config.urls'
-
+CSRF_TRUSTED_ORIGINS = ['http://localhost:1337']
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

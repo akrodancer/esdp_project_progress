@@ -35,7 +35,8 @@ class NewUserForm(UserCreationForm):
             'first_name' : forms.TextInput(attrs={'placeholder': 'Имя'}),
             'last_name' : forms.TextInput(attrs={'placeholder': 'Фамилия'}),
             'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
-            'phone': forms.TextInput(attrs={'placeholder': '+996 (XXX)-XX-XX'}),
+            'phone': forms.TextInput(attrs={'placeholder': '+996 (XXX)-XXX-XXX',
+                                            'type': 'text'}),
         }
 
 
