@@ -15,4 +15,4 @@ RUN poetry config virtualenvs.create false \
 
 COPY ./source /src/
 
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver localhost:8000"]
+CMD ["sh", "-c", "python manage.py migrate"]

@@ -1,0 +1,114 @@
+.container {
+    text-align: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    margin-top: 100px;
+}
+
+.container h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.test-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #044691;
+}
+
+.progress-bar {
+    max-width: 829px;
+    height: 40px;
+    background-color: #C43E3E;
+    position: relative;
+    margin: 40px auto 0 auto;
+    border-radius: 0 18px 18px 0;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    width: 0;
+    background-color: #0BAB1B;
+    position: absolute;
+}
+
+.result {
+    display: flex;
+    justify-content: space-between;
+    max-width: 829px;
+    margin: 20px auto;
+}
+
+.result h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.correct {
+    text-align: left;
+}
+
+.incorrect {
+
+}
+
+.correct-result, .incorrect-result {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.correct-result {
+    color: #0BAB1B;
+}
+
+.correct-result span {
+    color: #0BAB1B;
+}
+
+.incorrect-result {
+    color: #C43E3E;
+}
+
+.incorrect-result span {
+    color: #C43E3E;
+}
+
+.test-time {
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+}
+
+.time-spent {
+    color: #044691;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.button-container {
+    width: 996px;
+    margin: 50px auto 100px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container a {
+    display: inline-block;
+    width: 232px;
+    height: 56px;
+    line-height: 56px;
+    background-color: #F3CB3D;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+@media (max-width: 996px) {
+    .button-container {
+        width: 100%;
+        max-width: 996px;
+    }
+}
