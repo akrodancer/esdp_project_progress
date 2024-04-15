@@ -19,7 +19,9 @@
                             <div class="card m-4 rounded-4" style="width: 21rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ course.course_name }}</h5>
-                                    <img src="{{ course.course_image.url }}" class="card-img-top" alt="...">
+                                    {% if course.course_image %}
+                                        <img src="{{ course.course_image.url }}" class="card-img-top" alt="...">
+                                    {% endif %}
                                     <p>Старт: {{ course.date_start }}</p>
                                     <button type="button"
                                             class="px-5 mb-1 rounded-2 me-2 btn_see_more"
@@ -73,8 +75,11 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <img src="{{ course.course_image.url }}" class="card-img-top" alt="...">
+                                {% if course.course_image %}
+                                    <img src="{{ course.course_image.url }}" class="card-img-top" alt="...">
+                                {% endif %}
                             </div>
+                            
                             <div class="mb-3" style="word-wrap: break-word">
                                 <p>{{ course.description }}</p>
                             </div>

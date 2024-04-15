@@ -55,10 +55,6 @@ class LoginUserForm(forms.Form):
             raise forms.ValidationError('Incorrect password!')
         else:
             return self.cleaned_data
-            
-        
-class CommentForm(forms.Form):
-    comment = forms.CharField(widget=forms.Textarea)
 
 
 class SignedUpUsersForm(forms.Form):
