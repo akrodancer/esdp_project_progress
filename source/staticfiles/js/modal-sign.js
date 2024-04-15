@@ -46,3 +46,4 @@ $('#course_sign').on('click', function(e) {
     });
     e.preventDefault();
 })
+

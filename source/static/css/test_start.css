@@ -1,0 +1,42 @@
+.test-start {
+    margin: 100px;
+    font-family: Montserrat, sans-serif;
+    background: url("../images/board.png") no-repeat right;
+}
+
+.course-name {
+    font-weight: 500;
+    font-size: 36px;
+}
+
+.course-description {
+    max-width: 666px;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.test-btn {
+    width: 200px;
+    height: 45px;
+    background-color: #F3CB3D;
+    color: black;
+    border-radius: 15px;
+    padding: 11px 44px;
+    border: 0;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.time-questions {
+    margin: 40px 0 0 15px;
+}
+
+.time-questions ul {
+    display: flex;
+    padding: 0;
+}
+
+.time-questions li {
+    margin-right: 100px;
+}

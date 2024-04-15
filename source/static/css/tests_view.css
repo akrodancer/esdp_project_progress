@@ -1,0 +1,115 @@
+.test-view {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 100px 0;
+  font-family: "Montserrat", sans-serif;
+  flex-direction: column;
+}
+
+.test-view h1 {
+  font-size: 48px;
+  font-weight: 600;
+  color: #044691;
+}
+
+.button-container {
+  display: flex;
+  margin: 30px 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 150px;
+  transition: background-color 0.5s;
+}
+
+.button-text {
+  margin-left: 150px;
+  color: black;
+}
+
+.active {
+  background-color: #044691;
+}
+
+.button.active:before {
+  background-color: white;
+}
+
+.button:before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background-color: transparent;
+  width: 11px;
+  height: 11px;
+  transition: background-color 0.5s;
+}
+
+/*карточки для тестов*/
+
+.tests {
+  margin: 0 180px;
+}
+
+.test-card {
+  display: inline-block;
+  min-width: 288px;
+  height: 214px;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin: 20px 30px 0 0;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding-top: 20px;
+  box-shadow: 0 4px 4px 0 #00000040;
+}
+
+.tests .test-card-link:nth-child(odd) .test-card {
+  background-color: #044691;
+  color: #ffffff;
+}
+
+.tests .test-card-link:nth-child(even) .test-card {
+  background-color: #ffffff;
+  color: black;
+}
+
+.test-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.test-card-link:hover .test-card {
+  border-color: black;
+}
+
+/*текст карточек*/
+
+.test-name {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.test-course {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 15px 0;
+}
+
+.time-questions {
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0;
+}
