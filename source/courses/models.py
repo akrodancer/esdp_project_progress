@@ -76,6 +76,7 @@ class Group(models.Model):
 
 
 class Lesson(models.Model):
+    number = models.PositiveIntegerField(verbose_name='Номер урока')
     lesson_name = models.CharField(verbose_name='Название урока',
                                    max_length=255,
                                    null=True,
