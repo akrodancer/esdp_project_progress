@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import transaction
-from courses.models import Course, Lesson, Visit
+from courses.models import Course, Lesson, Visit, LessonPerGroup
 
 class VisitInline(admin.TabularInline):
     model = Visit
@@ -11,7 +11,7 @@ class LessonInline(admin.StackedInline):
     model = Lesson
     extra = 0
     fields = ('lesson_name', 'description',
-              'video', 'datetime', 'course', 'lesson_type')
+              'video', 'course', 'lesson_type')
     fk_name = 'course'
     show_change_link = True
 
@@ -27,10 +27,10 @@ class CustomCourseAdmin(admin.ModelAdmin):
               'course_image', 'date_finish', 'teacher',
               'students', 'paid_by')
 
-@admin.register(Lesson)
-class LessonAdmin(admin.ModelAdmin):
+@admin.register(LessonPerGroup)
+class LessonPerGroupAdmin(admin.ModelAdmin):
     inlines = [VisitInline]
-    list_display = ['lesson_name']
+    list_display = ['lesson']
 
     @transaction.atomic
     def save_related(self, request, form, formsets, change):

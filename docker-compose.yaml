@@ -10,7 +10,7 @@ services:
     volumes:
       - postgres:/var/lib/postgres/data
     env_file:
-      - .env
+      - source/.env
     environment:
         - POSTGRES_DB=${DB_NAME}
         - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -33,7 +33,7 @@ services:
       #- SECRET_KEY=${SECRET_KEY}
       #- DATABASE_URL=postgres://postgres:postgres@db_1:5432/postgres
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db_1:5432/postgres
-    env_file: .env
+    env_file: source/.env
 
   nginx:
     build: ./nginx
