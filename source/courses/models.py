@@ -55,14 +55,14 @@ class Group(models.Model):
                                    blank=True)
     course = models.ForeignKey(to=Course,
                                verbose_name='Курс',
-                               related_name='lessons',
+                               related_name='course_for_group',
                                on_delete=models.SET_NULL,
                                null=True,
                                blank=True
                                )
     teacher = models.ForeignKey(to=User,
                                 verbose_name='Учитель',
-                                related_name='teacher',
+                                related_name='teacher_of_group',
                                 limit_choices_to={'role': 'user'},
                                 on_delete=models.SET_NULL,
                                 null=True,
@@ -70,13 +70,13 @@ class Group(models.Model):
                                 )
     students = models.ManyToManyField(to=User, verbose_name='Ученики',
                                       limit_choices_to={'role': 'user'},
-                                      related_name='enrolled_courses',
+                                      related_name='students_of_group',
                                       blank=True
                                       )
 
 
 class Lesson(models.Model):
-    number = models.PositiveIntegerField(verbose_name='Номер урока')
+    number = models.PositiveIntegerField(verbose_name='Номер урока', null=True, blank=True)
     lesson_name = models.CharField(verbose_name='Название урока',
                                    max_length=255,
                                    null=True,
@@ -93,7 +93,7 @@ class Lesson(models.Model):
                             )
     course = models.ForeignKey(to=Course, 
                                verbose_name='Курс', 
-                               related_name='lessons', 
+                               related_name='related_course',
                                on_delete=models.SET_NULL, 
                                null=True, 
                                blank=True
@@ -123,14 +123,14 @@ class Lesson(models.Model):
 class LessonPerGroup(models.Model):
     group = models.ForeignKey(to=Group,
                                verbose_name='Группа',
-                               related_name='group',
+                               related_name='group_lesson',
                                on_delete=models.SET_NULL,
                                null=True,
                                blank=True
                                )
     lesson = models.ForeignKey(verbose_name='Урок',
                                to=Lesson,
-                               related_name='lesson',
+                               related_name='lesson_group',
                                on_delete=models.CASCADE
                                )
     datetime = models.DateTimeField(verbose_name='Дата и время')
@@ -152,7 +152,7 @@ class Visit(models.Model):
     students = models.ForeignKey(verbose_name='Студент',
                                  to=User,
                                  limit_choices_to={'role': 'user'},
-                                 related_name='visits',
+                                 related_name='students',
                                  on_delete=models.SET_NULL,
                                  null=True,
                                  blank=True
