@@ -52,13 +52,13 @@
         <div class="row row-cols-4 mt-5 mb-5">
             {% for lesson in lessons %}
                 <div class="col">
-                {%  if request.user in lesson.course.paid_by.all or lesson.lesson_type == 'free'%}
+                {%  if request.user in lesson.course.students.all or lesson.lesson_type == 'free'%}
                     <a href="{{ lesson.video }}">
                         <div class="card h-100 card-color-class available-class" style="width: 18rem;">
                           <div class="card-body">
                             <h5 class="card-title">{{ lesson.lesson_name }}</h5>
                             <h6 class="mb-2">{{ lesson.course.course_name }}</h6>
-                              <p class="card-text">{{ lesson.datetime }}</p>
+                              <p class="card-text">№{{ lesson.number }}</p>
                           </div>
                         </div>
                     </a>
@@ -67,7 +67,7 @@
                           <div class="card-body">
                             <h5 class="card-title">{{ lesson.lesson_name}}</h5>
                             <h6 class=" mb-2 ">{{ lesson.course.course_name  }}</h6>
-                              <p class="card-text">{{ lesson.datetime }} </p>
+                              <p class="card-text">№{{ lesson.number }}</p>
                               <p class="card-text text-end"><span class="material-symbols-outlined text-end icon-color-class">lock</span></p>
                           </div>
                     </div>

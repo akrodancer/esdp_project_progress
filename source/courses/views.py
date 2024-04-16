@@ -48,7 +48,7 @@ class LessonsView(ListView):
     context_object_name = 'lessons'
     paginate_by = 16 
     paginate_orphans = 3
-    ordering = ('-datetime',)
+    ordering = ('-number',)
 
     def get_queryset(self):
         queryset = super().get_queryset()
