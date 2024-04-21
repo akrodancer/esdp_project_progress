@@ -74,6 +74,14 @@ class Group(models.Model):
                                       blank=True
                                       )
 
+    class Meta:
+        verbose_name = "Группа"
+        verbose_name_plural = "Группы"
+
+
+    def __str__(self):
+        return self.name
+
 
 class Lesson(models.Model):
     number = models.PositiveIntegerField(verbose_name='Номер урока', null=True, blank=True)
