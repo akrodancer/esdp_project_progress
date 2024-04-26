@@ -15,8 +15,8 @@
                 </li>
                 <li class="nav-item"><a href="{% url 'courses:about_us' %}">О нас</a></li>
                 <li class="nav-item"><a href="{% url 'courses:courses' %}">Наши курсы</a></li>
-                <li class="nav-item"><a href="">Онлайн тестирование</a></li>
-                <li class="nav-item"><a href="">Поиск учеников</a></li>
+                <li class="nav-item"><a href="{% url 'online_tests:all_tests' %}">Онлайн тестирование</a></li>
+                <li class="nav-item"><a href="{% url 'courses:lessons' %}">Поиск учеников</a></li>
             </ul>
         </div>
         <div class="footer-block f-map col-lg-8 row">
