@@ -160,11 +160,11 @@ a, a:hover, a:visited, a:active {
 .auth {
     position: fixed;
     z-index: 6;
-    width: 100%;
+    width: 400px;
+    height: 410px;
     top: 15%;
     right: 0;
     left: 0;
-    height: calc(var(--vh, 1vh) * 70);
     margin-left:auto;
     margin-right:auto;
 }
@@ -217,9 +217,9 @@ a, a:hover, a:visited, a:active {
 }
 .back {
     background: rgb(14, 14, 14, 0.8);
-    height: 100%;
+    height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 5;
   }
 
@@ -271,7 +271,9 @@ a, a:hover, a:visited, a:active {
 }
 
 /*карусель*/
-
+.carousel-image {
+    background-position: center;
+}
 .bg-img1 {
     background-image: url("../images/globe asia.png");
     background-size: 800px;
@@ -399,12 +401,12 @@ a, a:hover, a:visited, a:active {
 
 
 /*кнопка записаться на курс*/
-.sign_up_button {
+.sign_up_block {
     margin: 0 auto;
     max-width: 300px;
 }
 
-#sign_up_button {
+.sign_up_button {
     margin-top: 20px;
     margin-bottom: 50px;
     border: 0;
@@ -415,6 +417,9 @@ a, a:hover, a:visited, a:active {
     height: 44px;
     font-size: 19px;
     font-weight: bold;
+}
+.card_sign_up_button {
+    background-color: white;
 }
 
 /*кнопки проистывания слайдера*/
