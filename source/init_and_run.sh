@@ -12,6 +12,6 @@ if not User.objects.filter(username='admin').exists():
     User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 EOF
 
-# Запускаем Gunicorn
+# Запускаем Django сервер
 python manage.py runserver 0.0.0.0:8000
 

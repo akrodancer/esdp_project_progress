@@ -1,36 +1,53 @@
 ```
-# Прогресс
+## Прогресс
 
 Прогресс - это образовательный центр, который предоставляет информацию о преподавательском составе, курсах и онлайн тестах по различным предметам. Сайт предназначен для школьников, студентов и родителей, которые могут получить всю необходимую информацию о курсах, преподавателях, а также оставить заявку на обучение. 
 
 ## Установка
 
-Для запуска проекта вам потребуется Python 3.11 и установленный пакетный менеджер Poetry. Также необходимо наличие PostgreSQL.
+Для запуска проекта вам потребуется установленный в системе Docker
 
-1. Клонируйте репозиторий:
+## Конфигурация
+
+В репозитории находиться файл example.env в котором можно сконфигурировать настройки базы данных, а также переключение Debug режима и ALLOWED_HOSTS:
 
 ```bash
-git clone https://gitlab.com/esdp-python-18/Progress_backend.git
+SECRET_KEY=
+
+DB_NAME=postgres
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_HOST=db_1
+DB_PORT=5432
+
+ALLOWED_HOSTS=
+CSRF_TRUSTED_ORIGINS=
+DEBUG=True
 ```
 
-2. Установите зависимости:
+А также файл init_and_start.sh, который на старте автоматически применяет все имеющиеся миграцииЮ добавляет учетную запись администратора и запускает сервер 
 
 ```bash
-cd progress
-poetry install
-```
-
-
-4. Выполните миграции:
-
-```bash
+# Создаем миграции и применяем их
+python manage.py makemigrations
 python manage.py migrate
+
+# Создаем суперпользователя, если его не существует
+python manage.py shell <<EOF
+from django.contrib.auth import get_user_model
+User = get_user_model()
+if not User.objects.filter(username='admin').exists():
+    User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+EOF
+
+# Запускаем Django сервер
+python manage.py runserver 0.0.0.0:8000
 ```
 
-5. Запустите сервер:
+Запуск приложения:
 
 ```bash
-python manage.py runserver
+sudo docker-compose up
 ```
 
 ## Использование
@@ -45,7 +62,7 @@ python manage.py runserver
 Для более удобного администрирования сайтов мы используем Django Jet Admin.
 
 
-##Django Jet Admin
+## Django Jet Admin
 
 Django Jet Admin предоставляет интуитивно понятный и настраиваемый интерфейс администратора для Django приложений. Он позволяет легко управлять моделями, просматривать и редактировать данные, а также создавать пользовательские панели управления.
 
