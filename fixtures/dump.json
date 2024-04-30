@@ -1,0 +1,554 @@
+[
+{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$NhnPkPELv0t2JxjQIlfotW$3cc9WlDWNkRksIbEHEb+T8hZvYeOxyVdoBGRqDgFpYs=",
+        "last_login": "2024-04-27T17:21:44.465Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-04-27T12:55:54.669Z",
+        "avatar": "",
+        "email": "admin@admin.ru",
+        "phone": "",
+        "role": "user",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user1",
+        "first_name": "Акмарал",
+        "last_name": "Молдоакматова",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T17:31:16.468Z",
+        "avatar": "media/avatars/4070ae9f-e1b5-4fb6-84fb-631d14a4f144.png",
+        "email": "user1@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user2",
+        "first_name": "Адинай",
+        "last_name": "Жумадилова",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T17:32:07.603Z",
+        "avatar": "media/avatars/9729f356-1484-4846-9eec-8a184eb13bb6.png",
+        "email": "user2@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user3",
+        "first_name": "Регина",
+        "last_name": "Яковлева",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T17:32:51.509Z",
+        "avatar": "media/avatars/2c097526-0893-4de1-9659-ffc73284c797.png",
+        "email": "user3@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user4",
+        "first_name": "Кылым",
+        "last_name": "Рахманбердиева",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T17:33:37.805Z",
+        "avatar": "media/avatars/106e9a29-641b-4760-b226-d71cfa09743c.png",
+        "email": "user4@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 6,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user5",
+        "first_name": "Алмазбек",
+        "last_name": "Орозбеков",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T17:35:04.231Z",
+        "avatar": "",
+        "email": "user5@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 7,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user6",
+        "first_name": "Динара",
+        "last_name": "Курманова",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T17:58:42.980Z",
+        "avatar": "media/avatars/104ac31e-15ed-4047-ad3e-9ef6f7d7a078.png",
+        "email": "user6@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 8,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user7",
+        "first_name": "Марина",
+        "last_name": "Ивановна",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T17:59:38.919Z",
+        "avatar": "media/avatars/b07bfbb1-6994-4bfa-be68-23c5c066192e.png",
+        "email": "user7@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 9,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user8",
+        "first_name": "Зарина",
+        "last_name": "Осмонова",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T18:00:49.595Z",
+        "avatar": "media/avatars/e0eb38c3-a990-46de-97eb-7dc02546ab66.png",
+        "email": "user8@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 10,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user9",
+        "first_name": "Асель",
+        "last_name": "Орозбекова",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-27T18:01:44.759Z",
+        "avatar": "media/avatars/e7d8d6c3-10b9-406d-a74b-2ce1a7e68ef0.png",
+        "email": "user9@user1.ru",
+        "phone": "+996555555555",
+        "role": "teacher",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 1,
+    "fields": {
+        "course_name": "Английский язык",
+        "description": "Курс по английскому языку",
+        "date_start": "2024-04-29",
+        "date_finish": "2024-05-27",
+        "course_image": "media/courses/8d0df98b-c066-4ebe-8ef6-97beaa01daba.png",
+        "teacher": [
+            2
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 2,
+    "fields": {
+        "course_name": "Математика",
+        "description": "Курс по математике",
+        "date_start": "2024-04-30",
+        "date_finish": "2024-05-28",
+        "course_image": "media/courses/39e0b3d8-5757-49f3-9836-314d06238070.png",
+        "teacher": [
+            3
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 3,
+    "fields": {
+        "course_name": "Русский язык",
+        "description": "Курс по Русскому языку",
+        "date_start": "2024-05-01",
+        "date_finish": "2024-05-29",
+        "course_image": "media/courses/c9480052-2c4e-493e-8725-330b291605f5.png",
+        "teacher": [
+            4
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 4,
+    "fields": {
+        "course_name": "Физика, химия и т.д.",
+        "description": "Курс по физики, химии и т.д.",
+        "date_start": "2024-05-02",
+        "date_finish": "2024-05-30",
+        "course_image": "media/courses/9579fa21-d58a-4acb-bbca-e8d2dca97035.png",
+        "teacher": [
+            5
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 5,
+    "fields": {
+        "course_name": "Подготовка к ОРТ и НЦТ",
+        "description": "Курс по подготовке к ОРТ и НЦТ",
+        "date_start": "2024-05-02",
+        "date_finish": "2024-05-31",
+        "course_image": "media/courses/fb06f1f1-b1fc-4168-8df0-acff6162a552.png",
+        "teacher": [
+            6
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 6,
+    "fields": {
+        "course_name": "Roblox",
+        "description": "Курс по Roblox",
+        "date_start": "2024-05-06",
+        "date_finish": "2024-06-03",
+        "course_image": "media/courses/b3814ad3-65c1-4ee7-b107-88f140f55464.png",
+        "teacher": [
+            7
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 7,
+    "fields": {
+        "course_name": "Minecraft",
+        "description": "Курс по Minecraft",
+        "date_start": "2024-05-06",
+        "date_finish": "2024-06-04",
+        "course_image": "media/courses/4f0d56ba-782e-4d53-a1a3-bc6a92b6b11c.png",
+        "teacher": [
+            8
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 8,
+    "fields": {
+        "course_name": "CodeCombat",
+        "description": "Курс по CodeCombat",
+        "date_start": "2024-05-07",
+        "date_finish": "2024-06-10",
+        "course_image": "media/courses/50623d17-ea03-4c99-aa8b-a26d46156851.png",
+        "teacher": [
+            9
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 9,
+    "fields": {
+        "course_name": "Scratch",
+        "description": "Курс по Scratch",
+        "date_start": "2024-05-08",
+        "date_finish": "2024-06-11",
+        "course_image": "media/courses/9991a7fd-8f15-42cc-b537-5a13cbc80a2e.png",
+        "teacher": [
+            10
+        ],
+        "students": [],
+        "paid_by": []
+    }
+},
+{
+    "model": "pages.pagemodel",
+    "pk": 1,
+    "fields": {
+        "title": "Главная",
+        "path": "/",
+        "text_primary": "<h1>ИЗУЧАЙ НОВЫЕ НАВЫКИ СЕЙЧАС</h1><p>Мы предлагаем курсы для всех уровней, от начинающих до продвинутых. Групповые и индивидуальные занятия с опытными преподавателями помогут вам достичь желаемого результата</p>",
+        "text_secondary": "<h2>кто мы и почему выбирают нас?</h2><p>Мы научим Вашего ребенка любить и получать удовольствие от учебы!</p>"
+    }
+},
+{
+    "model": "pages.pagemodel",
+    "pk": 2,
+    "fields": {
+        "title": "О нас",
+        "path": "/about_us/",
+        "text_primary": "<h2>о нас</h2><p>Учебный центр ПРОГРЕСС — ваш надежный партнер в образовании на протяжении двух лет и более. Мы предоставляем курсы по различным предметам, а также гибкий график занятий, чтобы удовлетворить ваши потребности. Наша команда предлагает индивидуальные, парные и групповые занятия по доступным ценам. С уверенностью заявляем, что наши молодые и опытные преподаватели являются экспертами в своих предметах. Они готовы помочь вашим детям достичь поставленных целей, обучая с использованием новых методов и интерактивных игр. У нас нет места скучным лекциям – уроки увлекательны, а обучение проходит эффективно и с удовольствием.</p><h2>наша миссия</h2><p>Миссия нашего образовательного центра заключается в том, чтобы поддерживать и вдохновлять возрастающее поколение на пути к знаниям и успеху. Мы стремимся предотвратить утрату интереса к обучению у детей, вместо этого стимулируя их любовь к каждому предмету. Наша цель – сделать обучение увлекательным и доступным для каждого ученика. Мы верим, что, полюбив важные предметы, дети с легкостью смогут успешно сдавать экзамены и поступать в лучшие вузы. В нашем образовательном процессе мы используем инновационные методы и интерактивные подходы, чтобы сделать учение увлекательным и запоминающимся.Наш коллектив преподавателей стремится не только передать знания, но и вдохновить учеников к творческому мышлению, развивая их потенциал. Таким образом, мы создаем условия для того, чтобы каждый ребенок мог не только успешно учиться, но и стремиться к постоянному личностному и интеллектуальному росту.</p>",
+        "text_secondary": "<h2>наша команда</h2><p>Более 50 человек упорно трудятся изо дня в день для того, чтобы все процессы обучения не останавливались и на минуту!</p>"
+    }
+},
+{
+    "model": "pages.pagemodel",
+    "pk": 3,
+    "fields": {
+        "title": "Курсы",
+        "path": "/courses/",
+        "text_primary": "<h2>самые востребованные курсы в кыргызстане</h2><p>мы постоянно исследуем рынок труда в поиске самых популярных и перспективных направлений</p>",
+        "text_secondary": "<h3>почему выбирают образовательный центр <span style=\"color:hsl( 212, 95%, 29% );\">прогресс</span></h3>"
+    }
+},
+{
+    "model": "pages.carouselmainmodel",
+    "pk": 1,
+    "fields": {
+        "page": 1,
+        "image": "media/home_images/2dc51e99-c887-43d2-9621-b9c5a5e2249a.png"
+    }
+},
+{
+    "model": "pages.carouselmainmodel",
+    "pk": 2,
+    "fields": {
+        "page": 1,
+        "image": "media/home_images/cf6a1aee-d6f6-4591-9d6f-773bf582fa6e.png"
+    }
+},
+{
+    "model": "pages.carouselmainmodel",
+    "pk": 3,
+    "fields": {
+        "page": 1,
+        "image": "media/home_images/003579ec-4aea-448d-a1b7-4287f8e6348b.png"
+    }
+},
+{
+    "model": "pages.carouselmainmodel",
+    "pk": 4,
+    "fields": {
+        "page": 1,
+        "image": "media/home_images/74465ba9-773b-4170-a22c-6fb03485bf18.png"
+    }
+},
+{
+    "model": "pages.carouselsponsorsmodel",
+    "pk": 1,
+    "fields": {
+        "page": 1,
+        "image": "media/home_images/b873e08a-dd5c-4ab4-be09-54e1a26e4416.png"
+    }
+},
+{
+    "model": "pages.carouselsponsorsmodel",
+    "pk": 2,
+    "fields": {
+        "page": 1,
+        "image": "media/home_images/812e0495-5d89-4162-9745-0bba3c3cca71.png"
+    }
+},
+{
+    "model": "pages.carouselsponsorsmodel",
+    "pk": 3,
+    "fields": {
+        "page": 1,
+        "image": "media/home_images/06f1b912-3983-4a8a-9f65-e018c8d7e145.png"
+    }
+},
+{
+    "model": "pages.carouselreviewsmodel",
+    "pk": 1,
+    "fields": {
+        "page": 1,
+        "name": "Мама Карины",
+        "review": "Вечер добрый, Калым! Я ждала результаты контрольной работы, и у нас твердая пятерка! Моей радости нет предела. Спасибо огромное за ваши уроки. Все так доступно, легко и, главное, доча с удовольствием усвоила математику. Спасибо огромное! Но мы не прощаемся. После каникул продолжим.",
+        "image": "media/home_images/77b6a1b8-9dce-4d2f-94a4-ebda518ee812.png"
+    }
+},
+{
+    "model": "pages.carouselreviewsmodel",
+    "pk": 2,
+    "fields": {
+        "page": 1,
+        "name": "Отец Адилета",
+        "review": "Вечер добрый, Калым! Я ждал результаты контрольной работы, и у нас твердая пятерка! Моей радости нет предела. Спасибо огромное за ваши уроки. Все так доступно, легко и, главное, сын с удовольствием усвоил математику. Спасибо огромное! Но мы не прощаемся. После каникул продолжим.",
+        "image": "media/home_images/a37633be-16d6-4263-ab37-c77f9dd484cf.png"
+    }
+},
+{
+    "model": "pages.carouselreviewsmodel",
+    "pk": 3,
+    "fields": {
+        "page": 1,
+        "name": "Мама Карины",
+        "review": "Вечер добрый, Калым! Я ждала результаты контрольной работы, и у нас твердая пятерка! Моей радости нет предела. Спасибо огромное за ваши уроки. Все так доступно, легко и, главное, доча с удовольствием усвоила математику. Спасибо огромное! Но мы не прощаемся. После каникул продолжим.",
+        "image": "media/home_images/5481daaf-fa60-48eb-b981-fe24690d047b.png"
+    }
+},
+{
+    "model": "pages.carouselreviewsmodel",
+    "pk": 4,
+    "fields": {
+        "page": 1,
+        "name": "Отец Адилета",
+        "review": "Вечер добрый, Калым! Я ждал результаты контрольной работы, и у нас твердая пятерка! Моей радости нет предела. Спасибо огромное за ваши уроки. Все так доступно, легко и, главное, сын с удовольствием усвоил математику. Спасибо огромное! Но мы не прощаемся. После каникул продолжим.",
+        "image": "media/home_images/585d469d-bcfb-4fb5-beef-ea7149dc2a0f.png"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 1,
+    "fields": {
+        "page": 1,
+        "text": "<h4>Опытные преподаватели</h4><p>Занятия с преподавателями - практиками и игровыми механиками увлекают и затягивают детей. После наших курсов успеваемость тоже повышается!</p><figure class=\"image\"><img style=\"aspect-ratio:344/205;\" src=\"/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-04-22%2009-39-10.png\" width=\"344\" height=\"205\"></figure>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 2,
+    "fields": {
+        "page": 1,
+        "text": "<h4>Уникальная методика обучения</h4><p>Изучаем креативим и создаем рассказываем как строится работа в реальной жизни!</p><p>&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:344/205;\" src=\"/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-04-22%2009-45-28.png\" width=\"344\" height=\"205\"></figure>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 3,
+    "fields": {
+        "page": 1,
+        "text": "<h4>Быстрые результаты в обучении</h4><p>Изучаем креативим и создаем рассказываем как строится работа в реальной жизни!</p><figure class=\"image\"><img style=\"aspect-ratio:344/205;\" src=\"/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-04-22%2009-48-18.png\" width=\"344\" height=\"205\"></figure>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 4,
+    "fields": {
+        "page": 1,
+        "text": "<h4>Индивидуальный подход к каждому ученику</h4><p>Для тех кому нужен индивидуальный подход, максимум концентрации на учебном процессе и получаемых мы предлагаем индивидуальные занятия.</p><figure class=\"image\"><img style=\"aspect-ratio:344/205;\" src=\"/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-04-22%2009-51-57.png\" width=\"344\" height=\"205\"></figure>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 5,
+    "fields": {
+        "page": 1,
+        "text": "<h4>Все виды и формы занятий</h4><p>Есть перерывы, время для знакомства и общения с другими учениками. Время занятий можно согласовать заранее, чтобы ребенку было удобно.</p><figure class=\"image\"><img style=\"aspect-ratio:344/205;\" src=\"/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-04-22%2009-53-51.png\" width=\"344\" height=\"205\"></figure><p>&nbsp;</p>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 6,
+    "fields": {
+        "page": 3,
+        "text": "<h4>#1</h4><p>Репетиторы по всему Кыргызстану</p>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 7,
+    "fields": {
+        "page": 3,
+        "text": "<h4>500+</h4><p>Довольных учеников, успешно сдавших экзамены по всем предметам</p>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 8,
+    "fields": {
+        "page": 3,
+        "text": "<h4>24/7</h4><p>Учеба в собственном графике из любой точки мира</p>"
+    }
+},
+{
+    "model": "pages.carouseladvantagesmodel",
+    "pk": 9,
+    "fields": {
+        "page": 3,
+        "text": "<h4>96%</h4><p>Окончивших курс отмечают, что достигли своих целей</p>"
+    }
+}
+]

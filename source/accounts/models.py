@@ -1,5 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from courses.models import Visit, Lesson, Course, Group, LessonPerGroup
+from online_tests.models import OnlineTest, Question
 from .account_type_choices import AccoutTypeChoices
 from .user_queryset import CustomUserManager
 from courses import AvatarUpload
@@ -18,9 +22,20 @@ class User(AbstractUser):
     
     object = UserManager()
     user_set = CustomUserManager()
-    
+
     def __str__(self):
         return self.username
+
+    def save(self, *args, **kwargs):
+        if self.role == 'teacher':
+            self.is_staff = True
+        super().save(*args, **kwargs)
+        models_to_manage = [Course, OnlineTest, Lesson, Visit, Question, OnlineTest, Group, LessonPerGroup]
+        if self.role == 'teacher':
+            for model_class in models_to_manage:
+                content_type = ContentType.objects.get_for_model(model_class)
+                permissions = Permission.objects.filter(content_type=content_type)
+                self.user_permissions.add(*permissions)
     
     class Meta:
         verbose_name='Пользователи'

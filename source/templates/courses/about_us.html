@@ -10,7 +10,7 @@
     <div class="about_us">
         <div class="container">
             <div class="about_us_content">
-                {{page.text_primary|safe}}
+                {{ page.text_primary|safe }}
             </div>
         </div>
     </div>
@@ -18,65 +18,64 @@
     {#    блок карусели с преподавателями#}
     <div class="team">
         <div class="container">
-            {{page.text_secondary|safe}}
+            {{ page.text_secondary|safe }}
             <div id="carouselExample" class="carousel slide">
                 <div class="teacher_carousel">
                     <div class="owl-carousel owl-theme">
-                                {% for teacher in teachers %}
-                                    <div class="card teacher_card rounded-4 mx-2">
-                                        {% if teacher.avatar %}
-                                            <div class="rounded-4" style="height: 250px;
-                                                    background-image: url({{teacher.avatar.url}});
-                                                    background-size: 230px;
-                                                    background-repeat: no-repeat;
-                                                    background-position: center;">
-                                            </div>
-                                        {% else %}
-                                            <img src="{% static 'images/profile.png' %}"
-                                                 class="card-img-top rounded-top-4"
-                                                 alt="...">
-                                        {% endif %}
-                                        <div class="card-body" style="height: 150px">
-                                            <h5>{{ teacher.first_name }} {{ teacher.last_name }}</h5>
-                                            {% for course in teacher.courses_taught.all %}
-                                                <p class="tc">Преподает: {{ course.course_name }}</p>
-                                            {% endfor %}
-                                        </div>
+                        {% for teacher in teachers %}
+                            <div class="card teacher_card rounded-4 mx-2">
+                                {% if teacher.avatar %}
+                                    <div class="rounded-top-4" style="height: 274px;
+                                            background-image: url({{ teacher.avatar.url }});
+                                            background-size: 274px;
+                                            background-repeat: no-repeat;
+                                            background-position: center;">
                                     </div>
-                                {% endfor %}
+                                {% else %}
+                                    <img src="{% static 'images/profile.png' %}"
+                                         alt="..." class="rounded-top-4" style="height: 274px;">
+                                {% endif %}
+                                <div class="card-body" style="height: 150px">
+                                    <h5 style="font-weight: bold">{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                                    {% for course in teacher.courses_taught.all %}
+                                        <p class="tc">Преподает: {{ course.course_name }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<script src="{% static 'js/owl_carousel/owl.carousel.min.js' %}"></script>
-<script>
-    $(document).ready(function(){
-    $(".owl-carousel").owlCarousel();
-  });
-  $('.owl-carousel').owlCarousel({
-    mouseDrag: false,
-    loop:true,
-    nav:true,
-    mergeFit: true,
-    responsive:{
-        0:{
-            items:1
-        },
-        720:{
-            items:1
-        },
-        961:{
-            items:2
-        },
-        1117:{
-            items:3
-        },
-        1440:{
-            items:4
-        },
-    }
-  })
-</script>
+    <script src="{% static 'js/owl_carousel/owl.carousel.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel();
+        });
+        $('.owl-carousel').owlCarousel({
+            mouseDrag: false,
+            loop: true,
+            nav: true,
+            mergeFit: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                720: {
+                    items: 1
+                },
+                961: {
+                    items: 2
+                },
+                1117: {
+                    items: 3
+                },
+                1440: {
+                    items: 4
+                },
+            }
+        })
+    </script>
 {% endblock %}
