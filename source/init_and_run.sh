@@ -13,5 +13,5 @@ if not User.objects.filter(username='admin').exists():
 EOF
 
 # Запускаем Gunicorn
-exec gunicorn main_config.wsgi:application --bind 0.0.0.0:8000 
+python manage.py runserver 0.0.0.0:8000
 
