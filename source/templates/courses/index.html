@@ -12,21 +12,21 @@
     <link rel="stylesheet" href="{% static 'css/ckeditor5.css' %}" type="text/css">
 {% endblock %}
 {% block content %}
-    <div class="bloc_carousel">
+    <div class="block_carousel">
         <div class="bg-img1">
             <div class="bg-img2">
                 <div class="container">
                     <div class="main-text">
                         {{page.text_primary|safe}}
                     </div>
-                    <div class="sign_up_button">
-                        <button class="nav-item" id="sign_up_button" type="button">Записаться на курс</button>
+                    <div class="sign_up_block">
+                        <button class="nav-item sign_up_button" type="button">Записаться на курс</button>
                     </div>
                     <div id="carouselExampleCaptions" class="">
                         <div class="carousel_view">
                             <div class="owl-carousel owl-theme">
                                 {% for slide in page.main.all %}
-                                <div class="rounded-4 main-item" style="background-image: url({{slide.image.url}});">
+                                <div class="rounded-4 main-item carousel-image" style="background-image: url({{slide.image.url}});">
                                 </div>
                                 {% endfor %}
                             </div>
@@ -60,8 +60,8 @@
                             <h4>Бесплатный<br>урок!</h4>
                             <p>Запишись на пробное<br>занятие прямо сейчас<br>и получи это</p>
                             <img src="{% static 'images/8.png' %}" class="my-3 card-img-top card_sign_up_img" alt="...">
-                            <div class="sign_up_button">
-                                <button class="nav-item card_sign_up_button" id="sign_up_button" type="button">Записаться на курс
+                            <div class="sign_up_block">
+                                <button class="nav-item card_sign_up_button sign_up_button" type="button">Записаться на курс
                                 </button>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                         <div class="owl-carousel owl-theme">
                             {% for sponsor in page.sponsors.all %}
                             <div class="rounded-4 partners-item">
-                                <div class="partners-image col-4" 
+                                <div class="partners-image col-4 carousel-image" 
                                     style=" background-image: url({{sponsor.image.url}});"></div>
                             </div>
                             {% endfor %}

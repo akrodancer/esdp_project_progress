@@ -22,15 +22,15 @@ def logout_view(request):
 class UserLogin(View):
     def post(self, request, *args, **kwargs):
         form = LoginUserForm(request.POST)
-        if form.is_valid():
+        try:
             current_user = authenticate(request, 
-                                    username=form['username'].value(),
-                                    password=form['password'].value())
+                                        username=form['username'].value(),
+                                        password=form['password'].value())
             login(request, current_user)
-            return HttpResponseRedirect(self.get_success_url())
-        else:
+        except:
             messages.error(request, 'Неверный логин или пароль')
-            return HttpResponseRedirect(self.get_success_url())
+
+        return HttpResponseRedirect(self.get_success_url())
             
     def get_success_url(self):
         next_url = self.request.POST.get('next')
