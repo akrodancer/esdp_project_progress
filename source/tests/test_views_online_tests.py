@@ -5,7 +5,7 @@ from online_tests.views import AllTestsView
 
 class TestAllTestsView(unittest.TestCase):
     def setUp(self):
-        # Настраиваем объект view и подменяем запрос
+        # Настраиваем объект view и подменяем запро
         self.view = AllTestsView()
         self.view.request = Mock()
 

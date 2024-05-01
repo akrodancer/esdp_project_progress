@@ -1,18 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-
-
-class admin:
-    class StackedInline:
-        pass
-
-
-class Comment:
-    pass
-
-
 from accounts.admin import CommentsInline
-
+from accounts.models import Comment
 
 class TestCommentsInline(unittest.TestCase):
     def test_model(self):

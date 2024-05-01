@@ -1,5 +1,6 @@
 from django.test import TestCase
-from .models import PageModel, CarouselMainModel, CarouselSponsorsModel, CarouselReviewsModel, CarouselAdvantagesModel
+from pages.models import PageModel, CarouselMainModel, CarouselSponsorsModel, CarouselReviewsModel, CarouselAdvantagesModel
+from pages.page_choice import PageChoices
 
 
 class PageModelTest(TestCase):

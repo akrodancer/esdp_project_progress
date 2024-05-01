@@ -1,0 +1,60 @@
+name: Check
+on: push
+
+jobs:
+
+  test_job:
+    name: Start CI
+    runs-on: ubuntu-latest
+
+    services:
+      db_1:
+        image: postgress:14.3
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: ${DB_NAME}
+          POSTGRES_PASSWORD: ${DB_PASSWORD}
+          POSTGRES_USER: ${DB_USER}
+
+    steps:
+      - name: Download Project
+        uses: actions/checkout@v4
+      - name: Start the Project
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+          poetry-version: 0.1.0
+      - name: Dependencies
+        run: poetry install
+      - name: Start app
+        run: poetry run python manage.py runserver 0.0.0.0:8000
+
+  run-tests:
+    name: Test CI
+    runs-on: ubuntu-latest
+
+    services:
+      db_1:
+        image: postgress:14.3
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: ${DB_NAME}
+          POSTGRES_PASSWORD: ${DB_PASSWORD}
+          POSTGRES_USER: ${DB_USER}
+
+    steps:
+      - name: Download Project
+        uses: actions/checkout@v4
+      - name: Start the Project
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+          poetry-version: 0.1.0
+      - name: Dependencies
+        run: poetry install
+      - name: Start app
+        run: poetry run python manage.py test tests
+
+      

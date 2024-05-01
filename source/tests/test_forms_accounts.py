@@ -11,7 +11,7 @@ class TestMeta(unittest.TestCase):
             model = mock_comment_model
             fields = ['content']
             widgets = {
-                'content': forms.Textarea(),
+                'content': forms,
             }
             labels = {
                 'content': '',

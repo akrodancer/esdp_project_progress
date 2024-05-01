@@ -10,7 +10,7 @@ class TestCarouselMainInline(unittest.TestCase):
     @mock.patch.object(admin.CarouselMainInline, 'extra')
     @mock.patch.object(admin.CarouselMainInline, 'fields')
     def setUp(self, mock_model, mock_extra, mock_fields):
-        self.testCarousel = admin.CarouselMainInline(mock_model, mock_extra, mock_fields)
+        self.testCarousel = admin.CarouselMainInline(mock_model, mock.MagicMock())
 
     def test_model(self):
         self.assertEqual(self.testCarousel.model, 'CarouselMainModel', 'Model is incorrect')
