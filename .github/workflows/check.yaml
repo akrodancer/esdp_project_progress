@@ -32,7 +32,7 @@ jobs:
         run: poetry install
      
       - name: Start app
-        run: cd sopurce && poetry run python manage.py runserver 0.0.0.0:8000
+        run: cd source && poetry run python manage.py runserver 0.0.0.0:8000
 
 
   # run-tests:
