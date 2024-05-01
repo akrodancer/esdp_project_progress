@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Download Project
         uses: actions/checkout@v4
-      - uses: actions/setup-python@v5.1
+      - uses: actions/setup-python@v5
         with:
           ppython-version: 3.11
       - name: DInstall Poetry
