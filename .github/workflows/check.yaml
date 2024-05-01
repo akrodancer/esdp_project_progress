@@ -13,9 +13,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_DB: ${DB_NAME}
-          POSTGRES_PASSWORD: ${DB_PASSWORD}
-          POSTGRES_USER: ${DB_USER}
+          POSTGRES_DB: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
 
     steps:
       - name: Download Project
