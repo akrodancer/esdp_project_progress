@@ -22,8 +22,8 @@ jobs:
         uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          ppython-version: 3.11
-      - name: DInstall Poetry
+          python-version: 3.11
+      - name: Install Poetry
         run: pip install poetry 
       - name: Install Dependencies
         run: poetry install
