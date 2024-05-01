@@ -9,7 +9,7 @@ jobs:
 
     services:
       db_1:
-        image: postgress:14.3
+        image: postgres:14.3
         ports:
           - 5432:5432
         env:
@@ -36,7 +36,7 @@ jobs:
 
     services:
       db_1:
-        image: postgress:14.3
+        image: postgres:14.3
         ports:
           - 5432:5432
         env:
