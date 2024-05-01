@@ -29,7 +29,7 @@ jobs:
         run: pip install poetry 
 
       - name: Install Dependencies
-        run: poetry Install
+        run: poetry install
 
       - run: cd source      
 
