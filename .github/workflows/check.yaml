@@ -20,10 +20,8 @@ jobs:
     steps:
       - name: Download Project
         uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
       - uses: abatilo/actions-poetry@v2
         with:
-          python-version: 3.11
           poetry-version: 1.8
       - name: Dependencies
         run: poetry install
