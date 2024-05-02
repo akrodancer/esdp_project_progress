@@ -24,6 +24,7 @@ Project install:
 
 Project run:
   stage: build
+  image: python:3.11
   script:
     - python manage.py makemigrations
     - python manage.py migrate
