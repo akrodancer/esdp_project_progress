@@ -26,6 +26,7 @@ Project run:
   stage: build
   image: python:3.11
   script:
+    - cd source
     - python manage.py makemigrations
     - python manage.py migrate
     - python manage.py collectstatic
