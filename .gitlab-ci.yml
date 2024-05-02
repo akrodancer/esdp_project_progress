@@ -1,0 +1,31 @@
+
+stages:
+  - dependencies
+  - build
+  - tests
+  - delivery
+
+variables:
+  POSTGRES_DB: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_USER: postgres
+
+default:
+   services:
+     - postgres
+
+Project install:
+  stage: dependencies
+  image: python:3.11
+  script:
+    - python -m pip install --no-cache-dir poetry 
+    - poetry config virtualenvs.create false
+    - poetry install --no-interaction --no-ansi --no-root
+
+Project run:
+  stage: build
+  script:
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - python manage.py collectstatic
+    - python manage.py check
