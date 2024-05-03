@@ -90,8 +90,7 @@ DATABASES = {
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT')
     } 
-}
-
+} 
 
 AUTH_PASSWORD_VALIDATORS = [] if DEBUG else [
     {

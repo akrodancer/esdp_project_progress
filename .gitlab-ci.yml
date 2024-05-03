@@ -1,6 +1,5 @@
 
 stages:
-  - dependencies
   - build
   - tests
   - delivery
@@ -15,16 +14,27 @@ default:
      - postgres
 
 Project install:
-  stage: dependencies
+  stage: build
   image: python:3.11
   script:
     - python -m pip install --no-cache-dir poetry 
     - poetry config virtualenvs.create false
     - poetry install --no-interaction --no-ansi --no-root
+    - cd source
+    - cat >> .env << EOF 
+        SECRET_KEY=django-insecure-&)4s^s@9m^-b-xl5bja*01_^g7zi)s(#t7&tr=o#_3sasx5_ck
 
-Project run:
-  stage: build
-  script:
+        DB_NAME=postgres
+        DB_USER=postgres
+        DB_PASSWORD=postgres
+        DB_HOST=postgres
+        DB_PORT=5432
+
+        ALLOWED_HOSTS=
+        CSRF_TRUSTED_ORIGINS=
+        DEBUG=True
+        EOF
+
     - python manage.py makemigrations
     - python manage.py migrate
     - python manage.py collectstatic
