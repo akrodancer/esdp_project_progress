@@ -165,7 +165,6 @@ a, a:hover, a:visited, a:active {
     top: 15%;
     right: 0;
     left: 0;
-    height: calc(var(--vh, 1vh) * 70);
     margin-left:auto;
     margin-right:auto;
 }
@@ -406,10 +405,8 @@ a, a:hover, a:visited, a:active {
     margin: 0 auto;
     max-width: 300px;
 }
-.card_sign_up_button {
-    background-color: white;
-}
-.sign_up_button {
+
+.upper-sign-up {
     margin-top: 20px;
     margin-bottom: 50px;
     border: 0;
@@ -492,7 +489,7 @@ a, a:hover, a:visited, a:active {
     transform: skew(-5deg, 5deg);
 }
 
-#card_sign_up_button {
+.card-sign-up {
     margin-top: 100px;
     margin-bottom: 50px;
     border: 0;
