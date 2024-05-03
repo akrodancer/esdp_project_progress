@@ -15,6 +15,7 @@ default:
 
 Project install:
   stage: build
+  stage: build
   image: python:3.11
   script:
     - python -m pip install --no-cache-dir poetry 
