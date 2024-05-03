@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-from os.path import join, isfile
+from os.path import join
 from pathlib import Path
 import environ
 
@@ -116,7 +116,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 STATIC_ROOT = join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     join(BASE_DIR, 'staticfiles')
