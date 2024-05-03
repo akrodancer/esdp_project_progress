@@ -116,7 +116,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 STATIC_ROOT = join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     join(BASE_DIR, 'staticfiles')

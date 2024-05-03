@@ -287,7 +287,7 @@ a, a:hover, a:visited, a:active {
     background-position: right;
 }
 
-.bloc_carousel {
+.block_carousel {
     background: #044691;
 }
 
@@ -307,11 +307,8 @@ a, a:hover, a:visited, a:active {
     margin: 0 auto;
 }
 
-.bloc_carousel {
-    padding-top: 55px;
-}
 
-.bloc_carousel h1 {
+.block_carousel h1 {
     font-family: 'Noteworthy', sans-serif;
     text-align: center;
     margin-bottom: 25px;
@@ -322,8 +319,8 @@ a, a:hover, a:visited, a:active {
     letter-spacing: 0.15em;
 }
 
-.bloc_carousel p {
-    font-family: Montserrat;
+.block_carousel p {
+    font-family: 'Noteworthy', sans-serif;
     font-size: 24px;
     text-align: center;
     color: white;
@@ -440,14 +437,14 @@ a, a:hover, a:visited, a:active {
     color: #044691;
     text-align: center;
     font-size: 74px;
-    font-family: Montserrat;
+    font-family: sans-serif, "Times New Roman";
 }
 
 .who_are_we p{
     color: #044691;
     text-align: center;
     font-size: 40px;
-    font-family: Montserrat;
+    font-family: sans-serif;
     line-height: 1;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -561,21 +558,19 @@ a, a:hover, a:visited, a:active {
     text-align: center;
     color: white;
     font-size: 70px;
-    font-family: Montserrat;
 }
 
 .p_rev {
     text-align: center;
     color: white;
     font-size: 30px;
-    font-family: Montserrat;
 }
 
 .div_review {
     min-height: 350px;
     background-color: white;
     border: 1px solid black;
-    padding-bottom: 20px;
+    
 }
 
 .reviews_p {
@@ -621,7 +616,6 @@ a, a:hover, a:visited, a:active {
     color: #044691;
     font-size: 60px;
     padding-bottom: 50px;
-    font-family: Montserrat;
 }
 
 .partners_view {
@@ -639,7 +633,6 @@ a, a:hover, a:visited, a:active {
     background-size: cover;
     width: auto;
     transform: scale(0.9);
-    background-position: center;
 }
 
 
@@ -651,7 +644,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .courses_content h2 {
-    font-family: Montserrat;
+    font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 700;
     letter-spacing: 0.18em;
@@ -661,7 +654,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .courses_content p {
-    font-family: Montserrat;
+    font-family: Montserrat sans-serif;
     font-size: 24px;
     font-weight: 500;
     line-height: 34px;
@@ -775,7 +768,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .about_us h2 {
-    font-family: Montserrat;
+    font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 700;
     line-height: 73px;
@@ -786,7 +779,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .about_us p {
-    font-family: Montserrat;
+    font-family: Montserrat sans-serif;
     font-size: 24px;
     font-weight: 500;
     line-height: 34px;
@@ -801,8 +794,8 @@ a, a:hover, a:visited, a:active {
     padding-bottom: 60px;
 }
 
-.team h2 {
-    font-family: Montserrat;
+.team   h2 {
+    font-family: Montserrat sans-serif;
     font-size: 48px;
     font-weight: 600;
     line-height: 58px;
@@ -813,7 +806,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .team p {
-    font-family: Montserrat;
+    font-family: Montserrat sans-serif;
     font-size: 24px;
     font-weight: 500;
     line-height: 29px;
@@ -821,11 +814,11 @@ a, a:hover, a:visited, a:active {
     color: #044691;
 }
 .teacher_carousel p {
-    font-family: Montserrat;
+    font-family: Montserrat sans-serif;
     font-size: 20px;
     font-weight: 400;
-    line-height: 25.8px;
-    text-align: left;
+    line-height: 16.8px;
+    text-align: center;
     color: #000000;
 }
 

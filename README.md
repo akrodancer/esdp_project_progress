@@ -17,7 +17,6 @@
 - django-filter 23.5
 - djangorestframework 3.14.0
 - postgreSQL 14.3
-- nginx
 
 ## Конфигурация
 
@@ -32,14 +31,14 @@ DB_PASSWORD=postgres
 DB_HOST=db_1
 DB_PORT=5432
 
-ALLOWED_HOSTS=localhost
-CSRF_TRUSTED_ORIGINS=http://localhost:1337
-DEBUG=False
+ALLOWED_HOSTS=
+CSRF_TRUSTED_ORIGINS=
+DEBUG=True
 ```
 
 ## Запуск
 
-Для запуска приложения необходимо наличие установленного ***Docker и Docker-compose*** на вашей системе. Проект использует `docker-compose.yaml` для конфигурации сборки и запуска контейнеров приложения: 
+Для запуска приложения необходимо наличие установленного ***Docker и Docker-compose*** на вашей системе. Проект используем `docker-compose.yaml` для конфигурации сборки и запуска контейнеров приложения: 
 
 ```bash
 version: '3.8'
@@ -65,10 +64,8 @@ services:
     build: ./
     volumes:
       - ./source:/src
-      - static_volume:/src/static/
-      - media_volume:/src/media/
-    expose:
-      - 8000
+    ports:
+      - "8000:8000"
     restart: always
     depends_on:
       - db_1
@@ -76,23 +73,10 @@ services:
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db_1:5432/postgres
     env_file: .env
 
-  nginx:
-    build: ./nginx
-    volumes:
-       - ./conf:/etc/nginx/cond.d
-       - static_volume:/src/static/
-       - media_volume:/src/media/
-    ports: 
-      - 1337:80 
-    depends_on: 
-      - web
-
 volumes:
   db_backup:
-  static_volume:
-  media_volume:
 ```
-PostreSQL устанавливается из готовоого образа на Docker Hub, само приложение собирается их исходного кода с помощью `Dockerfile'a` в корне проекта:
+PostreSQL устанавливается из готового образа на Docker Hub, само приложение собирается их исходного кода с помощью `Dockerfile'a` в корне проекта:
 
 ```bash
 FROM python:3.11-slim
@@ -114,7 +98,7 @@ COPY ./source /src
 
 ENTRYPOINT ["sh", "init_and_run.sh"]
 ```
-Dockerfile в конце сборки запускает `init_and_start.sh`, который применяет существующие миграции в базу данных, создает учетную запись администратора и запускает сервер:
+Dockerfile в конце сборки запускает `init_and_start.sh`, который применяет существующие миграции в базу данных, создает учетную запись администратора и запускает локальный сервер:
 
 ```bash
 # Создаем миграции и применяем их
@@ -130,19 +114,8 @@ if not User.objects.filter(username='admin').exists():
 EOF
 
 # Запускаем Django сервер
-exec gunicorn main_config.wsgi:application --bind 0.0.0.0:8000 
+python manage.py runserver 0.0.0.0:8000
 ```
-
-Nginx также собирается при помощи Dockerfile'a с небольшим изменением в виде измененного файла default.conf:
-
-```bash
-FROM nginx:latest
-
-RUN rm /etc/nginx/conf.d/default.conf 
-
-COPY default.conf /etc/nginx/conf.d 
-```
-Далее приложение будет доступно по http://localhost:1337
 
 ### Команда для запуска проекта
 

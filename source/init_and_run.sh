@@ -13,6 +13,6 @@ if not User.objects.filter(username='admin').exists():
     User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 EOF
 
-# Запускаем Gunicorn
-exec gunicorn main_config.wsgi:application --bind 0.0.0.0:8000 
+# Запускаем Django сервер
+python manage.py runserver 0.0.0.0:8000
 
