@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIRR = join(BASE_DIR, 'templates')
 
 env = environ.Env()
-environ.Env.read_env(join(BASE_DIR, '.env'))
+environ.Env.read_env(join(BASE_DIR.parent, '.env'))
 
 
 SECRET_KEY = env('SECRET_KEY')
