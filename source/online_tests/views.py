@@ -25,7 +25,7 @@ class AllTestsView(TemplateView):
         elif language == 'KG':
             context['tests'] = tests.filter(test_language='кыргызский')
         else:
-            context['tests'] = tests.all()
+            context['tests'] = tests
         return context
 
 

@@ -1,11 +1,11 @@
-version: '3.8'
+version: '3.10'
 
 services:
   db_1:
     container_name: db_1
     ports:
       - "5432:5432"
-    image: postgres:14.3-alpine
+    image: postgres:14.3
     restart: always
     volumes:
       - ./db:/var/lib/postgresql/data 

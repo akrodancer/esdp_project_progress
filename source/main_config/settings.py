@@ -9,17 +9,16 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-from os.path import join
+from os.path import join, isfile
 from pathlib import Path
-import os
 import environ
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATE_DIRR = os.path.join(BASE_DIR, 'templates')
+TEMPLATE_DIRR = join(BASE_DIR, 'templates')
 
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env(join(BASE_DIR.parent, '.env'))
 
 
 SECRET_KEY = env('SECRET_KEY')
@@ -90,9 +89,8 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT')
-    }
-}
-
+    } 
+} 
 
 AUTH_PASSWORD_VALIDATORS = [] if DEBUG else [
     {
@@ -121,12 +119,12 @@ USE_TZ = True
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles')
+    join(BASE_DIR, 'staticfiles')
 ]
 
 
 MEDIA_URL = '/media/'
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+MEDIA_DIR = join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

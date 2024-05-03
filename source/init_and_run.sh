@@ -3,6 +3,7 @@
 # Создаем миграции и применяем их
 python manage.py makemigrations
 python manage.py migrate
+python manage.py collectstatic
 
 # Создаем суперпользователя, если его не существует
 python manage.py shell <<EOF

@@ -3,6 +3,8 @@ from django.test import TestCase
 from django.utils import timezone
 from unittest.mock import Mock
 from online_tests.models import OnlineTest
+from courses.models import Course
+
 
 
 class OnlineTestTest(TestCase):
@@ -14,8 +16,9 @@ class OnlineTestTest(TestCase):
                                               test_language='en',
                                               countdown=timezone.timedelta(minutes=60))
 
-        self.course_mock = Mock()
-        self.test.course.add(self.course_mock)
+        self.course_test = Course.objects.first()
+        print(Course.objects.all())
+        self.test.course.add(self.course_test.pk)
 
     def test_str_representation(self):
         self.assertEqual(str(self.test), 'Test')
