@@ -33,7 +33,7 @@ test_project:
 docker_build:
   stage: build
   image: docker:stable
-  service:
+  services:
     - docker:dind
   only:
     - main
@@ -48,7 +48,7 @@ docker_build:
 docker_release:
   stage: build
   image: docker:stable
-  service:
+  services:
     - docker:dind
   only:
     - main
