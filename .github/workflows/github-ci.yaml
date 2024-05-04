@@ -1,5 +1,8 @@
 name: Test on Push
-on: push
+on: 
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test_job:
@@ -26,7 +29,7 @@ jobs:
           python -m pip install --no-cache-dir poetry 
           poetry config virtualenvs.create false
           poetry install --no-interaction --no-ansi --no-root
-      - name: Setup & Tests
+      - name: Run Tests
         run: |
           mv example.env .env
           cd source
