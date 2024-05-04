@@ -1,51 +1,37 @@
-version: '3.8'
+version: '3.10'
 
 services:
   db_1:
     container_name: db_1
     ports:
       - "5432:5432"
-    image: postgres:14.3-alpine
+    image: postgres:14.3
     restart: always
     volumes:
-      - postgres:/var/lib/postgres/data
+      - ./db:/var/lib/postgresql/data 
+      - ./db_backup:/docker-entrypoint-initdb.d
     env_file:
-      - source/.env
+      - .env
     environment:
         - POSTGRES_DB=${DB_NAME}
         - POSTGRES_PASSWORD=${DB_PASSWORD}
         - POSTGRES_USER=${DB_USER}
-
   web:
     container_name: progress
     build: ./
     volumes:
-      - ./source:/src/source
-      - static_volume:/src/source/static
-      - media_volume:/src/source/media
-    command: gunicorn main_config.wsgi:application --bind 0.0.0.0:8000  
-    expose:
-      - 8000
+      - ./source:/src
+    ports:
+      - "8000:8000"
     restart: always
     depends_on:
       - db_1
     environment:
-      #- SECRET_KEY=${SECRET_KEY}
-      #- DATABASE_URL=postgres://postgres:postgres@db_1:5432/postgres
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db_1:5432/postgres
-    env_file: source/.env
-
-  nginx:
-    build: ./nginx
-    volumes:
-      - static_volume:/src/source/static
-      - media_volume:/src/source/media
-    ports: 
-      - 1337:80
-    depends_on: 
-      - web
+    env_file: .env
 
 volumes:
-  postgres:
-  static_volume:
-  media_volume:
+  db_backup:
+
+
+
