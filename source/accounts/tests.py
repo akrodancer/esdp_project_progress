@@ -5,7 +5,9 @@ from django.http import Http404
 from .models import User, Comment
 from courses.models import Visit, Course
 from .views import StudentDetailView
-
+from unittest.mock import Mock
+from accounts.json_form_handler import JsonFormHandler
+import unittest
 
 class UserRegisterViewTestCase(TestCase):
     def setUp(self):
@@ -142,3 +144,16 @@ class StudentListViewTest(TestCase):
         response = self.client.get(reverse('accounts:search_student') + '?student=Андрей+Андреев')
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['students'], [])
+
+class TestJsonFormHandler(unittest.TestCase):
+    def setUp(self):
+        self.mock_form = Mock()
+        self.mock_request = Mock()
+
+    def test_create_object_valid_json(self):
+        self.mock_request.body.decode.return_value = "{\"key\": \"value\"}"
+        self.mock_form.is_valid.return_value = True
+        json_formhandler = JsonFormHandler(self.mock_request, self.mock_form)
+
+        json_formhandler.create_object()
+        result = json_formhandler.response()

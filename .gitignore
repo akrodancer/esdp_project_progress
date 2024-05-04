@@ -9,6 +9,7 @@ db.sqlite3-journal
 media
 .env
 docker-compose-prod.yaml
+docker-compose-local.yaml
 nginx_conf
 db
 db_backup
@@ -16,6 +17,7 @@ db_backup
 fixtures
 all_tests
 static
+
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.

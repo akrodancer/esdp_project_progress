@@ -14,5 +14,6 @@ if not User.objects.filter(username='admin').exists():
 EOF
 
 # Запускаем Django сервер
-python manage.py runserver 0.0.0.0:8000
+python exec gunicorn main_config.wsgi:application --bind 0.0.0.0:8000
+
 
