@@ -33,12 +33,12 @@ docker_build:
   image: docker:stable
   services:
     - docker:dind
-  only:
-    - main
   script:
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
     - docker build -t ${CI_REGISTRY}/progress_app:${CI_COMMIT_REF_SLUG} .
     - docker push ${CI_REGISTRY}/progress_app:${CI_COMMIT_REF_SLUG}
+  rules:
+    - if: $CI_DEFAULT_BRANCH
   tags:
     - docker
 
@@ -48,14 +48,14 @@ docker_release:
   image: docker:stable
   services:
     - docker:dind
-  only:
-    - main
   script:
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
     - docker pull ${CI_REGISTRY}/progress_app:${CI_COMMIT_REF_SLUG} 
     - docker tag ${CI_REGISTRY}/progress_app:${CI_COMMIT_REF_SLUG} ${CI_REGISTRY}/progress_app:latest
     - docker push ${CI_REGISTRY}/progress_app:latest
-  when: manual
+  rules:
+    - if: $CI_DEFAULT_BRANCH
+      when: manual
   tags:
     - docker
 
