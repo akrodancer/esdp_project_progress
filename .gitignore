@@ -13,7 +13,6 @@ docker-compose-local.yaml
 nginx_conf
 db
 db_backup
-.github
 fixtures
 all_tests
 static
