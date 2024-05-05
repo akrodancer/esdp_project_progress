@@ -36,7 +36,12 @@ jobs:
           python manage.py test
 
       - name: Meka Pull Request
-        run: gh pr create -B ${{ github.ref_name }} -H main --title 'New pull reqeust from ${{ github.ref_name }}' --body 'Myda by Github Actions'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: ${{ github.ref_name }}
+          target_branch: main
+          title: Request from ${{ github.ref_name }}
+          body: "Generate by Github Actions"
+
 
