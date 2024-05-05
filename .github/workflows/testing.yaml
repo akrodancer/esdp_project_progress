@@ -37,3 +37,8 @@ jobs:
           python manage.py migrate
           python manage.py test
 
+      - name: Meka Pull Request
+        run: gh pr create -B ${{ github.ref_name }} -H main --title 'New pull reqeust from ${{ github.ref_name }}' 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
