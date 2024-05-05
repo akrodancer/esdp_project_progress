@@ -1,11 +1,9 @@
 name: Test on Push
-on: 
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
   test_job:
+    if: github.ref != 'refs/heads/main'   
     name: Testing App
     runs-on: ubuntu-latest
     services:
