@@ -1,0 +1,20 @@
+name: Tag for latest release on Main
+on: workflow_dispatch
+
+jobs:
+  release_job:
+    if: github.ref == 'refs/heads/main'
+    name: Build Latest Verion
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Project
+        uses: actions/checkout@v4
+      - name: Docker login
+        run: docker login -u $GITHUB_ACTOR -p ${{secrets.GITHUB_TOKEN}}
+      - name: Docker Pull
+        run: |
+          docker pull ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:dev_latest
+          docker tag ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:dev_latest ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:latest
+      - name: Publish image
+        run: docker push ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:latest
