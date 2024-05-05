@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download Project
+      - name: Download Image
         uses: actions/checkout@v4
       - name: Docker login
         run: docker login -u $GITHUB_ACTOR -p ${{secrets.GITHUB_TOKEN}}
