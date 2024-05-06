@@ -3,6 +3,9 @@
 # Создаем миграции и применяем их
 python manage.py makemigrations
 python manage.py migrate
+if [ ! -d 'static']; then
+    python  manage.py collectstatic
+fi
 
 # Создаем суперпользователя, если его не существует
 python manage.py shell <<EOF
