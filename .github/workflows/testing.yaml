@@ -50,7 +50,7 @@ jobs:
           prs=$(gh pr list \
               --repo "$GITHUB_REPOSITORY" \
               --head ${{github.ref_name}} \
-              --base 'main' \)
+              --base 'main' )
           if ((prs > 0)); then
               echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
