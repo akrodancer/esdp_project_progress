@@ -55,7 +55,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Build and tag image
         run: |
-          docker build . -t ghcr.io/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY#*/}:${GITHUB_SHA::8} ghcr.io/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY#*/}:dev_latest 
+          docker build . -t ghcr.io/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY#*/}:dev_latest 
+          docker build . -t ghcr.io/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY#*/}:${GITHUB_SHA::8} 
 
       - name: Docker login
         run: docker login -u $GITHUB_ACTOR -p ${{secrets.GITHUB_TOKEN}}
