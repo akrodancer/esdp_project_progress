@@ -11,10 +11,10 @@ jobs:
       - name: Download Image
         uses: actions/checkout@v4
       - name: Docker login
-        run: docker login -u $GITHUB_ACTOR -p ${{secrets.GITHUB_TOKEN}}
+        run: docker login -u ${{github.actor}} -p ${{secrets.GITHUB_TOKEN}}
       - name: Docker Pull
         run: |
-          docker pull ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:dev_latest
-          docker tag ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:dev_latest ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:latest
+          docker pull ghcr.io/${{github.ref}}/${{github.ref_name}}:dev_latest
+          docker tag ghcr.io/${{github.ref}}/${{github.ref_name}}:dev_latest ghcr.io/${{github.ref}}/${{github.ref_name}}:latest
       - name: Publish image
-        run: docker push ghcr.io/$GITHUB_REPOSITORY/${GITHUB_REPOSITORY#*/}:latest
+        run: docker push ghcr.io/${{github.ref}}/${{github.ref_name}}:latest
