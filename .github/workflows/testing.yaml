@@ -36,9 +36,13 @@ jobs:
           python manage.py test
 
       - name: Meka Pull Request
-        uses: vsoch/pull-request-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_BRANCH: "main"
+        uses: rematocorp/open-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          from-branch: ${{ github.ref_name }}
+          to-branch: main
+          repository-owner: TalkingCoffeePot 
+          repository: progress_school_app
+
 
 
