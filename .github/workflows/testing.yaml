@@ -47,10 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          prs=$(gh pr list \
-              --repo "$GITHUB_REPOSITORY" \
-              --head ${{github.ref_name}} \
-              --base 'main' )
+          prs=$(gh pr list -H ${{github.ref_name}} -B 'main' )
           if ((prs > 0)); then
               echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
