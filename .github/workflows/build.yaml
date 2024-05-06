@@ -40,6 +40,7 @@ jobs:
   build_job:
     name: Build Images
     runs-on: ubuntu-latest
+    permissions: write-all
     services:
       db_1:
         image: postgres:14.3

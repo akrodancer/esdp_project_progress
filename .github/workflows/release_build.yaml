@@ -6,6 +6,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     name: Build Latest Verion
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
       - name: Download Image
