@@ -36,13 +36,13 @@ jobs:
           python manage.py test
 
       - name: Meka Pull Request
-        uses: rematocorp/open-pull-request-action@v1
+        uses: repo-sync/pull-request@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          from-branch: ${{ github.ref_name }}
-          to-branch: main
-          repository-owner: TalkingCoffeePot 
-          repository: progress_school_app
-
+          destination_branch: "main"
+          pr_title: "Pulling ${{ github.ref }} into main"
+          pr_body: ":crown: *An automated PR*"
+          pr_reviewer: ""
+          pr_draft: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
