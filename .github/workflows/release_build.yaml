@@ -14,7 +14,7 @@ jobs:
         run: docker login -u ${{github.actor}} -p ${{secrets.GITHUB_TOKEN}}
       - name: Docker Pull
         run: |
-          docker pull ghcr.io/${{github.ref}}/${{github.ref_name}}:dev_latest
-          docker tag ghcr.io/${{github.ref}}/${{github.ref_name}}:dev_latest ghcr.io/${{github.ref}}/${{github.ref_name}}:latest
+          docker pull ghcr.io/${{github.action_repository}}:dev_latest
+          docker tag ghcr.io/${{github.action_repository}}:dev_latest ghcr.io/${{github.action_repository}}:latest
       - name: Publish image
-        run: docker push ghcr.io/${{github.ref}}/${{github.ref_name}}:latest
+        run: docker push ghcr.io/${{github.action_repository}}:latest
