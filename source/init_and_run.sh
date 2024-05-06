@@ -3,7 +3,6 @@
 # Создаем миграции и применяем их
 python manage.py makemigrations
 python manage.py migrate
-python manage.py collectstatic
 
 # Создаем суперпользователя, если его не существует
 python manage.py shell <<EOF
@@ -14,6 +13,6 @@ if not User.objects.filter(username='admin').exists():
 EOF
 
 # Запускаем Django сервер
-python exec gunicorn main_config.wsgi:application --bind 0.0.0.0:8000
+exec gunicorn main_config.wsgi:application --bind 0.0.0.0:8000
 
 

@@ -13,6 +13,8 @@ RUN python3 -m pip install --no-cache-dir poetry
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi --no-root
 
+RUN poetry run python3 manage.py collectstatic
+
 COPY ./source /src
 
 EXPOSE 8000
