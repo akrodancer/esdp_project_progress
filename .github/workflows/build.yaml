@@ -59,7 +59,7 @@ jobs:
           docker build . -t ghcr.io/${{github.ref}}/${{github.ref_name}}:${GITHUB_SHA::8} 
 
       - name: Docker login
-        run: docker login -u ${{github.actor}} -p ${{secrets.GITHUB_TOKEN}}
+        run: docker login ghcr.io -u ${{github.actor}} -p ${{secrets.GITHUB_TOKEN}}
       - name: Publish image
         env:
           IMAGE_NAME: $GITHUB_REPOSITORY
