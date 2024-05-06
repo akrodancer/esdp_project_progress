@@ -39,14 +39,15 @@ jobs:
           python manage.py test
 
       - name: Meka Pull Request
-        run: |
-            gh api \
-              --method POST \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2022-11-28" \
-              --hostname HOSTNAME \
-              /repos/${GITHUB_REPOSITORY}/pulls \
-              -f "title=Amazing new feature" -f "body=Please pull these awesome changes in!" -f "head=${{github.ref_name}}" -f "base=main"
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ${{github.ref_name}}
+          base: main
+          title: Merge from ${{github.ref_name}}
+          body: Pull request by github CI
+          commit-message: |
+            Слияни с веткой ${{github.ref_name}}
+          committer: ${GITHUB_USER}
 
 
 
