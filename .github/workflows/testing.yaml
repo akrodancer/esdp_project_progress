@@ -2,7 +2,8 @@ name: Test on Push
 on: push
 
 env:
-  repository: ${GITHUB_REPOSITORY}
+  GH_TOKEN: ${{ github.token }}
+
 jobs:
   test_job:
     if: github.ref != 'refs/heads/main'   
