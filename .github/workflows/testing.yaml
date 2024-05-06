@@ -36,13 +36,10 @@ jobs:
           python manage.py test
 
       - name: Meka Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }}
-          base: main
-          title: Request from ${{ github.ref_name }}
-          body: "Generate by Github Actions"
-          delete-branch: true
+        uses: vsoch/pull-request-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_PREFIX: "git_develop/"
+          PULL_REQUEST_BRANCH: "main"
 
 
