@@ -47,7 +47,7 @@ jobs:
           body: Pull request by github CI
           commit-message: |
             Слияни с веткой ${{github.ref_name}}
-          committer: ${GITHUB_USER}
+
 
 
 
