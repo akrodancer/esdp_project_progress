@@ -9,6 +9,10 @@ jobs:
     if: github.ref != 'refs/heads/main'   
     name: Testing App
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     services:
       db_1:
         image: postgres:14.3
