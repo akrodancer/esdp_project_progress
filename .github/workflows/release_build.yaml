@@ -12,7 +12,7 @@ jobs:
       - name: Download Image
         uses: actions/checkout@v4
       - name: Docker login
-        run: docker login -u ${{github.actor}} -p ${{secrets.GITHUB_TOKEN}}
+        run: docker login ghcr.io -u ${{github.actor}} -p ${{secrets.GITHUB_TOKEN}}
       - name: Docker Pull
         run: |
           docker pull ghcr.io/${{github.repository}}:dev_latest
