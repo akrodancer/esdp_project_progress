@@ -63,4 +63,4 @@ jobs:
       - name: Publish image
         env:
           IMAGE_NAME: $GITHUB_REPOSITORY
-        run: docker push ghcr.io/${{github.ref}}/${{github.ref_name}}
+        run: docker push ghcr.io/${{github.ref}}/${{github.ref_name}} --all-tags
