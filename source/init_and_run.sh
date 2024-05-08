@@ -3,7 +3,7 @@
 # Создаем миграции и применяем их
 python manage.py makemigrations
 python manage.py migrate
-if [ ! -d 'static']; then
+if [ ! -d 'static' ]; then
     python  manage.py collectstatic
 fi
 
