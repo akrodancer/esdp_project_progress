@@ -15,8 +15,8 @@
                 </li>
                 <li class="nav-item"><a href="{% url 'courses:about_us' %}">О нас</a></li>
                 <li class="nav-item"><a href="{% url 'courses:courses' %}">Наши курсы</a></li>
-                <li class="nav-item"><a href="">Онлайн тестирование</a></li>
-                <li class="nav-item"><a href="">Поиск учеников</a></li>
+                <li class="nav-item"><a href="{% url 'online_tests:all_tests' %}">Онлайн тестирование</a></li>
+                <li class="nav-item"><a href="{% url 'accounts:search_student' %}">Поиск учеников</a></li>
             </ul>
         </div>
         <div class="footer-block f-map col-lg-8 row">
@@ -36,21 +36,16 @@
         <div class="footer-block f-contacts col-lg-2">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item logo">
-                    <a href="">
-                        <h5>Контакты</h5>
-                    </a>
+                    <h5>Контакты</h5>
                 </li>
                 <li class="nav-item">
-                    <h6>Номер телефона:</h6>
-                    <a href="">+996 (505) 242 552</a>
+                    <h6><i class="bi bi-phone nav-item"></i> +996 (505) 242 552</h6>
                 </li>
                 <li class="nav-item">
-                    <h6>E-mail:</h6>
-                    <a href="">progress.kg@gmail.com</a>
+                    <h6><i class="bi bi-envelope-fill nav-item"></i> progress.kg@gmail.com</h6>
                 </li>
                 <li class="nav-item">
-                    <h6>Адрес:</h6>
-                    <a href="">9-й Микрорайон, Суеркулова 10Б</a>
+                    <h6><i class="bi bi-geo-alt-fill nav-item"></i> 9-й Микрорайон, Суеркулова 10Б</h6>   
                 </li>
             </ul>
         </div>

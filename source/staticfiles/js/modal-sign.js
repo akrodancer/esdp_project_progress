@@ -18,7 +18,7 @@
  });
 
   //-------------------МОДАЛЬНОЕ ОКНО ЗАЯВКИ----------------------//
- $("#sign_up_button").on('click', function(e) {
+ $(".sign_up_button").on('click', function(e) {
     $('body').css('overflow', 'hidden')
     e.preventDefault();
     $(".sign-up").removeAttr('hidden')
