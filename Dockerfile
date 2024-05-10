@@ -17,4 +17,6 @@ COPY ./source /src
 
 EXPOSE 8000
 
+RUN chmod +x init_and_run.sh
+
 ENTRYPOINT ["sh", "init_and_run.sh"]
