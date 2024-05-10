@@ -44,10 +44,10 @@ function displayQuestions(startIndex) {
         }
 
         let answersList = document.createElement('ul');
-        answersList.classList.add('list-group', 'list-group-vertical');
+        answersList.classList.add('list-group', 'list-group-vertical', 'answers-list');
         question.answers.forEach(answer => {
             let answerItem = document.createElement('li');
-            answerItem.classList.add('list-group-item', 'flex-fill', 'border-0');
+            answerItem.classList.add('list-group-item', 'flex-fill', 'border-0','answer-li');
             if (answer.answer_image) {
                 let imageElement = document.createElement('img');
                 imageElement.src = answer.answer_image;
