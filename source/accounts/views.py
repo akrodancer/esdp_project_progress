@@ -87,7 +87,7 @@ class StudentDetailView(DetailView):
             visits_data = ([{'visit_date': visit.visit_date.isoformat(),
                              'is_currently_viewing': True if visit.is_currently_viewing else False,
                              'student': visit.students.id,
-                             'course': visit.lesson.course.id,
+                             'course': visit.lesson.lesson.course.id,
                              }
                             for visit in visits])
             comments = Comment.objects.filter(student__id=student_id)

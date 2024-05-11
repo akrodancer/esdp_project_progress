@@ -62,7 +62,7 @@ class Group(models.Model):
     teacher = models.ForeignKey(to='accounts.User',
                                 verbose_name='Учитель',
                                 related_name='teacher_of_group',
-                                limit_choices_to={'role': 'user'},
+                                limit_choices_to={'role': 'teacher'},
                                 on_delete=models.SET_NULL,
                                 null=True,
                                 blank=True

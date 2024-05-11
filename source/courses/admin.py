@@ -29,12 +29,23 @@ class CustomCourseAdmin(admin.ModelAdmin):
               'students', 'paid_by')
 
 
+@admin.register(Lesson)
+class CustomLessonAdmin(admin.ModelAdmin):
+    list_display = (
+        'lesson_name',
+        'description',
+        'video',
+        'lesson_type'
+    )
+    fields = ('lesson_name', 'description', 'video', 'lesson_type', 'course')
+
+
 @admin.register(Group)
 class CustomGroupAdmin(admin.ModelAdmin):
     list_display = (
         'name',
     )
-    fields = ('name', 'teacher', 'students')
+    fields = ('name', 'teacher', 'students', 'course')
 
 @admin.register(LessonPerGroup)
 class LessonPerGroupAdmin(admin.ModelAdmin):
