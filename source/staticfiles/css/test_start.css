@@ -1,7 +1,11 @@
+.test-start-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 6%;
+}
+
 .test-start {
-    margin: 100px;
     font-family: Montserrat, sans-serif;
-    background: url("../images/board.png") no-repeat right;
 }
 
 .course-name {
@@ -39,4 +43,36 @@
 
 .time-questions li {
     margin-right: 100px;
+}
+
+.background-image {
+    background: url("../images/board.png") no-repeat right;
+    flex-grow: 1;
+    min-height: 300px;
+}
+
+@media (max-width: 1210px) {
+    .background-image {
+        background: none;
+        margin: 0;
+        min-height: auto;
+    }
+
+    .background-image-min {
+        background: url("../images/board.png") no-repeat right;
+        flex-grow: 1;
+        background-size: cover;
+        width: auto;
+        min-height: 320px;
+    }
+}
+
+@media (max-width: 400px) {
+    .time-questions li {
+        margin-right: auto;
+    }
+
+    .time-questions ul {
+        display: inline-block;
+    }
 }

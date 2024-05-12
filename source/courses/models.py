@@ -30,11 +30,6 @@ class Course(models.Model):
                                       related_name='enrolled_courses',
                                       blank=True
                                       )
-    paid_by = models.ManyToManyField(to='accounts.User', verbose_name='Те, кто оплатил',
-                                     limit_choices_to={'role': 'user'},
-                                     related_name='paid_courses',
-                                     blank=True
-                                     )
 
     class Meta:
         verbose_name = "Курсы"
