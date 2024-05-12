@@ -29,6 +29,8 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if self.role == 'teacher':
             self.is_staff = True
+        else:
+            self.is_staff = False
         super().save(*args, **kwargs)
         models_to_manage = [Course, OnlineTest, Lesson, Visit, Question, OnlineTest, Group, LessonPerGroup]
         if self.role == 'teacher':

@@ -15,10 +15,22 @@ class LessonInline(admin.StackedInline):
     fk_name = 'course'
     show_change_link = True
 
+class LessonPerGroupInline(admin.StackedInline):
+    model = LessonPerGroup
+    extra = 0
+    fk_name = 'group'
+    show_change_link = True
+
+class GroupInline(admin.StackedInline):
+    model = Group
+    extra = 0
+    fields = ('name', 'teacher', 'students')
+    fk_name = 'course'
+    show_change_link = True
 
 @admin.register(Course)
 class CustomCourseAdmin(admin.ModelAdmin):
-    inlines = [LessonInline]
+    inlines = [LessonInline, GroupInline]
     list_display = (
         'course_name',
         'date_start',
@@ -31,6 +43,7 @@ class CustomCourseAdmin(admin.ModelAdmin):
 
 @admin.register(Group)
 class CustomGroupAdmin(admin.ModelAdmin):
+    inlines = [LessonPerGroupInline]
     list_display = (
         'name',
     )

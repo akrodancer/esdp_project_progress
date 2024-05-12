@@ -2,6 +2,7 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 from .lesson_choices import LessonTypeChoices, VisitRateChoices, LessonVisitChoices
 from . import CourseUpload
+from accounts.account_type_choices import AccoutTypeChoices
 from django.contrib.auth import get_user_model
 
 
@@ -22,16 +23,16 @@ class Course(models.Model):
                                      blank=True
                                      )
     teacher = models.ManyToManyField(to='accounts.User', verbose_name='Учители',
-                                     limit_choices_to={'role': 'teacher'},
+                                     limit_choices_to={'role': AccoutTypeChoices.TEACHER},
                                      related_name='courses_taught'
                                      )
     students = models.ManyToManyField(to='accounts.User', verbose_name='Ученики',
-                                      limit_choices_to={'role': 'user'},
+                                      limit_choices_to={'role': AccoutTypeChoices.USER},
                                       related_name='enrolled_courses',
                                       blank=True
                                       )
     paid_by = models.ManyToManyField(to='accounts.User', verbose_name='Те, кто оплатил',
-                                     limit_choices_to={'role': 'user'},
+                                     limit_choices_to={'role': AccoutTypeChoices.USER},
                                      related_name='paid_courses',
                                      blank=True
                                      )
@@ -62,13 +63,13 @@ class Group(models.Model):
     teacher = models.ForeignKey(to='accounts.User',
                                 verbose_name='Учитель',
                                 related_name='teacher_of_group',
-                                limit_choices_to={'role': 'user'},
+                                limit_choices_to={'role': AccoutTypeChoices.TEACHER},
                                 on_delete=models.SET_NULL,
                                 null=True,
                                 blank=True
                                 )
     students = models.ManyToManyField(to='accounts.User', verbose_name='Ученики',
-                                      limit_choices_to={'role': 'user'},
+                                      limit_choices_to={'role': AccoutTypeChoices.USER},
                                       related_name='students_of_group',
                                       blank=True
                                       )
@@ -144,7 +145,7 @@ class LessonPerGroup(models.Model):
 
     def __str__(self):
         return f'Lesson conducted in {self.group.name} on {self.datetime}'
-
+    
     class Meta:
             verbose_name = "Урок у группы"
             verbose_name_plural = "Уроки у групп"
@@ -158,7 +159,7 @@ class Visit(models.Model):
                                       )
     students = models.ForeignKey(verbose_name='Студент',
                                  to='accounts.User',
-                                 limit_choices_to={'role': 'user'},
+                                 limit_choices_to={'role': AccoutTypeChoices.USER},
                                  related_name='students',
                                  on_delete=models.SET_NULL,
                                  null=True,
