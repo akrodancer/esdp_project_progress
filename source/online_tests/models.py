@@ -29,6 +29,11 @@ class OnlineTest(models.Model):
                                     related_name='online_tests'
                                     )
     countdown = models.DurationField(null=True, blank=True, default=None)
+    paid_by = models.ManyToManyField(to='accounts.User', verbose_name='Те, кто оплатил',
+                                     limit_choices_to={'role': 'user'},
+                                     related_name='paid_courses',
+                                     blank=True
+                                     )
 
     def __str__(self):
         return self.test_name
