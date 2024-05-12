@@ -20,16 +20,16 @@
             <div id="info-block">
                 <div id="info-block-content">
                     <div class="info-row">
-                        <p class="info-label">Курс:</p>
-                        <p class="info-value">{{ selected_course.course_name }}</p>
-                    </div>
-                    <div class="info-row">
-                        <p class="info-label">Репетитор:</p>
+                        <p class="teacher-name">Репетитор:</p>
                         <p class="info-value">
                             {% for teacher in teachers %}
                                 {{ teacher.first_name }} {{ teacher.last_name }}
                             {% endfor %}
                         </p>
+                    </div>
+                    <div class="info-row">
+                        <p class="info-label">Курс:</p>
+                        <p class="info-value">{{ selected_course.course_name }}</p>
                     </div>
                     <div class="info-row">
                         <p class="info-label">Тип занятия:</p>
@@ -81,16 +81,47 @@
                 <div class="comment">
                     <p>{{ comment.content }}</p>
                     <p class="comment-info">Автор: {{ comment.teacher.first_name }} {{ comment.teacher.last_name }}</p>
+                    <form method="post" action="{% url 'accounts:delete_comment' pk=comment.pk %}?course={{ selected_course.id }}" id="delete-comment-form-{{ comment.pk }}">
+                        {% csrf_token %}
+                        <button type="button" class="comment-update" data-comment-id="{{ comment.id }}">Редактировать</button>
+                        <button type="submit" onclick="return confirmDelete({{ comment.pk }})" class="comment-delete">Удалить</button>
+                    </form>
                 </div>
             {% endfor %}
         </div>
     </div>
 </div>
 
+{% include 'partial/update_comment.html' %}
+
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 {{ visits_data|json_script:"visitsData" }}
 <script id="visitsData" type="application/json">
 </script>
 <script src="{% static 'js/calendar_script.js' %}"></script>
+<script>
+    $(document).on('click', '.comment-update', function() {
+        const commentId = $(this).data('comment-id');
+        $('#comment_id').val(commentId);
+
+        // Обновляем action формы
+        const editForm = $('#editCommentForm');
+        const actionUrl = "{% url 'accounts:update_comment' pk=0 %}?course={{ selected_course.id }}".replace('0', commentId);
+        editForm.attr('action', actionUrl);
+
+        $('#editCommentModal').modal('show');
+    });
+
+    function confirmDelete(commentId) {
+        let confirmResult = confirm("Вы уверены, что хотите удалить комментарий?");
+
+        if (confirmResult) {
+            let formId = 'delete-comment-form-' + commentId;
+            document.getElementById(formId).submit();
+        } else {
+            return false;
+        }
+    }
+</script>
 <div id="student-info" data-student-id="{{ student.id }}" data-course-id="{{ selected_course.id }}"></div>
 {% endblock %}

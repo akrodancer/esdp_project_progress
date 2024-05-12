@@ -42,9 +42,9 @@
     box-shadow: 0 0 5px 1px #00000080;
     background-color: #044691;
     border-radius: 15px;
-    padding: 10px 46px;
-    width: 626px;
-    height: 379px;
+    padding: 22px 46px;
+    min-width: 626px;
+    min-height: 379px;
     color: #ffffff;
     border: 1px solid #ffffff;
 }
@@ -62,28 +62,28 @@
 
 .info-row {
     display: flex;
+    align-items: flex-start;
 }
 
-
-.info-label, .info-value {
-    margin: 21px 0 0 0;
-    position: relative;
+.info-label, .info-value, .teacher-name {
+    margin: 15px 0 0 0;
     font-size: 24px;
     font-weight: 500;
+    position: relative;
 }
 
 .info-label::after {
     content: '';
     position: absolute;
-    left: 92%;
+    top: -125%;
+    right: 15px;
+    height: 215%;
     width: 1px;
-    height: 60px;
     background-color: #ffffff;
-    transform: translateY(-20%);
 }
 
-.info-label {
-    flex-basis: 250px;
+.info-label, .teacher-name {
+    width: 250px;
 }
 
 /* правый блок */
@@ -250,6 +250,14 @@
     padding: 20px;
     font-size: 15px;
     box-shadow: 0 0 5px 1px #00000080;
+}
+
+.comment-update, .comment-delete {
+    background-color: #FFD700;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 10px;
+    color: #000000;
 }
 
 /* для средних и маленьких экранов */

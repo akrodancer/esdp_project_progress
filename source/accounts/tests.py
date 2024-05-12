@@ -119,7 +119,7 @@ class CommentCreateViewTest(TestCase):
 class StudentListViewTest(TestCase):
     def setUp(self):
         self.student1 = User.objects.create_user(username='student1', password='password', role='user',
-                                                 first_name='Иван', last_name='Иванов', email='john.doe@example.com')
+                                                 first_name='Иван', last_name='Иванов', email='student1@example.com')
         self.course = Course.objects.create(course_name="Test Course", date_start=date.today(),
                                             date_finish=date.today())
         self.student1.enrolled_courses.add(self.course)
@@ -157,3 +157,86 @@ class TestJsonFormHandler(unittest.TestCase):
 
         json_formhandler.create_object()
         result = json_formhandler.response()
+
+
+class CommentDeleteViewTest(TestCase):
+    def setUp(self):
+        self.teacher = User.objects.create_user(
+            username='teacher', password='password', role='teacher', email='teacher1@example.com'
+        )
+        self.student = User.objects.create_user(
+            username='student', password='password', role='student', email='student1@example.com'
+        )
+        self.comment = Comment.objects.create(
+            content='Test comment', teacher=self.teacher, student=self.student
+        )
+        self.client = Client()
+
+    def test_teacher_can_delete_comment(self):
+        self.client.login(username='teacher', password='password')
+        response = self.client.post(
+            reverse('accounts:delete_comment', kwargs={'pk': self.comment.pk})
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Comment.objects.filter(pk=self.comment.pk).exists())
+
+    def test_student_cannot_delete_comment(self):
+        self.client.login(username='student', password='password')
+        response = self.client.post(
+            reverse('accounts:delete_comment', kwargs={'pk': self.comment.pk})
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertTrue(Comment.objects.filter(pk=self.comment.pk).exists())
+
+    def test_unauthenticated_user_cannot_delete_comment(self):
+        response = self.client.post(
+            reverse('accounts:delete_comment', kwargs={'pk': self.comment.pk})
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Comment.objects.filter(pk=self.comment.pk).exists())
+
+
+class CommentUpdateViewTest(TestCase):
+    def setUp(self):
+        self.teacher = User.objects.create_user(
+            username='teacher', password='password', role='teacher', email='teacher1@example.com'
+        )
+        self.student = User.objects.create_user(
+            username='student', password='password', role='student', email='student1@example.com'
+        )
+        self.comment = Comment.objects.create(
+            content='Test comment', teacher=self.teacher, student=self.student
+        )
+        self.client = Client()
+
+    def test_teacher_can_update_comment(self):
+        self.client.login(username='teacher', password='password')
+        new_content = 'Updated comment'
+        response = self.client.post(
+            reverse('accounts:update_comment', kwargs={'pk': self.comment.pk}),
+            {'content': new_content},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.comment.refresh_from_db()
+        self.assertEqual(self.comment.content, new_content)
+
+    def test_student_cannot_update_comment(self):
+        self.client.login(username='student', password='password')
+        new_content = 'Updated comment'
+        response = self.client.post(
+            reverse('accounts:update_comment', kwargs={'pk': self.comment.pk}),
+            {'content': new_content},
+        )
+        self.assertEqual(response.status_code, 403)
+        self.comment.refresh_from_db()
+        self.assertNotEqual(self.comment.content, new_content)
+
+    def test_unauthenticated_user_cannot_update_comment(self):
+        new_content = 'Updated comment'
+        response = self.client.post(
+            reverse('accounts:update_comment', kwargs={'pk': self.comment.pk}),
+            {'content': new_content},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.comment.refresh_from_db()
+        self.assertNotEqual(self.comment.content, new_content)

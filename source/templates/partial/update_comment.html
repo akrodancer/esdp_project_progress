@@ -1,0 +1,18 @@
+<div class="modal fade" id="editCommentModal" tabindex="-1" role="dialog" aria-labelledby="editCommentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCommentModalLabel">Редактирование комментария</h5>
+            </div>
+            <div class="modal-body">
+                 <form id="editCommentForm" method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" name="comment_id" id="comment_id">
+                    {{ comment_form.as_p }}
+                    <button type="submit" class="btn" style="background-color: #FFD700;">Сохранить</button>
+                    <button type="button" class="btn cancel-button" style="background-color: #FFD700;" data-dismiss="modal">Отмена</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
