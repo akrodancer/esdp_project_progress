@@ -94,12 +94,18 @@ class CommentCreateViewTest(TestCase):
                                                 role='teacher', email='teacher1@example.com')
         self.student = User.objects.create_user(username='student', password='password',
                                                 role='student', email='student1@example.com')
+        self.course = Course.objects.create(course_name='Course', date_start=date.today(),
+                                            date_finish=date.today())
+        self.course.teacher.add(self.teacher)
+        self.course.students.add(self.student)
         self.client = Client()
         self.client.login(username='teacher', password='password')
 
     def test_can_create_comment(self):
+        url = reverse('accounts:add_comment', kwargs={'pk': self.student.pk})
+        url += f'?course={self.course.id}'
         data = {'content': 'Test comment'}
-        response = self.client.post(reverse('accounts:add_comment', kwargs={'pk': self.student.pk}), data)
+        response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Comment.objects.count(), 1)
         comment = Comment.objects.first()
@@ -110,8 +116,10 @@ class CommentCreateViewTest(TestCase):
     def test_cant_create_comment(self):
         self.client.logout()
         self.client.login(username='student', password='password')
+        url = reverse('accounts:add_comment', kwargs={'pk': self.student.pk})
+        url += f'?course={self.course.id}'
         data = {'content': 'Test comment'}
-        response = self.client.post(reverse('accounts:add_comment', kwargs={'pk': self.student.pk}), data)
+        response = self.client.post(url, data)
         self.assertEqual(response.status_code, 403)
         self.assertEqual(Comment.objects.count(), 0)
 
@@ -167,8 +175,12 @@ class CommentDeleteViewTest(TestCase):
         self.student = User.objects.create_user(
             username='student', password='password', role='student', email='student1@example.com'
         )
+        self.course = Course.objects.create(course_name='Course', date_start=date.today(),
+                                            date_finish=date.today())
+        self.course.teacher.add(self.teacher)
+        self.course.students.add(self.student)
         self.comment = Comment.objects.create(
-            content='Test comment', teacher=self.teacher, student=self.student
+            content='Test comment', teacher=self.teacher, student=self.student, course_id=self.course.id
         )
         self.client = Client()
 
@@ -204,8 +216,12 @@ class CommentUpdateViewTest(TestCase):
         self.student = User.objects.create_user(
             username='student', password='password', role='student', email='student1@example.com'
         )
+        self.course = Course.objects.create(course_name='Course', date_start=date.today(),
+                                            date_finish=date.today())
+        self.course.teacher.add(self.teacher)
+        self.course.students.add(self.student)
         self.comment = Comment.objects.create(
-            content='Test comment', teacher=self.teacher, student=self.student
+            content='Test comment', teacher=self.teacher, student=self.student, course_id=self.course.id
         )
         self.client = Client()
 
