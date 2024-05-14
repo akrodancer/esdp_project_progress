@@ -6,6 +6,15 @@ from courses import HomeUpload
 
 
 class PageModel(models.Model):
+    ceo_title = models.CharField(verbose_name='CEO тайтл', 
+                             null=True,
+                             blank=True, 
+                             max_length=150
+                             )
+    ceo_description = models.TextField(verbose_name='CEO описание', 
+                             null=True,
+                             blank=True, 
+                             )
     title = models.CharField(verbose_name='Название страницы', 
                              null=True, 
                              unique=True, 

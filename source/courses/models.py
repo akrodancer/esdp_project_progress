@@ -1,20 +1,19 @@
-from django.core.validators import MaxValueValidator
 from django.db import models
 from .lesson_choices import LessonTypeChoices, VisitRateChoices, LessonVisitChoices
 from . import CourseUpload
 from accounts.account_type_choices import AccoutTypeChoices
-from django.contrib.auth import get_user_model
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Course(models.Model):
     course_name = models.CharField(verbose_name='Название курса',
                                    max_length=255
                                    )
-    description = models.TextField(verbose_name='Описание',
-                                   max_length=5000,
-                                   null=True,
-                                   blank=True
-                                   )
+    description = CKEditor5Field(verbose_name='Описание', 
+                                  config_name='extends', 
+                                  blank=True, 
+                                  null=True
+                                  )
     date_start = models.DateField(verbose_name='Дата начала')
     date_finish = models.DateField(verbose_name='Дата окончания')
     course_image = models.ImageField('Изображение',
@@ -48,7 +47,7 @@ class Course(models.Model):
         return self.paid_by.filter(pk=user.pk).exists()
 
 
-class Group(models.Model):
+class CourseGroup(models.Model):
     name = models.CharField(verbose_name='Название группы',
                                    max_length=255,
                                    null=True,
@@ -75,8 +74,8 @@ class Group(models.Model):
                                       )
 
     class Meta:
-        verbose_name = "Группа"
-        verbose_name_plural = "Группы"
+        verbose_name = "Группа курсов"
+        verbose_name_plural = "Группы курсов"
 
 
     def __str__(self):
@@ -129,7 +128,7 @@ class Lesson(models.Model):
 
 
 class LessonPerGroup(models.Model):
-    group = models.ForeignKey(to=Group,
+    group = models.ForeignKey(to=CourseGroup,
                                verbose_name='Группа',
                                related_name='group_lesson',
                                on_delete=models.SET_NULL,
@@ -154,8 +153,7 @@ class LessonPerGroup(models.Model):
 class Visit(models.Model):
     is_currently_viewing = models.CharField(verbose_name='Посещение', max_length=15, choices=LessonVisitChoices,
                                             blank=True, default='')
-    visit_date = models.DateTimeField(verbose_name='Дата посеения',
-                                      auto_now_add=True
+    visit_date = models.DateTimeField(verbose_name='Дата посещения'
                                       )
     students = models.ForeignKey(verbose_name='Студент',
                                  to='accounts.User',
@@ -174,6 +172,10 @@ class Visit(models.Model):
 
     def __str__(self):
         return f'Visit by {self.students} on {self.visit_date}'
+    
+    def save(self, *args, **kwargs):
+        self.visit_date = self.lesson.datetime
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Посещения"

@@ -81,12 +81,7 @@
                             </div>
                             
                             <div class="mb-3" style="word-wrap: break-word">
-                                <p>{{ course.description }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <p>Длительность курса: 1 уровень - 3 месяца</p>
-                                <p>Периодичность: 3 раза в неделю по 1 час и 20 минут</p>
-                                <p>Стоимость: 2600 сом за 1 месяц обучения</p>
+                                <p>{{ course.description | safe }}</p>
                             </div>
                             <button type="submit" class="rounded-2 btn_see_more">Записаться на курс</button>
                         </div>

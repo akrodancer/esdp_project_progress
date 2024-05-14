@@ -2,20 +2,10 @@ from django.views.generic import ListView
 from django.views.generic.base import TemplateView
 from django.contrib.auth import get_user_model
 from courses.models import Course, Lesson
-from pages.models import PageModel
 
 
 class IndexPageView(TemplateView):
     template_name = 'courses/index.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['courses'] = Course.objects.all()
-        try:
-            context['page'] = PageModel.objects.get(path=self.request.path)
-        except:
-            pass
-        return context
-
 
 class AboutUsView(ListView):
     model = get_user_model()
@@ -24,10 +14,6 @@ class AboutUsView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['teachers'] = get_user_model().user_set.get_teachers()
-        try:
-            context['page'] = PageModel.objects.get(path=self.request.path)
-        except:
-            pass
         return context
 
 
@@ -36,10 +22,6 @@ class CoursesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['courses'] = Course.objects.all().order_by('date_start')
-        try:
-            context['page'] = PageModel.objects.get(path=self.request.path)
-        except:
-            pass
         return context
 
 class LessonsView(ListView):
