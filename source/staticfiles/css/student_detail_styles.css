@@ -13,10 +13,11 @@
 
 #blocks-container {
     margin-top: 50px;
-    display: inline;
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 #left-block, #right-block {
@@ -53,10 +54,6 @@
     text-align: left;
     display: flex;
     justify-content: space-between;
-}
-
-#info-block-content {
-    display: flex;
     flex-direction: column;
 }
 
@@ -75,15 +72,20 @@
 .info-label::after {
     content: '';
     position: absolute;
-    top: -125%;
-    right: 15px;
-    height: 215%;
+    top: -155%;
+    right: -3%;
+    height: 265%;
     width: 1px;
     background-color: #ffffff;
 }
 
 .info-label, .teacher-name {
-    width: 250px;
+    width: 41%;
+    margin-right: 20px;
+}
+
+.info-value {
+    width: 51%;
 }
 
 /* правый блок */
@@ -138,7 +140,8 @@
 /*Календарь*/
 
 #calendar {
-    width: 480px;
+    width: 100%;
+    max-width: 480px;
     height: 449px;
     margin-top: 20px;
     border: 1px solid #ffffff;
@@ -163,11 +166,11 @@
 }
 
 #calendar table {
-    width: 409px;
-    height: 374px;
+    width: 85%;
+    height: 85%;
     border-collapse: collapse;
     font-family: "Inter", sans-serif;
-    margin-left: 35px;
+    margin-left: 7%;
 }
 
 #calendar th {
@@ -197,7 +200,7 @@
 
 .feedback-section {
     display: inline-block;
-    padding: 220px;
+    padding: 220px 0;
     margin-right: 26%;
 }
 
@@ -206,8 +209,6 @@
     margin-left: 0;
     text-align: left;
 }
-
-
 
 .feedback-section form, h3 {
     font-weight: 500;
@@ -267,13 +268,117 @@
         margin: 20px auto;
     }
 
+    #blocks-container {
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+    }
+
     .feedback-section {
         margin: 0;
+        align-items: center;
+        align-content: center;
+    }
+
+    #calendar {
+        width: 100%;
+    }
+
+    #comment-input textarea {
+        width: 100%;
     }
 }
 
 @media (max-width: 1025px) {
     #comment-input textarea {
         max-width: 500px;
+    }
+
+    #comments-container {
+        width: 100%;
+    }
+
+    .comment {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #left-block img {
+        width: 150px;
+        height: 150px;
+    }
+
+    #info-block {
+        min-height: 0;
+        height: auto;
+        min-width: 0;
+        /*width: 450px;*/
+        width: 100%;
+    }
+
+    .info-label, .teacher-name {
+        font-size: 20px;
+    }
+
+    .info-value {
+        font-size: 18px;
+    }
+
+    #calendar {
+        width: 100%;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    #left-block img {
+        width: 120px;
+        height: 120px;
+    }
+
+    #info-block {
+        padding: 15px 15px 30px 15px;
+        width: 100%;
+    }
+
+    .info-label, .info-value, .teacher-name {
+        font-size: 15px;
+    }
+
+    #attendance h3 {
+        font-size: 18px;
+    }
+
+    #present, #absent {
+        font-size: 10px;
+        margin-top: 15px;
+    }
+
+    #green, #red {
+        height: 36px;
+        width: 110px;
+        line-height: 36px;
+    }
+
+    #calendar {
+        font-size: 10px;
+        width: 300px;
+        max-height: 400px;
+        overflow-x: auto;
+    }
+
+    .comment {
+        font-size: 24px;
+    }
+
+    #comment-input textarea {
+        height: 200px;
+    }
+
+    #attendance h3,
+    #calendar {
+        display: block;
+        margin: 0 auto;
     }
 }
