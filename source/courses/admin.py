@@ -87,17 +87,6 @@ class CustomCourseAdmin(admin.ModelAdmin):
               'students')
 
 
-@admin.register(Lesson)
-class CustomLessonAdmin(admin.ModelAdmin):
-    list_display = (
-        'lesson_name',
-        'description',
-        'video',
-        'lesson_type'
-    )
-    fields = ('lesson_name', 'description', 'video', 'lesson_type', 'course')
-
-
 @admin.register(CourseGroup)
 class CustomGroupAdmin(admin.ModelAdmin):
     inlines = [LessonPerGroupInline]
