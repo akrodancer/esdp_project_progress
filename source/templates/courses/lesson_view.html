@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="row row-cols-4 mt-5 mb-5">
+        <div class="d-flex row row-cols- mt-5 mb-5">
             {% for lesson in lessons %}
                 <div class="col">
                     {% if request.user in lesson.course.students.all or lesson.lesson_type == 'free' %}
@@ -82,6 +82,4 @@
             {% endfor %}
         </div>
     </div>
-
-
 {% endblock %}
