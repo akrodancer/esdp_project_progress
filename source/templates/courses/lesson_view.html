@@ -49,9 +49,9 @@
                 </div>
             </div>
 
-        <div class="row row-cols-4 mt-5 mb-5">
+        <div class="d-flex row row-cols- mt-5 mb-5">
             {% for lesson in lessons %}
-                <div class="col">
+                <div class="col mt-3">
                 {%  if request.user in lesson.course.students.all or lesson.lesson_type == 'free'%}
                     <a href="{{ lesson.video }}">
                         <div class="card h-100 card-color-class available-class" style="width: 18rem;">
