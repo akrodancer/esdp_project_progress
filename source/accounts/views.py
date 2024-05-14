@@ -2,16 +2,17 @@ from typing import Any
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate, get_user_model
-from django.views.generic import CreateView, DetailView, ListView, View
+from django.views.generic import CreateView, DetailView, ListView, View, DeleteView, UpdateView
 from django_filters.views import FilterView
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from courses.models import Visit, Course
 from .models import Comment
 from .json_form_handler import JsonFormHandler
 from .forms import NewUserForm, LoginUserForm, CommentForm, SignedUpUsersForm
 from .filters import StudentFilter
+from django.core.exceptions import PermissionDenied
 from .account_type_choices import AccoutTypeChoices
 
 def logout_view(request):
@@ -87,9 +88,10 @@ class StudentDetailView(DetailView):
             visits_data = ([{'visit_date': visit.visit_date.isoformat(),
                              'is_currently_viewing': True if visit.is_currently_viewing else False,
                              'student': visit.students.id,
+                             'course': visit.lesson.lesson.course.id,
                              }
                             for visit in visits])
-            comments = Comment.objects.filter(student__id=student_id)
+            comments = Comment.objects.filter(student__id=student_id, course__id=course_id).order_by('-created_at')
             context['filter'] = StudentFilter
             context['teachers'] = teachers
             context['selected_course'] = selected_course
@@ -110,13 +112,48 @@ class CommentCreateView(UserPassesTestMixin, CreateView):
 
     def form_valid(self, form):
         student = get_object_or_404(get_user_model(), pk=self.kwargs.get('pk'))
+        course_id = self.request.GET.get('course', '')
+        course = get_object_or_404(Course, pk=course_id)
         comment = form.save(commit=False)
         comment.student = student
         comment.teacher = self.request.user
+        comment.course = course
         comment.save()
-        course_id = self.request.GET.get('course', '')
         url = reverse('accounts:student_detail', kwargs={'pk': student.pk}) + f'?course={course_id}'
         return HttpResponseRedirect(url)
+
+
+class CommentDeleteView(UserPassesTestMixin, DeleteView):
+    model = Comment
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.teacher
+
+    def get_success_url(self):
+        course_id = self.request.GET.get('course', '')
+        return reverse_lazy('accounts:student_detail', kwargs={'pk': self.object.student.pk}) + f'?course={course_id}'
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class CommentUpdateView(UserPassesTestMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.teacher
+
+    def get_success_url(self):
+        course_id = self.request.GET.get('course', '')
+        return reverse_lazy('accounts:student_detail', kwargs={'pk': self.object.student.pk}) + f'?course={course_id}'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 class SignUpUsersView(View):

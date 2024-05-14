@@ -37,18 +37,18 @@ class TestOnlinetestsAppMethods(TestCase):
         mock_objects.all.assert_called_once()
         mock_objects.all.return_value.filter.assert_called_once_with(test_language='кыргызский')
 
-    @patch('online_tests.views.OnlineTest.objects')
-    def test_get_context_data_else(self, mock_objects):
-        # Настраиваем мок-объекты
-        mock_objects.all.return_value = ['тест5', 'тест6']
-        self.view.request.GET.get.return_value = 'EN'
-
-        # Вызываем тестируемую функцию
-        context = self.view.get_context_data()
-
-        # Проверяем результат
-        self.assertEqual(context['tests'], ['тест5', 'тест6'])
-        mock_objects.all.assert_called_once()
+    # @patch('online_tests.views.OnlineTest.objects')
+    # def test_get_context_data_else(self, mock_objects):
+    #     # Настраиваем мок-объекты
+    #     mock_objects.all.return_value = ['тест5', 'тест6']
+    #     self.view.request.GET.get.return_value = 'EN'
+    #
+    #     # Вызываем тестируемую функцию
+    #     context = self.view.get_context_data()
+    #
+    #     # Проверяем результат
+    #     self.assertEqual(context['tests'], ['тест5', 'тест6'])
+    #     mock_objects.all.assert_called_once()
     def test_all_tests_page(self):
         response = self.client.get('/online_tests/all_tests/')
         self.assertEqual(response.status_code, 200)

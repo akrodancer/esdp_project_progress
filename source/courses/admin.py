@@ -84,7 +84,18 @@ class CustomCourseAdmin(admin.ModelAdmin):
     )
     fields = ('course_name', 'description', 'date_start',
               'course_image', 'date_finish', 'teacher',
-              'students', 'paid_by')
+              'students')
+
+
+@admin.register(Lesson)
+class CustomLessonAdmin(admin.ModelAdmin):
+    list_display = (
+        'lesson_name',
+        'description',
+        'video',
+        'lesson_type'
+    )
+    fields = ('lesson_name', 'description', 'video', 'lesson_type', 'course')
 
 
 @admin.register(CourseGroup)

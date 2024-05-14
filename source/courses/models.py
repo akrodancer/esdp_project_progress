@@ -30,11 +30,6 @@ class Course(models.Model):
                                       related_name='enrolled_courses',
                                       blank=True
                                       )
-    paid_by = models.ManyToManyField(to='accounts.User', verbose_name='Те, кто оплатил',
-                                     limit_choices_to={'role': AccoutTypeChoices.USER},
-                                     related_name='paid_courses',
-                                     blank=True
-                                     )
 
     class Meta:
         verbose_name = "Курсы"
@@ -153,7 +148,7 @@ class LessonPerGroup(models.Model):
 class Visit(models.Model):
     is_currently_viewing = models.CharField(verbose_name='Посещение', max_length=15, choices=LessonVisitChoices,
                                             blank=True, default='')
-    visit_date = models.DateTimeField(verbose_name='Дата посещения'
+    visit_date = models.DateTimeField(verbose_name='Дата посещения',
                                       )
     students = models.ForeignKey(verbose_name='Студент',
                                  to='accounts.User',
@@ -180,3 +175,8 @@ class Visit(models.Model):
     class Meta:
         verbose_name = "Посещения"
         verbose_name_plural = "Посещения"
+
+    def save(self, *args, **kwargs):
+        if self.lesson:
+            self.visit_date = self.lesson.datetime.date()
+        super().save(*args, **kwargs)
