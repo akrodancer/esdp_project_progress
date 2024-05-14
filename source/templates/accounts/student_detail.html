@@ -103,12 +103,9 @@
     $(document).on('click', '.comment-update', function() {
         const commentId = $(this).data('comment-id');
         $('#comment_id').val(commentId);
-
-        // Обновляем action формы
         const editForm = $('#editCommentForm');
         const actionUrl = "{% url 'accounts:update_comment' pk=0 %}?course={{ selected_course.id }}".replace('0', commentId);
         editForm.attr('action', actionUrl);
-
         $('#editCommentModal').modal('show');
     });
 

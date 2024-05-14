@@ -3,6 +3,7 @@ from django.db import models
 from .lesson_choices import LessonTypeChoices, VisitRateChoices, LessonVisitChoices
 from . import CourseUpload
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 
 class Course(models.Model):
@@ -148,9 +149,7 @@ class LessonPerGroup(models.Model):
 class Visit(models.Model):
     is_currently_viewing = models.CharField(verbose_name='Посещение', max_length=15, choices=LessonVisitChoices,
                                             blank=True, default='')
-    visit_date = models.DateTimeField(verbose_name='Дата посеения',
-                                      auto_now_add=True
-                                      )
+    visit_date = models.DateTimeField(verbose_name='Дата посещения',)
     students = models.ForeignKey(verbose_name='Студент',
                                  to='accounts.User',
                                  limit_choices_to={'role': 'user'},
@@ -172,3 +171,8 @@ class Visit(models.Model):
     class Meta:
         verbose_name = "Посещения"
         verbose_name_plural = "Посещения"
+
+    def save(self, *args, **kwargs):
+        if self.lesson:
+            self.visit_date = self.lesson.datetime.date()
+        super().save(*args, **kwargs)

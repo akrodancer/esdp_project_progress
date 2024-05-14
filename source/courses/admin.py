@@ -26,7 +26,7 @@ class CustomCourseAdmin(admin.ModelAdmin):
     )
     fields = ('course_name', 'description', 'date_start',
               'course_image', 'date_finish', 'teacher',
-              'students', 'paid_by')
+              'students')
 
 
 @admin.register(Lesson)

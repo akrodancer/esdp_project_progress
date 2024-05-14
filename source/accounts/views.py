@@ -91,7 +91,7 @@ class StudentDetailView(DetailView):
                              'course': visit.lesson.lesson.course.id,
                              }
                             for visit in visits])
-            comments = Comment.objects.filter(student__id=student_id).order_by('-created_at')
+            comments = Comment.objects.filter(student__id=student_id, course__id=course_id).order_by('-created_at')
             context['filter'] = StudentFilter
             context['teachers'] = teachers
             context['selected_course'] = selected_course
@@ -112,11 +112,13 @@ class CommentCreateView(UserPassesTestMixin, CreateView):
 
     def form_valid(self, form):
         student = get_object_or_404(get_user_model(), pk=self.kwargs.get('pk'))
+        course_id = self.request.GET.get('course', '')
+        course = get_object_or_404(Course, pk=course_id)
         comment = form.save(commit=False)
         comment.student = student
         comment.teacher = self.request.user
+        comment.course = course
         comment.save()
-        course_id = self.request.GET.get('course', '')
         url = reverse('accounts:student_detail', kwargs={'pk': student.pk}) + f'?course={course_id}'
         return HttpResponseRedirect(url)
 
