@@ -21,8 +21,10 @@
                 <span class="button-text">На русском</span>
             </div>
         </div>
+
+        <h2 class="tests-title">Оплаченные тесты</h2>
         <div class="tests">
-            {% for test in tests %}
+            {% for test in paid_tests %}
                 <a href="{% url 'online_tests:start_test' test.pk %}" class="test-card-link">
                     <div class="test-card">
                         <p class="test-name">{{ test.test_name }}</p>
@@ -44,6 +46,58 @@
                 </a>
             {% endfor %}
         </div>
+
+
+        <h2 class="tests-title">Бесплатные тесты</h2>
+        <div class="tests">
+            {% for test in free_tests %}
+                <a href="{% url 'online_tests:start_test' test.pk %}" class="test-card-link">
+                    <div class="test-card">
+                        <p class="test-name">{{ test.test_name }}</p>
+                        <p class="test-course">
+                            {% for course in test.course.all %}
+                                {{ course.course_name }}
+                            {% endfor %}
+                        </p>
+                        <div class="time-questions">
+                            {% if test.test_language == 'кыргызский' %}
+                                <p>Убакыт: {{ test.countdown_formatted_kg }}</p>
+                                <p>Суроолордун саны: {{ test.questions.count }}</p>
+                            {% else %}
+                                <p>Время: {{ test.countdown_formatted_ru }}</p>
+                                <p>Количество заданий: {{ test.questions.count }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+        <h2 class="tests-title">Неоплаченные тесты</h2>
+        <div class="tests">
+            {% for test in not_paid_tests %}
+                <a href="{% url 'online_tests:start_test' test.pk %}" class="test-card-link">
+                    <div class="test-card inactive-test">
+                        <p class="test-name">{{ test.test_name }}</p>
+                        <p class="test-course">
+                            {% for course in test.course.all %}
+                                {{ course.course_name }}
+                            {% endfor %}
+                        </p>
+                        <div class="time-questions">
+                            {% if test.test_language == 'кыргызский' %}
+                                <p>Убакыт: {{ test.countdown_formatted_kg }}</p>
+                                <p>Суроолордун саны: {{ test.questions.count }}</p>
+                            {% else %}
+                                <p>Время: {{ test.countdown_formatted_ru }}</p>
+                                <p>Количество заданий: {{ test.questions.count }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
     </div>
     <script src="{% static 'js/languageButtons.js' %}"></script>
 {% endblock %}

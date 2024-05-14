@@ -11,9 +11,9 @@
 }
 
 .test-name {
-  font-size: 20px;
-  font-weight: 800;
-  color: #044691;
+    font-size: 20px;
+    font-weight: 800;
+    color: #044691;
 }
 
 .progress-bar {
@@ -42,14 +42,6 @@
 .result h3 {
     font-size: 20px;
     font-weight: 500;
-}
-
-.correct {
-    text-align: left;
-}
-
-.incorrect {
-
 }
 
 .correct-result, .incorrect-result {
@@ -106,9 +98,105 @@
     font-size: 18px;
 }
 
+/* Media Queries */
 @media (max-width: 996px) {
     .button-container {
         width: 100%;
         max-width: 996px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .button-container a {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .result {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-top: 50px;
+        padding: 0 20px;
+    }
+
+    .progress-bar {
+        max-width: 100%;
+        height: 30px;
+    }
+
+    .result h3 {
+        font-size: 18px;
+    }
+
+    .correct-result, .incorrect-result {
+        font-size: 20px;
+    }
+
+    .test-time {
+        font-size: 18px;
+    }
+
+    .time-spent {
+        font-size: 30px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .button-container a {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin-top: 20px;
+        padding: 0 10px;
+    }
+
+    .container h1 {
+        font-size: 18px;
+    }
+
+    .test-name {
+        font-size: 18px;
+    }
+
+    .progress-bar {
+        height: 25px;
+    }
+
+    .result h3 {
+        font-size: 16px;
+    }
+
+    .correct-result, .incorrect-result {
+        font-size: 18px;
+    }
+
+    .test-time {
+        font-size: 16px;
+    }
+
+    .time-spent {
+        font-size: 24px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .button-container a {
+        width: 100%;
+        max-width: 200px;
     }
 }

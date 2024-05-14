@@ -1,14 +1,15 @@
 import datetime
 import json
 from django.utils import timezone
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import View, TemplateView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from django.contrib import messages
 from .models import OnlineTest, Question, UserTest, Answer
 from .serializers import TestSerializer
 
@@ -19,29 +20,53 @@ class AllTestsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         language = self.request.GET.get('language')
-        tests = OnlineTest.objects.all()
+        user = self.request.user
+        all_tests = OnlineTest.objects.all()
+        paid_tests = user.paid_courses.all() if not isinstance(user, AnonymousUser) else []
+        free_tests = OnlineTest.objects.filter(test_type='free')
+        not_paid_tests = all_tests.exclude(id__in=paid_tests).exclude(id__in=free_tests)
         if language == 'RU':
-            context['tests'] = tests.filter(test_language='русский')
+            context['tests'] = all_tests.filter(test_language='русский')
+            context['paid_tests'] = paid_tests.filter(test_language='русский') if not isinstance(paid_tests, list) else []
+            context['free_tests'] = free_tests.filter(test_language='русский')
+            context['not_paid_tests'] = not_paid_tests.filter(test_language='русский')
         elif language == 'KG':
-            context['tests'] = tests.filter(test_language='кыргызский')
+            context['tests'] = all_tests.filter(test_language='кыргызский')
+            context['paid_tests'] = paid_tests.filter(test_language='кыргызский') if not isinstance(paid_tests, list) else []
+            context['free_tests'] = free_tests.filter(test_language='кыргызский')
+            context['not_paid_tests'] = not_paid_tests.filter(test_language='кыргызский')
         else:
-            context['tests'] = tests.all()
+            context['tests'] = all_tests
+            context['paid_tests'] = paid_tests
+            context['free_tests'] = free_tests
+            context['not_paid_tests'] = not_paid_tests
         return context
 
 
 class TestView(LoginRequiredMixin, View):
     template_name = 'course_tests/test_start.html'
 
-    def get(self, request, test_id):
-        test = get_object_or_404(OnlineTest, id=test_id)
+    def get_context(self, test):
         questions_count = Question.objects.filter(test=test).count()
         total_minutes = int(test.countdown.total_seconds() // 60)
-        context = {
+        return {
             'test': test,
             'questions_count': questions_count,
             'total_minutes': total_minutes
         }
-        return render(request, self.template_name, context)
+
+    def get(self, request, test_id):
+        test = get_object_or_404(OnlineTest, id=test_id)
+        user = request.user
+        if not request.user.is_authenticated:
+            messages.error(request, 'Войдите в аккаунт для просмотра тестов')
+            return redirect('online_tests:all_tests')
+        if test.test_type == 'free' or test in user.paid_courses.all() or user.role == 'teacher':
+            context = self.get_context(test)
+            return render(request, self.template_name, context)
+        else:
+            messages.error(request, 'Этот тест не оплачен')
+            return redirect('online_tests:all_tests')
 
 
 class TestPassingView(LoginRequiredMixin, View):

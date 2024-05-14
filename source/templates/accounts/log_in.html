@@ -17,13 +17,14 @@
 <section class="auth turn-on" hidden>
     <div class="row flex-column m-auto" id="reg_form">
         <div class="form-inputs text-center m-auto mt-5">
-            <form method="post" enctype="multipart/form-data" action="{% url 'accounts:log_in' %}">
+            <form method="post" action="{% url 'accounts:log_in' %}">
                 {% csrf_token %}   
                 <h5>Войдите в свой аккаунт</h5>
                 <span>Введите новый логин и пароль</span>
                 <div><input required type="text" name="username" placeholder="Логин"></div>
                 <div><input required type="password" name="password" placeholder="пароль"></div>
                 <a href="{% url 'accounts:user_reg' %}"><span>Создать учетную запись</span></a>
+                <input type="hidden" name="next" value="{{ request.path }}">
                 <button id="" type="submit" class="btn btn-warning">Подтвердить</button>
             </form>
         </div>

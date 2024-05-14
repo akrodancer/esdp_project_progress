@@ -16,7 +16,8 @@ class CustomUserAdmin(admin.ModelAdmin):
         'username',
         'email',
         'phone',
-        'get_role_display'
+        'get_role_display',
+        'is_staff'
     )
     fields = ('username', 'first_name', 'last_name', 
               'avatar', 'email', 'phone', 'role')

@@ -41,5 +41,41 @@
     border: none;
     cursor: pointer;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1rem;
+}
+
+
+@media (max-width: 992px) {
+    #id_student {
+        height: 42px;
+        width: 70vw;
+    }
+
+    .search-button {
+        width: 90px;
+        height: 32px;
+        top: 44%;
+        line-height: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #id_student {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 348px) {
+    .search-button {
+        right: 5%!important;
+    }
+}
+
+@media (max-width: 312px) {
+    .search-button {
+        top: 38%;
+    }
+    .write-name {
+        font-size: 16px;
+    }
 }
