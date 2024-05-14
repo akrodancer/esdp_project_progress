@@ -46,7 +46,7 @@ class Comment(models.Model):
     content = models.TextField(verbose_name='Содержание')
     teacher = models.ForeignKey(to=User, verbose_name='Учитель', limit_choices_to={'role': 'teacher'}, related_name='comments_given', on_delete=models.CASCADE)
     student = models.ForeignKey(to=User, verbose_name='Ученик', limit_choices_to={'role': 'user'}, related_name='comments_received', on_delete=models.CASCADE)
-    course = models.ForeignKey(to=Course, verbose_name='Курс ученика', related_name='comments', on_delete=models.CASCADE)
+    course = models.ForeignKey(to=Course, verbose_name='Курс ученика', related_name='comments', on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(verbose_name='Время публикации', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Время редактирования', auto_now=True)
     
