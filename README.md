@@ -41,18 +41,15 @@ DEBUG=True
 Для запуска приложения необходимо наличие установленного ***Docker и Docker-compose*** на вашей системе. Проект используем `docker-compose.yaml` для конфигурации сборки и запуска контейнеров приложения: 
 
 ```bash
-version: '3.8'
+version: '3.10'
 
 services:
   db_1:
     container_name: db_1
     ports:
       - "5432:5432"
-    image: postgres:14.3-alpine
+    image: postgres:14.3
     restart: always
-    volumes:
-      - ./db:/var/lib/postgresql/data 
-      - ./db_backup:/docker-entrypoint-initdb.d
     env_file:
       - .env
     environment:
@@ -70,16 +67,13 @@ services:
     depends_on:
       - db_1
     environment:
-      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db_1:5432/postgres
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
     env_file: .env
-
-volumes:
-  db_backup:
 ```
 PostreSQL устанавливается из готового образа на Docker Hub, само приложение собирается их исходного кода с помощью `Dockerfile'a` в корне проекта:
 
 ```bash
-FROM python:3.11-slim
+FROM python:3.11
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -88,13 +82,16 @@ WORKDIR /src
 
 COPY poetry.lock pyproject.toml README.md /src/
 
-# Устанавливаем Poetry
 RUN python3 -m pip install --no-cache-dir poetry
 
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi --no-root
 
 COPY ./source /src
+
+EXPOSE 8000
+
+RUN chmod +x init_and_run.sh
 
 ENTRYPOINT ["sh", "init_and_run.sh"]
 ```
@@ -104,6 +101,9 @@ Dockerfile в конце сборки запускает `init_and_start.sh`, к
 # Создаем миграции и применяем их
 python manage.py makemigrations
 python manage.py migrate
+if [ ! -d 'static' ]; then
+    python  manage.py collectstatic
+fi
 
 # Создаем суперпользователя, если его не существует
 python manage.py shell <<EOF
@@ -114,7 +114,7 @@ if not User.objects.filter(username='admin').exists():
 EOF
 
 # Запускаем Django сервер
-python manage.py runserver 0.0.0.0:8000
+exec gunicorn main_config.wsgi:application --bind 0.0.0.0:8000 --workers 4
 ```
 
 ### Команда для запуска проекта
@@ -138,7 +138,7 @@ sudo docker-compose up
 
 ## Авторы
 
-- Сагидуллин Эмиль - emil.sagidullin@mail.ru
+- Сагидуллин Эмиль - akrodanser@gmail.com
 - Юрмашев Радмир - barrberry666@gmail.com
 - Барханский Кирилл - kulgansad@gmail.com
 - Охлопков Гаврил - gokhlopkov2002@gmail.com
