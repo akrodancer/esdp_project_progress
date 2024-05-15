@@ -93,7 +93,11 @@ class StudentDetailView(DetailView):
                              'course': visit.lesson.lesson.course.id,
                              }
                             for visit in visits])
-            group = student.students_of_group.get(course=selected_course)
+            try:
+                group = student.students_of_group.get(course=selected_course)
+                context['group'] = group
+            except:
+                context['group'] = ''
             comments = Comment.objects.filter(student__id=student_id, course__id=course_id).order_by('-created_at')
             context['filter'] = StudentFilter
             context['teachers'] = teachers
@@ -102,7 +106,7 @@ class StudentDetailView(DetailView):
             context['comment_form'] = CommentForm()
             context['comments'] = comments
             context['student'] = student
-            context['group'] = group
+            
         return context
 
 
