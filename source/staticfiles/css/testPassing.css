@@ -56,9 +56,12 @@
     display: flex;
     min-width: 40%;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
 }
 
+.card-body{
+    border: 0;
+}
 .btn1 {
     background-color: #F3CB3D;
     border-radius: 50%;
@@ -284,4 +287,23 @@
     #test-end-container span {
         font-size: 20px;
     }
+}
+
+.list-group-vertical {
+    text-align: left;
+}
+
+ul .answers-list {
+    counter-reset: list-counter;
+    padding-left: 0;
+}
+
+li .answer-li {
+    list-style: none;
+}
+
+li::before .answer-li {
+    counter-increment: list-counter;
+    content: counter(list-counter) ".";
+    margin-right: 0.5em;
 }

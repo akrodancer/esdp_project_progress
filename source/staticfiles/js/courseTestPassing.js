@@ -25,14 +25,14 @@ function displayQuestions(startIndex) {
         questionElement.classList.add('col-md-6');
 
         let questionContainer = document.createElement('div');
-        questionContainer.classList.add('card', 'mb-3');
+        questionContainer.classList.add('card', 'mb-3', 'border-0');
 
         let questionContent = document.createElement('div');
         questionContent.classList.add('card-body');
 
         let questionTitle = document.createElement('h5');
         questionTitle.classList.add('card-title');
-        questionTitle.textContent = question.question_text;
+        questionTitle.textContent = question.question_name+'. '+question.question_text;
 
         if (question.question_image) {
             let imageElement = document.createElement('img');
@@ -44,10 +44,10 @@ function displayQuestions(startIndex) {
         }
 
         let answersList = document.createElement('ul');
-        answersList.classList.add('list-group', 'list-group-horizontal');
+        answersList.classList.add('list-group', 'list-group-vertical', 'answers-list');
         question.answers.forEach(answer => {
             let answerItem = document.createElement('li');
-            answerItem.classList.add('list-group-item', 'flex-fill', 'border-0');
+            answerItem.classList.add('list-group-item', 'flex-fill', 'border-0','answer-li');
             if (answer.answer_image) {
                 let imageElement = document.createElement('img');
                 imageElement.src = answer.answer_image;
