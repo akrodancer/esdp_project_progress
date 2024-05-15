@@ -16,3 +16,7 @@ class VisitRateChoices(models.TextChoices):
 class LessonVisitChoices(models.TextChoices):
     IN = 'Присутствовал', 'Присутствовал'
     OUT = 'Отсутствовал', 'Отсутствовал'
+
+class GroupChoices(models.TextChoices):
+    GROUP = 'В группе', 'В группе'
+    INDIVIDUAL = 'Индивидуально', 'Индивидуально'

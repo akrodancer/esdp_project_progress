@@ -12,8 +12,13 @@ class CommentsInline(admin.StackedInline):
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
     inlines = [CommentsInline]
+    list_filter = [
+        "is_staff",
+    ]
     list_display = (
         'username',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'get_role_display',

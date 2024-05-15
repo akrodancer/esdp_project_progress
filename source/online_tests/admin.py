@@ -27,4 +27,5 @@ class TestAdmin(admin.ModelAdmin):
 @admin.register(Question)
 class QuestionAdminAdmin(admin.ModelAdmin):
     inlines = [AnswerInline]
-    list_display = ['id', 'question_name']
+    list_display = ['id', 'question_name', 'test']
+    get_model_perms = lambda self, req: {}

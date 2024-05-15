@@ -64,7 +64,7 @@
     {#    modal#}
     {% for course in courses %}
         <div id="myModal courses_modal_window">
-            <div class="modal fade" id="{{ course.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="{{ course.id }}" tabindex="1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content modal_content">
@@ -81,14 +81,10 @@
                             </div>
                             
                             <div class="mb-3" style="word-wrap: break-word">
-                                <p>{{ course.description }}</p>
+                                <p>{{ course.description | safe }}</p>
                             </div>
-                            <div class="mb-3">
-                                <p>Длительность курса: 1 уровень - 3 месяца</p>
-                                <p>Периодичность: 3 раза в неделю по 1 час и 20 минут</p>
-                                <p>Стоимость: 2600 сом за 1 месяц обучения</p>
-                            </div>
-                            <button type="submit" class="rounded-2 btn_see_more">Записаться на курс</button>
+                            <button type="submit" class="rounded-2 btn_see_more sign_up_button"data-bs-dismiss="modal"
+                            aria-label="Close">Записаться на курс</button>
                         </div>
                     </div>
                 </div>

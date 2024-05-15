@@ -10,15 +10,18 @@
 {% block content %}
     <div class="test-view">
         <h1>ОНЛАЙН ТЕСТ</h1>
-        <div class="button-container">
-            <div class="button" onclick="filterTests('')" data-language="">
-                <span class="button-text">Все предметы</span>
+        <div class="button-container row">
+            <div class="button-block col-sm-10 col-lg-3 row justify-content-around">
+                <div class="button" onclick="filterTests('')" data-language=""></div>
+                <h5 class="button-text col-8">Все предметы</h5>
             </div>
-            <div class="button" onclick="filterTests('KG')" data-language="KG">
-                <span class="button-text">На кыргызском</span>
+            <div class="button-block col-sm-10 col-lg-3 row justify-content-around">
+                <div class="button" onclick="filterTests('KG')" data-language="KG"></div>
+                <h5 class="button-text col-8">На кыргызском</h5>
             </div>
-            <div class="button" onclick="filterTests('RU')" data-language="RU">
-                <span class="button-text">На русском</span>
+            <div class="button-block col-sm-10 col-lg-3 row justify-content-around">
+                <div class="button" onclick="filterTests('RU')" data-language="RU"></div>
+                <h5 class="button-text col-8">На русском</h5>
             </div>
         </div>
 
