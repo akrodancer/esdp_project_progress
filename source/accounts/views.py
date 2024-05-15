@@ -7,13 +7,14 @@ from django_filters.views import FilterView
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
-from courses.models import Visit, Course
+from courses.models import Visit, Course, CourseGroup
 from .models import Comment
 from .json_form_handler import JsonFormHandler
 from .forms import NewUserForm, LoginUserForm, CommentForm, SignedUpUsersForm
 from .filters import StudentFilter
 from django.core.exceptions import PermissionDenied
 from .account_type_choices import AccoutTypeChoices
+from courses.lesson_choices import LessonVisitChoices
 
 def logout_view(request):
     logout(request)
@@ -81,16 +82,18 @@ class StudentDetailView(DetailView):
         student_id = self.kwargs['pk']
         course_id = self.request.GET.get('course')
         student = get_object_or_404(get_user_model(), pk=student_id)
+        
         if course_id:
             selected_course = get_object_or_404(Course, id=course_id)
             teachers = selected_course.teacher.all()
             visits = Visit.objects.all()
             visits_data = ([{'visit_date': visit.visit_date.isoformat(),
-                             'is_currently_viewing': True if visit.is_currently_viewing else False,
+                             'is_currently_viewing': True if visit.is_currently_viewing==LessonVisitChoices.IN else False,
                              'student': visit.students.id,
                              'course': visit.lesson.lesson.course.id,
                              }
                             for visit in visits])
+            group = student.students_of_group.get(course=selected_course)
             comments = Comment.objects.filter(student__id=student_id, course__id=course_id).order_by('-created_at')
             context['filter'] = StudentFilter
             context['teachers'] = teachers
@@ -99,6 +102,7 @@ class StudentDetailView(DetailView):
             context['comment_form'] = CommentForm()
             context['comments'] = comments
             context['student'] = student
+            context['group'] = group
         return context
 
 

@@ -32,20 +32,16 @@
                         <p class="info-value">{{ selected_course.course_name }}</p>
                     </div>
                     <div class="info-row">
-                        <p class="info-label">Тип занятия:</p>
-                        <p class="info-value"></p>
+                        <p class="info-label">Группа:</p>
+                        <p class="info-value">{{group.name}}</p>
                     </div>
                     <div class="info-row">
                         <p class="info-label">График занятий:</p>
-                        <p class="info-value"></p>
+                        <p class="info-value">{{group.group_type}}</p>
                     </div>
                     <div class="info-row">
                         <p class="info-label">Стоимость курса:</p>
-                        <p class="info-value"></p>
-                    </div>
-                    <div class="info-row">
-                        <p class="info-label">Оплачено до:</p>
-                        <p class="info-value"></p>
+                        <p class="info-value">{{ selected_course.price }}</p>
                     </div>
                 </div>
             </div>
@@ -81,11 +77,13 @@
                 <div class="comment">
                     <p>{{ comment.content }}</p>
                     <p class="comment-info">Автор: {{ comment.teacher.first_name }} {{ comment.teacher.last_name }}</p>
+                    {% if user.role == 'teacher' %}
                     <form method="post" action="{% url 'accounts:delete_comment' pk=comment.pk %}?course={{ selected_course.id }}" id="delete-comment-form-{{ comment.pk }}">
                         {% csrf_token %}
                         <button type="button" class="comment-update" data-comment-id="{{ comment.id }}">Редактировать</button>
                         <button type="submit" onclick="return confirmDelete({{ comment.pk }})" class="comment-delete">Удалить</button>
                     </form>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

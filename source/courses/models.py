@@ -1,5 +1,5 @@
 from django.db import models
-from .lesson_choices import LessonTypeChoices, VisitRateChoices, LessonVisitChoices
+from .lesson_choices import LessonTypeChoices, VisitRateChoices, LessonVisitChoices, GroupChoices
 from . import CourseUpload
 from accounts.account_type_choices import AccoutTypeChoices
 from django_ckeditor_5.fields import CKEditor5Field
@@ -21,6 +21,10 @@ class Course(models.Model):
                                      null=True,
                                      blank=True
                                      )
+    price = models.CharField(verbose_name='Цена',
+                            blank=True, 
+                            null=True
+                            )
     teacher = models.ManyToManyField(to='accounts.User', verbose_name='Учители',
                                      limit_choices_to={'role': AccoutTypeChoices.TEACHER},
                                      related_name='courses_taught'
@@ -67,6 +71,10 @@ class CourseGroup(models.Model):
                                       related_name='students_of_group',
                                       blank=True
                                       )
+    group_type = models.CharField(verbose_name='В группе/Индивидуально',
+                                   choices=GroupChoices,
+                                   default=GroupChoices.GROUP
+                                   )
 
     class Meta:
         verbose_name = "Группа курсов"
@@ -103,7 +111,7 @@ class Lesson(models.Model):
     lesson_type = models.CharField(verbose_name='Бесплатный/платный',
                                    max_length=4,
                                    choices=LessonTypeChoices,
-                                   default=LessonTypeChoices.FREE
+                                   default=LessonTypeChoices.FREE,
                                    )
 
     def __str__(self):

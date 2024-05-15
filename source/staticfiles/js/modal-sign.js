@@ -22,6 +22,7 @@
     $('body').css('overflow', 'hidden')
     e.preventDefault();
     $(".sign-up").removeAttr('hidden')
+    $(".modal").prop('hidden', 'true')
 });
 
  //-------------------МЕТОД ОТПРАВКИ ЗАПРОСА----------------------//

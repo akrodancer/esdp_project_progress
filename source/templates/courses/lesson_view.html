@@ -54,11 +54,11 @@
 
         <div class="d-flex row row-cols- mt-5 mb-5">
             {% for lesson in lessons %}
-                <div class="col">
+                <div class="col-lg-4 mb-3">
                     {% if request.user in lesson.course.students.all or lesson.lesson_type == 'free' %}
                         {% if lesson.video is not None %}
                             <a href="{{ lesson.video }}">
-                                <div class="card h-100 card-color-class available-class" style="width: 18rem;">
+                                <div class="card h-100 card-color-class available-class" style="width: 18rem; margin: auto;">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ lesson.lesson_name }}</h5>
                                         <h6 class="mb-2">{{ lesson.course.course_name }}</h6>
